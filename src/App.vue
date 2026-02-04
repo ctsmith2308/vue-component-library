@@ -1,7 +1,13 @@
-<template>
-  <header></header>
+<script setup lang="ts">
+import { ButtonsWidget } from '@/widgets'
+// import { MenuBarWidget } from '@/widgets'
+import { MainLayout } from '@/components/layout'
+</script>
 
-  <main>
-    <h1>Home!</h1>
-  </main>
+<template>
+  <!-- <header></header> -->
+  <MainLayout>
+    <ButtonsWidget />
+    <!-- <MenuBarWidget /> -->
+  </MainLayout>
 </template>
