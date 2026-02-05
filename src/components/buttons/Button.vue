@@ -27,17 +27,17 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 })
 
 const colorKeys = {
-  primary: 'bg-blue-400 hover:bg-blue-500 text-white',
-  secondary: 'bg-orange-300 hover:bg-orange-400 text-white',
-  success: 'bg-green-500 hover:bg-green-600 text-white',
-  danger: 'bg-red-500 hover:bg-red-700 text-white',
+  primary: 'bg-primary hover:bg-primary-heavy text-white',
+  secondary: 'bg-secondary hover:bg-secondary-heavy text-white',
+  success: 'bg-success hover:bg-success-heavy text-white',
+  danger: 'bg-danger hover:bg-danger-heavy text-white',
 }
 
 const outlinedKeys = {
-  primary: 'bg-white hover:bg-blue-100 border-1 border-blue-200 text-blue-400',
-  secondary: 'bg-white hover:bg-orange-100 border-1 border-orange-200 text-orange-300',
-  success: 'bg-white hover:bg-green-100 border-1 border-green-200 text-green-500',
-  danger: 'bg-white hover:bg-red-100 border-1 border-red-200 text-red-500',
+  primary: 'bg-white hover:bg-primary-light border-1 border-primary text-primary',
+  secondary: 'bg-white hover:bg-secondary-light border-1 border-secondary text-secondary',
+  success: 'bg-white hover:bg-success-light border-1 border-success text-success',
+  danger: 'bg-white hover:bg-danger-light border-1 border-danger text-danger',
 }
 
 const sizeKeys = {
@@ -51,11 +51,13 @@ const sizeKeys = {
 const base = 'inline-flex items-center justify-center gap-2 px-4 py-2'
 
 const colorClass = computed(() =>
-  props.variant === 'outlined'
-    ? outlinedKeys[props.color]
-    : props.variant === 'link'
-      ? 'hover:underline text-black'
-      : colorKeys[props.color],
+  props.disabled
+    ? 'bg-gray-200 hover:bg-gray-200'
+    : props.variant === 'outlined'
+      ? outlinedKeys[props.color]
+      : props.variant === 'link'
+        ? 'hover:underline text-black'
+        : colorKeys[props.color],
 )
 
 const sizeClass = computed(() => sizeKeys[props.size])
@@ -63,11 +65,7 @@ const sizeClass = computed(() => sizeKeys[props.size])
 const roundedClass = computed(() => (props.rounded ? 'rounded-full' : 'rounded-md'))
 
 const hoverClass = computed(() =>
-  props.loading
-    ? 'cursor-progress'
-    : props.disabled
-      ? 'cursor-not-allowed bg-gray-200 hover:bg-gray-200'
-      : 'cursor-pointer',
+  props.loading ? 'cursor-progress' : props.disabled ? 'cursor-not-allowed' : 'cursor-pointer',
 )
 
 const classes = computed(() => [
