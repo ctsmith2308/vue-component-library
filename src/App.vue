@@ -4,7 +4,7 @@ import { MainLayout } from '@/components/layout'
 </script>
 
 <template>
-  <!-- <header></header> -->
+  <header></header>
   <MainLayout>
     <ButtonsWidget />
   </MainLayout>
