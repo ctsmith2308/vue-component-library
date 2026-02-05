@@ -1,1 +1,1 @@
-export { default as DisplayPanel } from './display-panel.vue'
+export { default as DisplayPanel } from './component-display-panel.vue'

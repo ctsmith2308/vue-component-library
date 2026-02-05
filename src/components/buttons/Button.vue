@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-type ButtonColor = 'primary' | 'secondary' | 'success' | 'danger'
-type ButtonSize = 'sm' | 'md' | 'lg' | 'xl' | 'jumbo'
-type ButtonVariant = 'outlined' | 'link'
-
 interface ButtonProps {
   label: string
   color?: ButtonColor
@@ -16,6 +12,10 @@ interface ButtonProps {
   loading?: boolean
   disabled?: boolean
 }
+
+type ButtonColor = 'primary' | 'secondary' | 'success' | 'danger'
+type ButtonSize = 'sm' | 'md' | 'lg' | 'xl' | 'jumbo'
+type ButtonVariant = 'outlined' | 'link' | 'text'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   color: 'primary',
@@ -50,17 +50,22 @@ const sizeKeys = {
 
 const base = 'inline-flex items-center justify-center gap-2 px-4 py-2'
 
+/** Conditionally assigns color, variant and disabled styles */
 const colorClass = computed(() =>
   props.disabled
     ? 'bg-gray-200 hover:bg-gray-200'
     : props.variant === 'outlined'
       ? outlinedKeys[props.color]
-      : props.variant === 'link'
-        ? 'hover:underline text-black'
-        : colorKeys[props.color],
+      : props.variant === 'text'
+        ? `${outlinedKeys[props.color] + ' border-none'}`
+        : props.variant === 'link'
+          ? 'hover:underline text-black'
+          : colorKeys[props.color],
 )
 
 const sizeClass = computed(() => sizeKeys[props.size])
+
+const raisedClass = computed(() => props.raised && 'shadow-md/30')
 
 const roundedClass = computed(() => (props.rounded ? 'rounded-full' : 'rounded-md'))
 
@@ -68,17 +73,24 @@ const hoverClass = computed(() =>
   props.loading ? 'cursor-progress' : props.disabled ? 'cursor-not-allowed' : 'cursor-pointer',
 )
 
+const inlineAttributes = computed(() => {
+  return {
+    disabled: props.loading || props.disabled,
+  }
+})
+
 const classes = computed(() => [
   base,
   colorClass.value,
   sizeClass.value,
+  raisedClass.value,
   hoverClass.value,
   roundedClass.value,
 ])
 </script>
 
 <template>
-  <button :class="classes">
+  <button :class="classes" v-bind="inlineAttributes">
     <!-- {icon && <svg class="w-5 h-5">...</svg>} -->
     <span>
       {{ label }}
