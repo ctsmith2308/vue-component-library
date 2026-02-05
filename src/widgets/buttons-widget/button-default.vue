@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { HeartIcon } from '@/components/icons'
 import { Button } from '@/components/buttons'
 import { DisplayPanel } from '@/components/panel'
 
@@ -19,7 +20,9 @@ const codeSnippet = ref(`
     content="primary, secondary, success, danger"
     :code-snippet="codeSnippet"
   >
-    <Button label="default" />
+    <Button label="default" icon>
+      <HeartIcon />
+    </Button>
 
     <Button label="loading..." loading />
 

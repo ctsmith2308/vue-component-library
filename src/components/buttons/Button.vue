@@ -2,13 +2,13 @@
 import { computed } from 'vue'
 
 interface ButtonProps {
-  label: string
+  label?: string
   color?: ButtonColor
   size?: ButtonSize
   variant?: ButtonVariant
   raised?: boolean
   rounded?: boolean
-  icon?: string
+  icon?: boolean
   loading?: boolean
   disabled?: boolean
 }
@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   loading: false,
   disabled: false,
   rounded: false,
-  icon: '',
+  icon: false,
 })
 
 const colorKeys = {
@@ -91,7 +91,10 @@ const classes = computed(() => [
 
 <template>
   <button :class="classes" v-bind="inlineAttributes">
-    <!-- {icon && <svg class="w-5 h-5">...</svg>} -->
+    <span v-if="icon">
+      <slot />
+    </span>
+
     <span>
       {{ label }}
     </span>
