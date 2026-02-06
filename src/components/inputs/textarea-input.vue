@@ -1,3 +1,1 @@
-<template>
-  Im the textfield
-</template>
+<template>Im the textfield</template>

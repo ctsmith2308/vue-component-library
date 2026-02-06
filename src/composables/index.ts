@@ -1,1 +1,1 @@
-export { useDocumentDisplay } from './use-document-display'
+export { useDocumentDisplay } from './use-document-display';

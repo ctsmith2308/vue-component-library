@@ -1,24 +1,24 @@
 interface RadioInput {
-  groupName: string
-  id: string
-  value: string
-  label: string
+  groupName: string;
+  id: string;
+  value: string;
+  label: string;
 }
 
 interface RadioInputGroup {
-  radioInputs: RadioInput[]
+  radioInputs: RadioInput[];
 }
 
 interface SelectInputOptions {
-  value: string
-  displayValue: string
+  value: string;
+  displayValue: string;
 }
 
 interface SelectInput {
-  name: string
-  id: string
-  label: string
-  options: SelectInputOptions[]
+  name: string;
+  id: string;
+  label: string;
+  options: SelectInputOptions[];
 }
 
-export type { RadioInput, RadioInputGroup, SelectInput, SelectInputOptions }
+export type { RadioInput, RadioInputGroup, SelectInput, SelectInputOptions };

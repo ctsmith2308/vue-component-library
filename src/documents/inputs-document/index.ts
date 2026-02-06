@@ -1,1 +1,1 @@
-export { default as InputDocument } from './main.vue'
+export { default as InputDocument } from './main.vue';

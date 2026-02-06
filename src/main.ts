@@ -1,9 +1,9 @@
-import './assets/main.css'
+import './assets/main.css';
 
-import { createApp } from 'vue'
-import { createVCodeBlock } from '@wdns/vue-code-block'
+import { createApp } from 'vue';
+import { createVCodeBlock } from '@wdns/vue-code-block';
 
-import App from './App.vue'
+import App from './App.vue';
 // https://webdevnerdstuff.github.io/vue-code-block/#playground
 // https://github.com/webdevnerdstuff/vue-code-block
 const VCodeBlock = createVCodeBlock({
@@ -11,10 +11,10 @@ const VCodeBlock = createVCodeBlock({
   highlightjs: true,
   theme: 'atom-one-dark',
   indent: 4,
-})
+});
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(VCodeBlock)
+app.use(VCodeBlock);
 
-app.mount('#app')
+app.mount('#app');

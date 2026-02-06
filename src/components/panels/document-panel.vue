@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { Card } from '@/components/cards';
-import VCodeBlock from '@wdns/vue-code-block'
+import VCodeBlock from '@wdns/vue-code-block';
 
 defineProps<{
-  header: string
-  description?: string
-  codeSnippet?: string
-}>()
-
+  header: string;
+  description?: string;
+  codeSnippet?: string;
+}>();
 </script>
 
 <template>

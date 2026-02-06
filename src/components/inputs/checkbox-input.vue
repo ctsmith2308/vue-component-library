@@ -1,3 +1,1 @@
-<template>
-  Im the checkbox
-</template>
+<template>Im the checkbox</template>

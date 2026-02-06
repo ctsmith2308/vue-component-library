@@ -2,9 +2,8 @@
 import type { RadioInput } from './types';
 
 defineProps<{
- input: RadioInput
-}>()
-
+  input: RadioInput;
+}>();
 </script>
 
 <template>

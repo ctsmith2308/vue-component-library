@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { Button } from '@/components/buttons'
-import { DocumentPanel } from '@/components/panels'
+import { ref } from 'vue';
+import { Button } from '@/components/buttons';
+import { DocumentPanel } from '@/components/panels';
 
 const codeSnippet = ref(`
   <Button label="small" size="sm" />
@@ -9,7 +9,7 @@ const codeSnippet = ref(`
   <Button label="large" size="lg" />
   <Button label="x-large" size="xl" />
   <Button label="jumbo" size="jumbo" />
-  `)
+  `);
 </script>
 
 <template>

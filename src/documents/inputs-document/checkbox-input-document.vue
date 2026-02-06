@@ -1,14 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { DocumentPanel } from '@/components/panels'
+import { ref } from 'vue';
+import { DocumentPanel } from '@/components/panels';
 
-const codeSnippet = ref(
-  `<TextInput />`
-)
-
+const codeSnippet = ref(`<TextInput />`);
 </script>
 
 <template>
-   <DocumentPanel header="Checkbox Input" :code-snippet="codeSnippet">
-   </DocumentPanel>
+  <DocumentPanel header="Checkbox Input" :code-snippet="codeSnippet"> </DocumentPanel>
 </template>

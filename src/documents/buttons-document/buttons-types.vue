@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { HeartIcon } from '@/components/icons'
-import { Button } from '@/components/buttons'
-import { DocumentPanel } from '@/components/panels'
+import { ref } from 'vue';
+import { HeartIcon } from '@/components/icons';
+import { Button } from '@/components/buttons';
+import { DocumentPanel } from '@/components/panels';
 
 const codeSnippet = ref(`
   <Button label="default" />
@@ -10,7 +10,7 @@ const codeSnippet = ref(`
   <Button label="disabled" disabled />
   <Button label="button link" variant="link" />
   <Button label="rounded" rounded />
-  `)
+  `);
 </script>
 
 <template>

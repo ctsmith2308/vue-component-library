@@ -5,9 +5,9 @@ import { RadioInput } from '.';
 
 const props = defineProps<RadioInputGroup>();
 
-console.log(props)
+console.log(props);
 </script>
 
 <template>
-  <RadioInput v-for="(input, idx) in radioInputs" :key="idx" :input="input"/>
+  <RadioInput v-for="(input, idx) in radioInputs" :key="idx" :input="input" />
 </template>
