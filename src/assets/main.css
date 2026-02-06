@@ -1,25 +1,46 @@
 @import 'tailwindcss';
 
-/* Semantic Name 	Lighter (Subtle)	Base (500)	Heavier (700)
-Primary	#cfe2ff	#0d6efd	#0a58ca
-Secondary	#e2e3e5	#6c757d	#495057
-Success	#d1e7dd	#198754	#146c43
-Info	#cff4fc	#0dcaf0	#0aa2c0
-Warning	#fff3cd	#ffc107	#cc9a06
-Danger	#f8d7da	#dc3545	#b02a37
-Dark	#ced4da	#212529	#000000 */
-
-@theme inline {
+/* Semantic Name 	Light (Subtle) and Heavy (700) **/
+@theme {
+  /** Primary Color */
   --color-primary: #0d6efd;
   --color-primary-light: #cfe2ff;
   --color-primary-heavy: #0a58ca;
+
+  /** Secondary Color */
   --color-secondary: #6c757d;
   --color-secondary-light: #e2e3e5;
   --color-secondary-heavy: #495057;
+
+  /** Success Color */
   --color-success: #198754;
   --color-success-light: #d1e7dd;
   --color-success-heavy: #146c43;
+
+  /** Danger Color */
   --color-danger: #dc3545;
   --color-danger-light: #f8d7da;
   --color-danger-heavy: #b02a37;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  @theme {
+    --color-background: #0b0b0c;
+    --color-foreground: #f5f5f7;
+  }
+} */
+@custom-variant hocus (&:is(:hover, :focus-visible));
+
+@layer components {
+  .border-base {
+    @apply bg-white border border-gray-200 rounded-lg;
+  }
+
+  .hocus-base {
+    @apply hocus:outline-none hocus:border-gray-300;
+  }
+
+  .input-base {
+    @apply h-8 w-full py-4 px-2;
+  }
 }

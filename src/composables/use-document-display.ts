@@ -1,7 +1,8 @@
 import { ref, markRaw, type Component } from 'vue'
 
-import { MenuBarWidget } from '@/widgets'
-import { ButtonsWidget } from '@/widgets'
+import { MenuBarWidget } from '@/documents'
+import { ButtonDocument } from '@/documents'
+import { InputDocument } from '@/documents'
 
 interface ComponentDocument {
   label: string
@@ -10,7 +11,8 @@ interface ComponentDocument {
 
 const useDocumentDisplay = () => {
   const componentDocuments: ComponentDocument[] = [
-    { label: 'Button', component: markRaw(ButtonsWidget) },
+    { label: 'Button', component: markRaw(ButtonDocument) },
+    { label: 'Inputs', component: markRaw(InputDocument) },
     { label: 'Menu', component: markRaw(MenuBarWidget) },
   ]
 

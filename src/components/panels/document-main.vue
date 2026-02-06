@@ -6,7 +6,6 @@ defineProps<{
 }>()
 </script>
 
-
 <template>
   <div class="flex flex-col gap-4 p-10 bg-gray-100">
     <h3 class="mt-2 text-3xl font-medium">

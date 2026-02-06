@@ -24,6 +24,6 @@ defineProps<{
       <slot />
     </Card>
 
-    <v-code-block :code="codeSnippet" />
+    <v-code-block v-if="codeSnippet" :code="codeSnippet" />
   </div>
 </template>
