@@ -1,47 +1,32 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import VCodeBlock from '@wdns/vue-code-block'
-import ButtonDefault from './button-default.vue'
-import ButtonColors from './button-colors.vue'
-import ButtonOutlined from './button-outlined.vue'
-import ButtonRaised from './button-raised.vue'
-import ButtonSizes from './button-sizes.vue'
-import ButtonText from './button-text.vue'
 
-const codeSnippet = ref(
-  ` interface ButtonProps {
-    label: string
-    color?: ButtonColor
-    size?: ButtonSize
-    variant?: ButtonVariant
-    raised?: boolean
-    rounded?: boolean
-    icon?: string
-    loading?: boolean
-    disabled?: boolean
-  }
+import ButtonsTypes from './buttons-types.vue'
+import ButtonsColors from './buttons-colors.vue'
+import ButtonsOutlined from './buttons-outlined.vue'
+import ButtonsRaised from './buttons-raised.vue'
+import ButtonsSizes from './button-sizes.vue'
+import ButtonsText from './buttons-text.vue'
+import { DocumentMain } from '@/components/panels'
 
-  type ButtonColor = 'primary' | 'secondary' | 'success' | 'danger'
-
-  type ButtonSize = 'sm' | 'md' | 'lg' | 'xl' | 'jumbo'
-
-  type ButtonVariant = 'outlined' | 'link' | 'text'
-`,
-)
+const documentDetails = ref({
+  header: 'Button',
+  desription: 'Various button styles, colors and themes.'
+})
 </script>
 
 <template>
-  <v-code-block :code="codeSnippet" />
+  <DocumentMain :header="documentDetails.header" :description="documentDetails.desription">
+    <ButtonsTypes />
 
-  <ButtonDefault />
+    <ButtonsColors />
 
-  <ButtonColors />
+    <ButtonsOutlined />
 
-  <ButtonOutlined />
+    <ButtonsRaised />
 
-  <ButtonRaised />
+    <ButtonsText />
 
-  <ButtonText />
-
-  <ButtonSizes />
+    <ButtonsSizes />
+  </DocumentMain>
 </template>

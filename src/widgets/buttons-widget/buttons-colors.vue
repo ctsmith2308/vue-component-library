@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Button } from '@/components/buttons'
-import { DisplayPanel } from '@/components/panel'
-// import VCodeBlock from '@wdns/vue-code-block'
+import { DocumentPanel } from '@/components/panels'
 
 const codeSnippet = ref(`
   <Button label="primary" />
@@ -13,12 +12,7 @@ const codeSnippet = ref(`
 </script>
 
 <template>
-  <!-- Button Colors -->
-  <DisplayPanel
-    header="Button Colors"
-    content="primary, secondary, success, danger"
-    :code-snippet="codeSnippet"
-  >
+  <DocumentPanel header="Button Colors" :code-snippet="codeSnippet">
     <Button label="primary" />
 
     <Button label="secondary" color="secondary" />
@@ -26,5 +20,5 @@ const codeSnippet = ref(`
     <Button label="success" color="success" />
 
     <Button label="danger" color="danger" />
-  </DisplayPanel>
+  </DocumentPanel>
 </template>

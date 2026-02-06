@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Button } from '@/components/buttons'
-import { DisplayPanel } from '@/components/panel'
+import { DocumentPanel } from '@/components/panels'
 
 const codeSnippet = ref(`
   <Button label="primary" variant="text" />
@@ -13,7 +13,7 @@ const codeSnippet = ref(`
 
 <template>
   <!-- Button Defaults -->
-  <DisplayPanel header="Button as Text" content="Text style" :code-snippet="codeSnippet">
+  <DocumentPanel header="Button as Text" :code-snippet="codeSnippet">
     <Button label="primary" variant="text" />
 
     <Button label="secondary" color="secondary" variant="text" />
@@ -21,5 +21,5 @@ const codeSnippet = ref(`
     <Button label="success" color="success" variant="text" />
 
     <Button label="danger" color="danger" variant="text" />
-  </DisplayPanel>
+  </DocumentPanel>
 </template>

@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { HeartIcon } from '@/components/icons'
 import { Button } from '@/components/buttons'
-import { DisplayPanel } from '@/components/panel'
+import { DocumentPanel } from '@/components/panels'
 
 const codeSnippet = ref(`
   <Button label="default" />
@@ -15,11 +15,7 @@ const codeSnippet = ref(`
 
 <template>
   <!-- Button Defaults -->
-  <DisplayPanel
-    header="Button"
-    content="primary, secondary, success, danger"
-    :code-snippet="codeSnippet"
-  >
+  <DocumentPanel header="Button" :code-snippet="codeSnippet">
     <Button label="default" icon>
       <HeartIcon />
     </Button>
@@ -31,5 +27,5 @@ const codeSnippet = ref(`
     <Button label="button link" variant="link" />
 
     <Button label="rounded" rounded />
-  </DisplayPanel>
+  </DocumentPanel>
 </template>

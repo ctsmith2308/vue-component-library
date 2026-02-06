@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Button } from '@/components/buttons'
-import { DisplayPanel } from '@/components/panel'
+import { DocumentPanel } from '@/components/panels'
 
 const codeSnippet = ref(`
   <Button label="small" size="sm" />
@@ -14,7 +14,7 @@ const codeSnippet = ref(`
 
 <template>
   <!-- Button Sizes -->
-  <DisplayPanel header="Button Sizes" content="Sizes" :code-snippet="codeSnippet">
+  <DocumentPanel header="Button Sizes" :code-snippet="codeSnippet">
     <Button label="small" size="sm" />
 
     <Button label="medium" size="md" />
@@ -24,5 +24,5 @@ const codeSnippet = ref(`
     <Button label="x-large" size="xl" />
 
     <Button label="jumbo" size="jumbo" />
-  </DisplayPanel>
+  </DocumentPanel>
 </template>
