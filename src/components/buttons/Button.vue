@@ -27,17 +27,17 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 });
 
 const colorKeys = {
-  primary: 'bg-primary hover:bg-primary-heavy text-white',
-  secondary: 'bg-secondary hover:bg-secondary-heavy text-white',
-  success: 'bg-success hover:bg-success-heavy text-white',
-  danger: 'bg-danger hover:bg-danger-heavy text-white',
+  primary: 'bg-brand hover:bg-brand-heavier text-white',
+  secondary: 'bg-brand-secondary hover:bg-brand-secondary-heavier text-white',
+  success: 'bg-success hover:bg-success-heavier text-white',
+  danger: 'bg-danger hover:bg-danger-heavier text-white',
 };
 
 const outlinedKeys = {
-  primary: 'bg-white hover:bg-primary-light border-1 border-primary text-primary',
-  secondary: 'bg-white hover:bg-secondary-light border-1 border-secondary text-secondary',
-  success: 'bg-white hover:bg-success-light border-1 border-success text-success',
-  danger: 'bg-white hover:bg-danger-light border-1 border-danger text-danger',
+  primary: 'bg-white hover:bg-brand-lighter border-1 border-brand text-brand',
+  secondary: 'bg-white hover:bg-brand-secondary-lighter border-1 border-brand-secondary text-brand-secondary',
+  success: 'bg-white hover:bg-success-lighter border-1 border-success text-success',
+  danger: 'bg-white hover:bg-danger-lighter border-1 border-danger text-danger',
 };
 
 const sizeKeys = {

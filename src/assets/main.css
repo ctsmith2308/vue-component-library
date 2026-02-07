@@ -1,26 +1,79 @@
 @import 'tailwindcss';
 
-/* Semantic Name 	Light (Subtle) and Heavy (700) **/
-@theme {
-  /** Primary Color */
-  --color-primary: #0d6efd;
-  --color-primary-light: #cfe2ff;
-  --color-primary-heavy: #0a58ca;
+/** CSS root declarations */
+:root {
+  /** Brand */
+  --color-brand: #0d6efd;
+  --color-brand-lighter: #cfe2ff;
+  --color-brand-heavier: #0a58ca;
 
-  /** Secondary Color */
-  --color-secondary: #6c757d;
-  --color-secondary-light: #e2e3e5;
-  --color-secondary-heavy: #495057;
+  /** Brand-Secondary */
+  --color-brand-secondary: #6c757d;
+  --color-brand-secondary-lighter: #e2e3e5;
+  --color-brand-secondary-heavier: #495057;
 
-  /** Success Color */
+  /** Success */
   --color-success: #198754;
-  --color-success-light: #d1e7dd;
-  --color-success-heavy: #146c43;
+  --color-success-lighter: #d1e7dd;
+  --color-success-heavier: #146c43;
 
-  /** Danger Color */
+  /** Danger */
   --color-danger: #dc3545;
-  --color-danger-light: #f8d7da;
-  --color-danger-heavy: #b02a37;
+  --color-danger-lighter: #f8d7da;
+  --color-danger-heavier: #b02a37;
+
+  /** Text */
+  --color-content-text: black;
+  --color-content-text-secondary: darkgray;
+
+  /** Page backgrounds, surfaces and cards */
+  --color-page: #f9f9f9;
+  --color-page-alt: #bababa;
+  --color-surface: white;
+  --color-surface-alt: #f5f5f5;
+
+  /** Border colors */
+  --color-surface-border: #f0f0f0;
+  --color-input-border: #e8e8e8;
+}
+
+/** Custom Tailwind Color Utils */
+/** Maps css vars -> tailwind utils */
+@theme {
+  /** brand */
+  --color-brand: var(--color-brand);
+  --color-brand-light: var(--color-brand-light);
+  --color-brand-lighter: var(--color-brand-lighter);
+  --color-brand-heavier: var(--color-brand-heavier);
+
+  /** brand-secondary */
+  --color-brand-secondary: var(--color-brand-secondary);
+  --color-brand-secondary-lighter: var(--color-brand-secondary-lighter);
+  --color-brand-secondary-heavier: var(--color-brand-secondary-heavier);
+
+  /** success */
+  --color-success: var(--color-success);
+  --color-success-lighter: var(--color-success-lighter);
+  --color-success-heavier: var(--color-success-heavier);
+
+  /** danger */
+  --color-danger: var(--color-danger);
+  --color-danger-lighter: var(--color-danger-lighter);
+  --color-danger-heavier: var(--color-danger-heavier);
+
+  /** text */
+  --color-content-text: var(--color-content-text);
+  --color-content-text-secondary: var(--color-content-text-secondary);
+
+  /** page, surface and cards c*/
+  --color-page: var(--color-page);
+  --color-page-alt: var(--color-page-alt);
+  --color-surface: var(--color-surface);
+  --color-surface-alt: var(--color-surface-alt);
+
+  /** borders */
+  --color-surface-border: var(--color-surface-border);
+  --color-input-border: var(--color-input-border);
 }
 
 /* @media (prefers-color-scheme: dark) {

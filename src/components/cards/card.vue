@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="flex flex-row flex-wrap gap-2 align-middle justify-center p-8 bg-white border border-gray-200 rounded-lg"
+    class="flex flex-row flex-wrap gap-2 align-middle justify-center p-8 border border-surface-border bg-surface rounded-lg"
   >
     <slot />
   </div>
