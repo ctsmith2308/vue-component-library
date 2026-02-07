@@ -17,9 +17,13 @@ const documentDetails = ref({
 <template>
   <DocumentMain :header="documentDetails.header" :description="documentDetails.desription">
     <RadioInputDocument />
+
     <TextInputDocument />
+
     <SelectInputDocument />
+
     <TextAreaDocument />
+
     <CheckboxInput />
   </DocumentMain>
 </template>

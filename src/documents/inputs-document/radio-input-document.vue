@@ -1,9 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { RadioInputGroup } from '@/components/inputs';
+
+import { RadioInput } from '@/components/inputs';
 import { DocumentPanel } from '@/components/panels';
 
-const codeSnippet = ref(`<TextInput />`);
+const codeSnippet = ref(`const inputData = {
+  groupName,
+  id: 'option1',
+  value: 'Home',
+  label: 'Home',
+}
+
+<RadioInput :input="inputData" />
+`);
 
 const groupName = 'ContactInfo';
 
@@ -31,6 +40,8 @@ const radioInputs = ref([
 
 <template>
   <DocumentPanel header="Radio Input" :code-snippet="codeSnippet">
-    <RadioInputGroup :radio-inputs="radioInputs" />
+    <div class="flex flex-row gap-6">
+      <RadioInput v-for="(input, idx) in radioInputs" :key="idx" :input="input" />
+    </div>
   </DocumentPanel>
 </template>
