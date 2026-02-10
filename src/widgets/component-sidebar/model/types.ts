@@ -9,4 +9,11 @@ interface ComponentRegistry {
   examplesComponent: () => Promise<Component>;
 }
 
-export type { ComponentRegistry };
+interface FormContext {
+  updateValue: (name: string, value: unknown) => void;
+  markTouched: (name: string) => void;
+  getError: (name: string) => string | undefined;
+  isRequired: (name: string) => boolean;
+}
+
+export type { ComponentRegistry, FormContext };

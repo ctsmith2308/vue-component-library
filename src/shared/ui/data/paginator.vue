@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
+import { ChevronDoubleRight, ChevronDoubleLeft, ChevronRightIcon, ChevronLeftIcon } from '../icons';
+
 interface PaginatorProps {
   totalRecords: number;
   rows?: number;
@@ -29,22 +31,35 @@ const isLastPage = computed(() => currentPage.value === pageCount.value - 1);
 const visiblePages = computed(() => {
   const pages: number[] = [];
   const half = Math.floor(props.pageLinkSize / 2);
-  
+
   let start = Math.max(0, currentPage.value - half);
-  let end = Math.min(pageCount.value - 1, start + props.pageLinkSize - 1);
-  
+  const end = Math.min(pageCount.value - 1, start + props.pageLinkSize - 1);
+
   if (end - start < props.pageLinkSize - 1) {
     start = Math.max(0, end - props.pageLinkSize + 1);
   }
-  
+
   for (let i = start; i <= end; i++) {
     pages.push(i);
   }
-  
+
   return pages;
 });
 
-const changePage = (page: number) => {
+const buttonClasses = computed(() => (isDisabled: boolean) => [
+  'p-2 rounded hover:bg-surface-alt transition-colors',
+  { 'opacity-50 cursor-not-allowed': isDisabled },
+]);
+
+const pageButtonClasses = computed(() => (page: number) => [
+  'px-3 py-1 rounded text-sm transition-colors min-w-[2rem]',
+  {
+    'bg-brand text-white': currentPage.value === page,
+    'hover:bg-surface-alt': currentPage.value !== page,
+  },
+]);
+
+const onPageChange = (page: number) => {
   if (page >= 0 && page < pageCount.value) {
     const first = page * props.rows;
     emit('page', {
@@ -56,19 +71,19 @@ const changePage = (page: number) => {
   }
 };
 
-const firstPage = () => changePage(0);
-const lastPage = () => changePage(pageCount.value - 1);
-const prevPage = () => changePage(currentPage.value - 1);
-const nextPage = () => changePage(currentPage.value + 1);
+const onFirstPage = () => onPageChange(0);
+const onLastPage = () => onPageChange(pageCount.value - 1);
+const onPrevPage = () => onPageChange(currentPage.value - 1);
+const onNextPage = () => onPageChange(currentPage.value + 1);
 </script>
 
 <template>
-  <nav class="paginator flex items-center justify-between gap-2 bg-surface p-3 rounded-lg border border-surface-border flex-wrap">
+  <nav
+    class="paginator flex items-center justify-between gap-2 bg-surface p-3 rounded-lg border border-surface-border flex-wrap"
+  >
     <!-- Info -->
     <div class="text-sm text-content-text-secondary">
-      <slot name="start">
-        Showing {{ first + 1 }} to {{ Math.min(first + rows, totalRecords) }} of {{ totalRecords }}
-      </slot>
+      <slot name="start"> Showing {{ first + 1 }} to {{ Math.min(first + rows, totalRecords) }} of {{ totalRecords }} </slot>
     </div>
 
     <!-- Page Controls -->
@@ -76,36 +91,26 @@ const nextPage = () => changePage(currentPage.value + 1);
       <!-- First -->
       <button
         type="button"
-        :class="[
-          'p-2 rounded hover:bg-surface-alt transition-colors',
-          { 'opacity-50 cursor-not-allowed': isFirstPage }
-        ]"
+        :class="buttonClasses(isFirstPage)"
         :disabled="isFirstPage"
-        @click="firstPage"
+        @click="onFirstPage"
         aria-label="First page"
       >
         <slot name="first-icon">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-          </svg>
+          <ChevronDoubleLeft />
         </slot>
       </button>
 
       <!-- Previous -->
       <button
         type="button"
-        :class="[
-          'p-2 rounded hover:bg-surface-alt transition-colors',
-          { 'opacity-50 cursor-not-allowed': isFirstPage }
-        ]"
+        :class="buttonClasses(isFirstPage)"
         :disabled="isFirstPage"
-        @click="prevPage"
+        @click="onPrevPage"
         aria-label="Previous page"
       >
         <slot name="prev-icon">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
+          <ChevronLeftIcon />
         </slot>
       </button>
 
@@ -114,14 +119,8 @@ const nextPage = () => changePage(currentPage.value + 1);
         v-for="page in visiblePages"
         :key="page"
         type="button"
-        :class="[
-          'px-3 py-1 rounded text-sm transition-colors min-w-[2rem]',
-          {
-            'bg-brand text-white': currentPage === page,
-            'hover:bg-surface-alt': currentPage !== page,
-          }
-        ]"
-        @click="changePage(page)"
+        :class="pageButtonClasses(page)"
+        @click="onPageChange(page)"
       >
         {{ page + 1 }}
       </button>
@@ -129,36 +128,26 @@ const nextPage = () => changePage(currentPage.value + 1);
       <!-- Next -->
       <button
         type="button"
-        :class="[
-          'p-2 rounded hover:bg-surface-alt transition-colors',
-          { 'opacity-50 cursor-not-allowed': isLastPage }
-        ]"
+        :class="buttonClasses(isLastPage)"
         :disabled="isLastPage"
-        @click="nextPage"
+        @click="onNextPage"
         aria-label="Next page"
       >
         <slot name="next-icon">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-          </svg>
+          <ChevronRightIcon />
         </slot>
       </button>
 
       <!-- Last -->
       <button
         type="button"
-        :class="[
-          'p-2 rounded hover:bg-surface-alt transition-colors',
-          { 'opacity-50 cursor-not-allowed': isLastPage }
-        ]"
+        :class="buttonClasses(isLastPage)"
         :disabled="isLastPage"
-        @click="lastPage"
+        @click="onLastPage"
         aria-label="Last page"
       >
         <slot name="last-icon">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" /><path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-          </svg>
+          <ChevronDoubleRight />
         </slot>
       </button>
     </div>

@@ -1,178 +1,156 @@
 <script setup lang="ts">
-import { ref, provide, reactive } from 'vue';
+import { provide, ref, reactive, useSlots, onMounted, onUpdated } from 'vue';
 
-interface ValidationRule {
-  required?: boolean;
-  minLength?: number;
-  maxLength?: number;
-  pattern?: RegExp;
-  custom?: (value: any) => boolean | string;
-  message?: string;
-}
+import type { ValidationRule, FormContext, FormProps } from './types';
+import { validateFieldValue, parseFieldsFromVNodes } from '@/shared/lib/form-validation';
 
-interface FormField {
-  name: string;
-  value: any;
-  rules?: ValidationRule[];
-  error?: string;
-}
-
-interface FormProps {
-  initialValues?: Record<string, any>;
-}
-
-const props = defineProps<FormProps>();
+defineProps<FormProps>();
 
 const emit = defineEmits<{
-  submit: [values: Record<string, any>];
-  error: [errors: Record<string, string>];
+  submit: [values: Record<string, unknown>];
+  invalid: [errors: Record<string, string>];
 }>();
 
-const formState = reactive<{
-  fields: Map<string, FormField>;
-  isSubmitting: boolean;
-  isDirty: boolean;
-}>({
-  fields: new Map(),
-  isSubmitting: false,
-  isDirty: false,
+const slots = useSlots();
+const values = reactive<Record<string, unknown>>({});
+const errors = reactive<Record<string, string>>({});
+const touched = reactive<Set<string>>(new Set());
+const fieldRules = reactive<Map<string, { rules: ValidationRule; label?: string }>>(new Map());
+const isSubmitting = ref(false);
+
+// Parse slot content to find inputs with validation
+const parseSlotContent = (): void => {
+  const vnodes = slots.default?.({ isSubmitting: false, values: {}, errors: {} });
+
+  if (!vnodes) {
+    return;
+  }
+
+  fieldRules.clear();
+
+  const parsedFields = parseFieldsFromVNodes(vnodes);
+
+  parsedFields.forEach((field) => {
+    fieldRules.set(field.name, { rules: field.rules, label: field.label });
+
+    // Initialize value if not exists
+    if (!(field.name in values)) {
+      values[field.name] = field.initialValue ?? '';
+    }
+  });
+};
+
+// Parse on mount and re-parse whenever slot content changes
+onMounted(parseSlotContent);
+onUpdated(parseSlotContent);
+
+// Validate a single field
+const validateField = async (fieldName: string): Promise<boolean> => {
+  const fieldData = fieldRules.get(fieldName);
+
+  if (!fieldData) {
+    delete errors[fieldName];
+
+    return true;
+  }
+
+  const { rules, label } = fieldData;
+  const value = values[fieldName];
+  const fieldLabel = label || fieldName;
+
+  const result = await validateFieldValue(value, rules, fieldLabel, values);
+
+  if (!result.isValid && result.error) {
+    errors[fieldName] = result.error;
+
+    return false;
+  }
+
+  delete errors[fieldName];
+
+  return true;
+};
+
+// Validate all fields
+const validateAllFields = async (): Promise<boolean> => {
+  const validationPromises = Array.from(fieldRules.keys()).map((name) => validateField(name));
+  const results = await Promise.all(validationPromises);
+
+  return results.every((isValid) => isValid);
+};
+
+// Handle field value update
+const updateValue = (name: string, value: unknown): void => {
+  values[name] = value;
+
+  if (touched.has(name)) {
+    validateField(name);
+  }
+};
+
+// Handle field blur
+const markTouched = (name: string): void => {
+  touched.add(name);
+  validateField(name);
+};
+
+// Get field error
+const getError = (name: string): string | undefined => {
+  return errors[name];
+};
+
+// Check if field is required
+const isRequired = (name: string): boolean => {
+  const fieldData = fieldRules.get(name);
+
+  return !!fieldData?.rules?.required;
+};
+
+// Provide form context for inputs to report values
+provide<FormContext>('formContext', {
+  updateValue,
+  markTouched,
+  getError,
+  isRequired,
 });
 
-const registerField = (name: string, rules?: ValidationRule[]) => {
-  formState.fields.set(name, {
-    name,
-    value: props.initialValues?.[name] || '',
-    rules,
-    error: undefined,
-  });
-};
-
-const unregisterField = (name: string) => {
-  formState.fields.delete(name);
-};
-
-const updateField = (name: string, value: any) => {
-  const field = formState.fields.get(name);
-  if (field) {
-    field.value = value;
-    field.error = undefined;
-    formState.isDirty = true;
-  }
-};
-
-const validateField = (field: FormField): string | undefined => {
-  if (!field.rules) return undefined;
-
-  for (const rule of field.rules) {
-    if (rule.required && (!field.value || field.value.toString().trim() === '')) {
-      return rule.message || `${field.name} is required`;
-    }
-
-    if (rule.minLength && field.value.length < rule.minLength) {
-      return rule.message || `${field.name} must be at least ${rule.minLength} characters`;
-    }
-
-    if (rule.maxLength && field.value.length > rule.maxLength) {
-      return rule.message || `${field.name} must be at most ${rule.maxLength} characters`;
-    }
-
-    if (rule.pattern && !rule.pattern.test(field.value)) {
-      return rule.message || `${field.name} format is invalid`;
-    }
-
-    if (rule.custom) {
-      const result = rule.custom(field.value);
-      if (result !== true) {
-        return typeof result === 'string' ? result : rule.message || `${field.name} is invalid`;
-      }
-    }
+// Handle form submission
+const onSubmit = async (): Promise<void> => {
+  if (isSubmitting.value) {
+    return;
   }
 
-  return undefined;
-};
-
-const validate = (): boolean => {
-  let isValid = true;
-  const errors: Record<string, string> = {};
-
-  formState.fields.forEach((field) => {
-    const error = validateField(field);
-    if (error) {
-      field.error = error;
-      errors[field.name] = error;
-      isValid = false;
-    } else {
-      field.error = undefined;
-    }
-  });
-
-  if (!isValid) {
-    emit('error', errors);
-  }
-
-  return isValid;
-};
-
-const handleSubmit = async () => {
-  if (!validate()) return;
-
-  formState.isSubmitting = true;
-
-  const values: Record<string, any> = {};
-  formState.fields.forEach((field) => {
-    values[field.name] = field.value;
-  });
+  isSubmitting.value = true;
 
   try {
-    emit('submit', values);
+    // Mark all fields as touched
+    fieldRules.forEach((_, name) => touched.add(name));
+
+    // Validate all fields
+    const isValid = await validateAllFields();
+
+    if (!isValid) {
+      emit('invalid', { ...errors });
+
+      return;
+    }
+
+    emit('submit', { ...values });
   } finally {
-    formState.isSubmitting = false;
+    isSubmitting.value = false;
   }
 };
 
-const reset = () => {
-  formState.fields.forEach((field) => {
-    field.value = props.initialValues?.[field.name] || '';
-    field.error = undefined;
-  });
-  formState.isDirty = false;
-};
-
-const getFieldValue = (name: string) => {
-  return formState.fields.get(name)?.value;
-};
-
-const getFieldError = (name: string) => {
-  return formState.fields.get(name)?.error;
-};
-
-// Provide form context to child components
-provide('form', {
-  registerField,
-  unregisterField,
-  updateField,
-  getFieldValue,
-  getFieldError,
-  isSubmitting: () => formState.isSubmitting,
-});
-
 defineExpose({
-  validate,
-  reset,
-  isSubmitting: () => formState.isSubmitting,
-  isDirty: () => formState.isDirty,
+  isSubmitting,
+  validateAllFields,
+  errors,
+  values,
 });
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit" class="form w-full">
-    <slot
-      :values="Object.fromEntries(Array.from(formState.fields.entries()).map(([k, v]) => [k, v.value]))"
-      :errors="Object.fromEntries(Array.from(formState.fields.entries()).filter(([, v]) => v.error).map(([k, v]) => [k, v.error]))"
-      :isSubmitting="formState.isSubmitting"
-      :isDirty="formState.isDirty"
-      :validate="validate"
-      :reset="reset"
-    ></slot>
+  <form @submit.prevent="onSubmit" :class="customClass">
+    <slot :isSubmitting="isSubmitting" :values="values" :errors="errors" />
   </form>
 </template>

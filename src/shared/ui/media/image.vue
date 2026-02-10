@@ -29,11 +29,6 @@ const openPreview = () => {
   }
 };
 
-const closePreview = () => {
-  showPreview.value = false;
-  document.body.style.overflow = '';
-};
-
 const handleLoad = () => {
   isLoading.value = false;
 };
@@ -52,7 +47,7 @@ const containerStyle = computed(() => ({
 <template>
   <div class="image-container" :style="containerStyle">
     <div v-if="isLoading" class="image-skeleton bg-surface-alt animate-pulse rounded-lg"></div>
-    
+
     <div v-if="hasError" class="image-error bg-surface-alt rounded-lg flex items-center justify-center">
       <slot name="error">
         <span class="text-content-text-secondary text-sm">Failed to load image</span>
@@ -63,44 +58,12 @@ const containerStyle = computed(() => ({
       v-show="!isLoading && !hasError"
       :src="src"
       :alt="alt"
-      :class="[
-        'image',
-        imageClass,
-        { 'cursor-pointer hover:opacity-90 transition-opacity': preview }
-      ]"
+      :class="['image', imageClass, { 'cursor-pointer hover:opacity-90 transition-opacity': preview }]"
       :style="imageStyle"
       @load="handleLoad"
       @error="handleError"
       @click="openPreview"
     />
-
-    <!-- Preview Modal -->
-    <Teleport to="body">
-      <div
-        v-if="showPreview"
-        class="image-preview-overlay fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-4"
-        @click="closePreview"
-      >
-        <button
-          class="absolute top-4 right-4 text-white hover:text-gray-300 z-[10000] p-2"
-          @click.stop="closePreview"
-          aria-label="Close preview"
-        >
-          <slot name="close-icon">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </slot>
-        </button>
-        
-        <img
-          :src="src"
-          :alt="alt"
-          class="max-w-full max-h-full object-contain"
-          @click.stop
-        />
-      </div>
-    </Teleport>
   </div>
 </template>
 
