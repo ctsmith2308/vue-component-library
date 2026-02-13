@@ -8,7 +8,7 @@ interface ButtonProps {
   variant?: ButtonVariant;
   raised?: boolean;
   rounded?: boolean;
-  icon?: boolean;
+  // icon?: boolean; // Make this a slot
   loading?: boolean;
   disabled?: boolean;
 }
@@ -22,8 +22,9 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   size: 'md',
   loading: false,
   disabled: false,
+  raised: false,
   rounded: false,
-  icon: false,
+  // icon: false,
 });
 
 const colorKeys = {
@@ -91,9 +92,9 @@ const classes = computed(() => [
 
 <template>
   <button :class="classes" v-bind="inlineAttributes">
-    <span v-if="icon">
-      <slot />
-    </span>
+    <!-- <span v-if="icon"> -->
+    <!-- <slot /> -->
+    <!-- </span> -->
 
     <span>
       {{ label }}

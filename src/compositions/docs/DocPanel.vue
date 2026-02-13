@@ -7,7 +7,10 @@
     </div>
 
     <div class="w-1/4 bg-surface shrink-0">
-      <slot name="quick-nav" />
+      <div class="fixed flex flex-col pt-5 px-10 gap-2">
+        <h1>Content</h1>
+        <slot name="quick-nav" />
+      </div>
     </div>
   </div>
 </template>

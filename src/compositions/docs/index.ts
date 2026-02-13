@@ -12,7 +12,6 @@
 export { default as DocNav } from './DocNav.vue';
 
 export { default as DocShowcase } from './DocShowcase.vue';
-export { default as DocApiPanel } from './DocApiPanel.vue';
 export { default as DocPanel } from './DocPanel.vue';
 export { default as DocPanelSection } from './DocPanelSection.vue';
 export { default as DocPanelQuickNav } from './DocPanelQuickNav.vue';

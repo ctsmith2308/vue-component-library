@@ -16,13 +16,3 @@ defineProps<ShowcaseProps>();
     <Tabs :tabs="tabs" :activeIndex="0" />
   </div>
 </template>
-
-<style scoped>
-.document {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: flex-start;
-}
-</style>
