@@ -1,9 +1,11 @@
-import './main.css';
+import '../assets/main.css';
 
 import { createApp } from 'vue';
-import { withProviders } from './providers';
+import { router } from '../router';
 import App from './App.vue';
 
 const app = createApp(App);
 
-withProviders(app).mount('#app');
+app.use(router);
+
+app.mount('#app');
