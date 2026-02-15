@@ -9,9 +9,12 @@
 // Update docs config to reference public api
 // Update class references to use tailwind utils
 // Create 404 page
-export { default as DocNav } from './DocNav.vue';
+export * from './types';
 
-export { default as DocShowcase } from './DocShowcase.vue';
-export { default as DocPanel } from './DocPanel.vue';
-export { default as DocPanelSection } from './DocPanelSection.vue';
-export { default as DocPanelQuickNav } from './DocPanelQuickNav.vue';
+export { default as DocNav } from './DocNav.vue';
+export { default as ComponentDocPage } from './ComponentDocPage.vue';
+export { default as DocLayout } from './DocLayout.vue';
+export { default as ExamplesPanel } from './ExamplePanel.vue';
+export { default as ExampleSection } from './ExampleSection.vue';
+export { default as ApiPanel } from './ApiPanel.vue';
+// export { default as DocPanelQuickNav } from './DocPanelQuickNav.vue';

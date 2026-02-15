@@ -1,18 +1,26 @@
 <script setup lang="ts">
-import type { ShowcaseProps } from '@/compositions/docs/types';
-import { DocShowcase } from '@/compositions/docs';
-import { BaseReference, ApiReference } from '@/features/component-docs/button-doc';
+import { ComponentDocPage, ExamplesPanel, ApiPanel } from '@/compositions/docs';
+import { buttonExamplesConfig, buttonApiConfig } from '@/docs/button-doc';
+// import { BaseReference, ApiReference } from '@/docs/button-doc';
 
-const showcaseConfig: ShowcaseProps = {
+const showcaseConfig = {
   title: 'Button',
   description: 'Buttons allow users to take actions, and make choices, with a single tap',
   tabs: [
-    { header: 'Examples', compontent: BaseReference },
-    { header: 'Api', compontent: ApiReference },
+    {
+      header: 'Examples',
+      component: ExamplesPanel,
+      props: { sections: buttonExamplesConfig }, // These get passed to ExamplesPanel
+    },
+    {
+      header: 'Api',
+      component: ApiPanel,
+      props: { sections: buttonApiConfig }, // These get passed to ApiPanel
+    },
   ],
 };
 </script>
 
 <template>
-  <DocShowcase :title="showcaseConfig.title" :description="showcaseConfig.description" :tabs="showcaseConfig.tabs" />
+  <ComponentDocPage :title="showcaseConfig.title" :description="showcaseConfig.description" :tabs="showcaseConfig.tabs" />
 </template>

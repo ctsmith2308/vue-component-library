@@ -1,9 +1,28 @@
-import { type Tab } from '@/blocks';
+import type { Component } from 'vue';
 
-interface ShowcaseProps {
-  title: string;
-  description?: string;
-  tabs: Tab[];
+interface DocSection {
+  id: string;
+  label: string;
+  component: Component;
 }
 
-export type { ShowcaseProps };
+interface PropsTableData {
+  name: string;
+  type: string;
+  default: string;
+  description: string;
+}
+
+interface SlotsTableData {
+  name: string;
+  description: string;
+}
+
+interface ApiSection<T> {
+  id: string;
+  label: string;
+  data: T[];
+  columns: Array<{ field: string; header: string }>;
+}
+
+export type { DocSection, ApiSection, PropsTableData, SlotsTableData };

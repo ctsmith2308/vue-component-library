@@ -5,7 +5,7 @@ import { DocNav } from '@/compositions/docs';
 <template>
   <div class="flex flex-col min-h-screen">
     <div class="flex flex-1 relative lg:flex-row">
-      <aside class="w-1/4 bg-surface shrink-0">
+      <aside class="w-1/4 bg-surface shrink-0 hidden md:block">
         <DocNav />
       </aside>
 

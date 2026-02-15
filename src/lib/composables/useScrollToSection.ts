@@ -1,21 +1,17 @@
 import { onMounted } from 'vue';
+// import { useRouter } from 'vue-router';
 
-export interface ScrollToSectionOptions {
-  behavior?: ScrollBehavior;
-  block?: ScrollLogicalPosition;
-  updateUrl?: boolean;
-  offset?: number; // For fixed headers
-}
+import type { ScrollToSectionOptions } from './types';
 
 const useScrollToSection = (options: ScrollToSectionOptions = {}) => {
-  const { behavior = 'smooth', block = 'start', updateUrl = true, offset = 0 } = options;
+  // const router = useRouter();
+
+  const { behavior = 'smooth', block = 'start', updateUrl = true } = options;
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
 
     if (!element) {
-      console.warn(`Section with id "${sectionId}" not found`);
-
       return;
     }
 
@@ -24,22 +20,10 @@ const useScrollToSection = (options: ScrollToSectionOptions = {}) => {
       history.pushState(null, '', `#${sectionId}`);
     }
 
-    // Handle offset (useful for fixed headers)
-    if (offset) {
-      const elementPosition = element.getBoundingClientRect().top;
-
-      const offsetPosition = elementPosition + window.scrollY - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior,
-      });
-    } else {
-      element.scrollIntoView({
-        behavior,
-        block,
-      });
-    }
+    element.scrollIntoView({
+      behavior,
+      block,
+    });
   };
 
   // Handle initial hash on mount

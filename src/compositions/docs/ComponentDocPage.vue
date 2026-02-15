@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import type { ShowcaseProps } from './types';
-import { Tabs } from '@/blocks';
+import { type Tab, Tabs } from '@/blocks';
 
-defineProps<ShowcaseProps>();
+defineProps<{
+  title: string;
+  description?: string;
+  tabs: Tab[];
+}>();
 </script>
 
 <template>

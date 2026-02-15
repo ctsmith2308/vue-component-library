@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Button } from '@/blocks';
-import { DocPanelSection } from '@/compositions/docs';
+import { ExampleSection } from '@/compositions/docs';
 
 const content = {
   title: 'Basic',
@@ -13,7 +13,7 @@ const content = {
 </script>
 
 <template>
-  <DocPanelSection :content="content">
+  <ExampleSection :content="content">
     <Button label="rounded" rounded />
-  </DocPanelSection>
+  </ExampleSection>
 </template>

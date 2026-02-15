@@ -1,69 +1,36 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-
+import { ref, computed } from 'vue';
 import type { TabsProps } from './types';
-
-import TabList from './TabList.vue';
 import TabItem from './TabItem.vue';
-import TabPanels from './TabPanels.vue';
-import TabPanel from './TabPanel.vue';
 
-const props = withDefaults(defineProps<TabsProps>(), {
-  activeIndex: 0,
-});
+const props = defineProps<TabsProps>();
 
-const activeTab = ref(props.activeIndex);
+const activeTabIndex = ref(props.activeIndex ?? 0);
 
-const isActive = (index: number) => activeTab.value === index;
-
-const selectTab = (index: number) => {
-  if (props.tabs[index]?.disabled) return;
-
-  activeTab.value = index;
+const setActiveTab = (index: number) => {
+  if (props.tabs[index] && !props.tabs[index].disabled) {
+    activeTabIndex.value = index;
+  }
 };
+
+const activeTab = computed(() => props.tabs[activeTabIndex.value]);
 </script>
 
 <template>
-  <div class="tabs w-full">
-    <TabList>
-      <TabItem v-for="(tab, idx) in tabs" :key="idx" :tab-idx="idx" :is-selected="isActive(idx)" @select-tab="selectTab">
-        {{ tab.header }}
-      </TabItem>
-    </TabList>
+  <div class="flex flex-col gap-4">
+    <!-- Tab Headers -->
+    <div class="flex border-b border-surface-border">
+      <TabItem
+        v-for="(tab, index) in tabs"
+        :key="index"
+        :label="tab.header"
+        :is-active="activeTabIndex === index"
+        :is-disabled="tab.disabled || false"
+        @click="setActiveTab(index)"
+      />
+    </div>
 
-    <TabPanels>
-      <TabPanel v-for="(tabItem, idx) in tabs" v-show="isActive(idx)" :key="idx" :tab-component="tabItem.compontent" />
-    </TabPanels>
+    <!-- Tab Content (directly rendered, no wrapper component) -->
+    <component v-if="activeTab" :is="activeTab.component" role="tabpanel" v-bind="activeTab.props || {}" />
   </div>
 </template>
-
-<style scoped>
-.tab-headers {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-brand-secondary-lighter) transparent;
-}
-
-.tab-headers::-webkit-scrollbar {
-  height: 4px;
-}
-
-.tab-headers::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.tab-headers::-webkit-scrollbar-thumb {
-  background: var(--color-brand-secondary-lighter);
-  border-radius: 2px;
-}
-
-@media (max-width: 640px) {
-  .tab-header {
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
-  }
-
-  .tab-content {
-    padding: 1rem;
-  }
-}
-</style>

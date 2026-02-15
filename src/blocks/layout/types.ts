@@ -8,9 +8,10 @@ interface AccordionTab {
 
 interface Tab {
   header: string;
-  compontent: Component;
+  component: Component;
   disabled?: boolean;
   icon?: boolean;
+  props?: Record<string, unknown>;
 }
 
 interface TabsProps {
