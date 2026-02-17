@@ -18,7 +18,6 @@ const activeTab = computed(() => props.tabs[activeTabIndex.value]);
 
 <template>
   <div class="flex flex-col gap-4">
-    <!-- Tab Headers -->
     <div class="flex border-b border-surface-border">
       <TabItem
         v-for="(tab, index) in tabs"
@@ -30,7 +29,6 @@ const activeTab = computed(() => props.tabs[activeTabIndex.value]);
       />
     </div>
 
-    <!-- Tab Content (directly rendered, no wrapper component) -->
     <component v-if="activeTab" :is="activeTab.component" role="tabpanel" v-bind="activeTab.props || {}" />
   </div>
 </template>

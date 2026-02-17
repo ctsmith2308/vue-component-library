@@ -1,8 +1,8 @@
 import { docRoutesConfig } from './config';
 
 /** Pages */
-const LandingPage = () => import('@/pages/landing/LandigPage.vue');
-const DocsPage = () => import('@/pages/docs/DocsPage.vue');
+const LandingPage = () => import('@/pages/LandingPage.vue');
+const DocsPage = () => import('@/pages/DocsPage.vue');
 
 const routes = [
   {

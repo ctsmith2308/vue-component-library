@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-import { CodeBlock, Card } from '@/blocks';
+import { Card, CodeBlock } from '@/blocks';
 
 interface Demo {
   title: string;
@@ -24,19 +24,19 @@ const formattedDescription = computed(() => {
 </script>
 
 <template>
-  <section class="flex flex-1 flex-col gap-5">
-    <h2 class="text-lg font-bold text-content-text">
-      {{ content.title }}
-    </h2>
+  <Card>
+    <section class="flex flex-1 flex-col gap-5">
+      <h2 class="text-lg font-bold text-content-text">
+        {{ content.title }}
+      </h2>
 
-    <h3 class="text-md text-content-text-secondary" v-html="formattedDescription" />
+      <h3 class="text-md text-content-text-secondary" v-html="formattedDescription" />
 
-    <Card>
       <slot />
-    </Card>
 
-    <div class="w-screen">
-      <CodeBlock v-if="content.codeSnippet" :code-snippet="content.codeSnippet" />
-    </div>
-  </section>
+      <div class="w-screen">
+        <CodeBlock v-if="content.codeSnippet" :code-snippet="content.codeSnippet" />
+      </div>
+    </section>
+  </Card>
 </template>

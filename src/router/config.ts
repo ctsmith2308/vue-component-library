@@ -5,7 +5,7 @@ const docRoutesConfig: DocRoute[] = [
     name: 'button',
     label: 'Button',
     category: 'Button',
-    component: () => import('@/pages/docs/ButtonPage.vue'),
+    component: () => import('@/docs/button/index.vue'),
   },
   // {
   //   name: 'textInput',

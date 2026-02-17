@@ -1,0 +1,66 @@
+@use 'tailwindcss';
+
+@mixin color-variants($name, $base) {
+  --color-#{$name}: #{$base};
+  --color-#{$name}-light: oklch(from #{$base} calc(l + 0.25) c h);
+  --color-#{$name}-dark: oklch(from #{$base} calc(l - 0.15) c h);
+  --color-#{$name}-solid-hover: oklch(from #{$base} calc(l - 0.08) c h);
+  --color-#{$name}-ghost-hover: oklch(from #{$base} l c h / 0.1);
+}
+
+@mixin text-colors($base) {
+  --color-content-text: #{$base};
+  --color-content-text-secondary: oklch(from #{$base} calc(l * 0.6) c h);
+  --color-content-text-muted: oklch(from #{$base} calc(l * 0.4) c h);
+}
+
+@mixin surface-colors($page-base, $surface-base) {
+  --color-page: #{$page-base};
+  --color-page-alt: oklch(from #{$page-base} calc(l + 0.05) c h);
+  --color-surface: #{$surface-base};
+  --color-surface-alt: oklch(from #{$surface-base} calc(l + 0.1) c h);
+}
+
+@mixin border-colors($base) {
+  --color-surface-border: #{$base};
+  --color-input-border: #{$base};
+}
+
+@theme {
+  @include color-variants('brand', #0d6efd);
+  @include color-variants('secondary', #6c757d);
+  @include color-variants('success', #198754);
+  @include color-variants('danger', #dc3545);
+  @include color-variants('warning', #ffc107);
+
+  // Text colors from base
+  @include text-colors(#212529);
+
+  // Surface colors
+  @include surface-colors(#f8fafc, #ffffff);
+
+  // Border colors
+  @include border-colors(#e2e8f0);
+}
+
+/* Dark mode */
+[data-theme='dark'] {
+  @include text-colors(#e5e7eb);
+  @include surface-colors(#000000, #0d1117);
+  @include border-colors(#27272a);
+}
+
+.theme-transition,
+.theme-transition * {
+  transition:
+    background-color 300ms ease-in-out,
+    border-color 300ms ease-in-out,
+    color 300ms ease-in-out,
+    box-shadow 300ms ease-in-out;
+}
+
+@layer components {
+  .inline-highlight {
+    @apply rounded-md text-brand-dark py-1 px-1 bg-brand-light;
+  }
+}

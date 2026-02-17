@@ -8,7 +8,7 @@ interface ButtonProps {
   variant?: ButtonVariant;
   raised?: boolean;
   rounded?: boolean;
-  // icon?: boolean; // Make this a slot
+  icon?: boolean; // Make this a slot
   loading?: boolean;
   disabled?: boolean;
 }
@@ -24,21 +24,22 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   disabled: false,
   raised: false,
   rounded: false,
-  // icon: false,
+  icon: false,
 });
 
 const colorKeys = {
-  primary: 'bg-brand hover:bg-brand-heavier text-white',
-  secondary: 'bg-brand-secondary hover:bg-brand-secondary-heavier text-white',
-  success: 'bg-success hover:bg-success-heavier text-white',
-  danger: 'bg-danger hover:bg-danger-heavier text-white',
+  primary: 'bg-brand hover:bg-brand-solid-hover text-white',
+  secondary: 'bg-secondary hover:bg-secondary-solid-hover text-white',
+  success: 'bg-success hover:bg-success-solid-hover text-white',
+  danger: 'bg-danger hover:bg-danger-solid-hover text-white',
 };
 
 const outlinedKeys = {
-  primary: 'bg-white hover:bg-brand-lighter border-1 border-brand text-brand',
-  secondary: 'bg-white hover:bg-brand-secondary-lighter border-1 border-brand-secondary text-brand-secondary',
-  success: 'bg-white hover:bg-success-lighter border-1 border-success text-success',
-  danger: 'bg-white hover:bg-danger-lighter border-1 border-danger text-danger',
+  primary: 'bg-transparent hover:bg-brand-ghost-hover border-1 border-brand text-brand',
+  secondary: 'bg-transparent hover:bg-secondary-ghost-hover border-1 border-brand-secondary text-brand-secondary',
+  ghost: 'bg-transparant',
+  success: 'bg-transparent hover:bg-success-ghost-hover border-1 border-success text-success',
+  danger: 'bg-transparent hover:bg-danger-ghost-hover border-1 border-danger text-danger',
 };
 
 const sizeKeys = {
@@ -92,9 +93,9 @@ const classes = computed(() => [
 
 <template>
   <button :class="classes" v-bind="inlineAttributes">
-    <!-- <span v-if="icon"> -->
-    <!-- <slot /> -->
-    <!-- </span> -->
+    <span v-if="icon">
+      <slot name="icon" />
+    </span>
 
     <span>
       {{ label }}

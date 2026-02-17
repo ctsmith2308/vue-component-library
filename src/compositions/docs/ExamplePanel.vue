@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type ExampleSection, useScrollToSection } from '@/lib/composables';
 
-import DocLayout from './DocLayout.vue';
+import { DocTabPanel } from '@/compositions/docs';
 
 const { scrollToSection } = useScrollToSection({ updateUrl: true });
 
@@ -11,17 +11,17 @@ defineProps<{
 </script>
 
 <template>
-  <DocLayout>
+  <DocTabPanel>
     <div v-for="section in sections" :key="section.id" :id="section.id">
       <component :is="section.component" />
     </div>
 
     <template #quick-nav>
-      <ul class="quick-nav-list">
-        <li v-for="section in sections" :key="section.id" class="quick-nav-item" @click="scrollToSection(section.id)">
+      <ul>
+        <li v-for="section in sections" :key="section.id" @click="scrollToSection(section.id)">
           {{ section.label }}
         </li>
       </ul>
     </template>
-  </DocLayout>
+  </DocTabPanel>
 </template>

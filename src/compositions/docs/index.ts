@@ -13,8 +13,9 @@ export * from './types';
 
 export { default as DocNav } from './DocNav.vue';
 export { default as ComponentDocPage } from './ComponentDocPage.vue';
-export { default as DocLayout } from './DocLayout.vue';
+export { default as DocTabPanel } from './DocTabPanel.vue';
 export { default as ExamplesPanel } from './ExamplePanel.vue';
 export { default as ExampleSection } from './ExampleSection.vue';
 export { default as ApiPanel } from './ApiPanel.vue';
-// export { default as DocPanelQuickNav } from './DocPanelQuickNav.vue';
+
+export { default as DocComponent } from './DocComponent.vue';

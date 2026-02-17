@@ -2,8 +2,8 @@
 import { useDocSections } from '@/lib/composables';
 
 import { ExamplePanel } from '@/compositions/docs';
-import BasicDoc from './BasicDoc.vue';
-import ColorDoc from './ColorDoc.vue';
+import BasicDoc from '../button/BasicExample.vue';
+import ColorDoc from '../button/ColorExample.vue';
 import OutlineDoc from './OutlineDoc.vue';
 import TextDoc from './TextDoc.vue';
 import RaisedDoc from './RaisedDoc.vue';

@@ -3,6 +3,8 @@ import { useRoute, useRouter } from 'vue-router';
 
 import { docRoutesConfig, organizeRoutesByCategory } from '@/router';
 
+import { Text } from '@/blocks';
+
 const route = useRoute();
 const router = useRouter();
 
@@ -18,17 +20,20 @@ const navigationList = organizeRoutesByCategory(docRoutesConfig);
 </script>
 
 <template>
-  <nav class="sidebar-nav">
-    <div v-for="(route, idx) in navigationList" :key="idx" class="category-group">
-      <h3 class="category-title">
+  <nav class="flex flex-col gap-4 p-6 overflow-y-auto">
+    <div v-for="(route, idx) in navigationList" :key="idx" class="flex flex-col gap-2">
+      <Text>
         {{ route.category }}
-      </h3>
+      </Text>
 
-      <ul class="component-list">
+      <ul class="list-none p-0 m-0">
         <li
           v-for="component in route.components"
           :key="component.name"
-          :class="{ active: isActive(component.name) }"
+          :class="[
+            'py-2.5 px-3.5 cursor-pointer rounded-md transition-all duration-200 text-base font-medium',
+            isActive(component.name) ? 'bg-brand text-white hover:bg-blue-700' : 'hover:bg-brand-ghost-hover',
+          ]"
           @click="navigateToComponent(component.name)"
         >
           {{ component.label }}
@@ -37,76 +42,3 @@ const navigationList = organizeRoutesByCategory(docRoutesConfig);
     </div>
   </nav>
 </template>
-
-<style>
-.sidebar-nav {
-  flex: 1;
-  padding: 1.5rem;
-  overflow-y: auto;
-}
-
-.category-group {
-  margin-bottom: 2rem;
-}
-
-.category-group:last-child {
-  margin-bottom: 0;
-}
-
-.category-title {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #6c757d;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.75rem;
-}
-
-.component-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.component-list li {
-  padding: 0.625rem 0.875rem;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: all 0.2s;
-  font-size: 0.9375rem;
-  color: #495057;
-  font-weight: 500;
-}
-
-.component-list li:hover {
-  background: #f8f9fa;
-  color: #007bff;
-}
-
-.component-list li.active {
-  background: #007bff;
-  color: white;
-}
-
-.component-list li.active:hover {
-  background: #0056b3;
-}
-
-/* Scrollbar */
-.sidebar-nav::-webkit-scrollbar {
-  width: 6px;
-}
-
-.sidebar-nav::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.sidebar-nav::-webkit-scrollbar-thumb {
-  background: #cbd5e0;
-  border-radius: 3px;
-}
-
-.sidebar-nav::-webkit-scrollbar-thumb:hover {
-  background: #a0aec0;
-}
-</style>

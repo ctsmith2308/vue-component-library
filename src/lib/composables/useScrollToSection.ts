@@ -1,11 +1,8 @@
 import { onMounted } from 'vue';
-// import { useRouter } from 'vue-router';
 
 import type { ScrollToSectionOptions } from './types';
 
 const useScrollToSection = (options: ScrollToSectionOptions = {}) => {
-  // const router = useRouter();
-
   const { behavior = 'smooth', block = 'start', updateUrl = true } = options;
 
   const scrollToSection = (sectionId: string) => {

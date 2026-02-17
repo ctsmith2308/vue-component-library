@@ -24,7 +24,7 @@ const emit = defineEmits<{
 const rowClasses = computed(() => [
   'border-b border-surface-border last:border-b-0',
   {
-    'hover:bg-gray-50 cursor-pointer': props.hoverable,
+    'hover:color-hover cursor-pointer': props.hoverable,
   },
 ]);
 

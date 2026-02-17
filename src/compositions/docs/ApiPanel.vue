@@ -2,7 +2,7 @@
 import type { ApiSection, PropsTableData, SlotsTableData } from './types';
 
 import { DataTable } from '@/blocks';
-import { DocLayout } from '@/compositions/docs';
+import { DocTabPanel } from '@/compositions/docs';
 import { useScrollToSection } from '@/lib/composables/useScrollToSection';
 
 defineProps<{
@@ -17,9 +17,10 @@ const onRowClick = () => {
 </script>
 
 <template>
-  <DocLayout>
+  <DocTabPanel>
     <div v-for="section in sections" :key="section.id" :id="section.id">
       <h1>{{ section.label }}</h1>
+
       <DataTable :data="section.data" :columns="section.columns" @rowClick="onRowClick" />
     </div>
 
@@ -30,7 +31,7 @@ const onRowClick = () => {
         </li>
       </ul>
     </template>
-  </DocLayout>
+  </DocTabPanel>
 </template>
 
 <style scoped>

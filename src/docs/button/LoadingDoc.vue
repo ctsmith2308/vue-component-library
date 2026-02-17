@@ -4,16 +4,13 @@ import { ExampleSection } from '@/compositions/docs';
 
 const content = {
   title: 'Basic',
-  description: 'Use the label property to provide content to the button.',
+  description: 'Use the label property to display content within the button',
   keyword: 'label',
-  codeSnippet: `
-  <Button label="I am button" />
-  `,
 };
 </script>
 
 <template>
   <ExampleSection :content="content">
-    <Button label="I am button" />
+    <Button label="loading..." loading />
   </ExampleSection>
 </template>
