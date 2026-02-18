@@ -44,14 +44,14 @@ const outlinedKeys = {
 const ghostStyle = 'bg-transparent border-1 border-surface-border hover:border-brand text-brand';
 
 const sizeKeys = {
-  sm: 'h-6 max-w-24 w-full',
-  md: 'h-8 max-w-32 w-full',
-  lg: 'h-10 max-w-40 w-full',
-  xl: 'h-12 max-w-48 w-full',
-  jumbo: 'h-16 max-w-64 w-full',
+  sm: 'h-6',
+  md: 'h-8',
+  lg: 'h-10',
+  xl: 'h-12',
+  jumbo: 'h-16',
 };
 
-const base = 'inline-flex items-center justify-center gap-2 px-4 py-2';
+const base = 'inline-flex items-center justify-center gap-2 min-w-40 px-4 py-2 ';
 
 const colorClass = computed(() => {
   if (props.disabled) return 'bg-disabled text-content-text-secondary-muted';
