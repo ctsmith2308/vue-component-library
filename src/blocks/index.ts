@@ -11,6 +11,12 @@ export { default as Form } from './form/FormComponent.vue';
 export { default as PasswordInput } from './form/PasswordInput.vue';
 export { default as TextInput } from './form/TextInput.vue';
 
+/** Feedback */
+export { default as ProgressBar } from './feedback/ProgressBar.vue';
+export { default as ProgressSpinner } from './feedback/ProgressSpinner.vue';
+export { default as Skeleton } from './feedback/Skeleton.vue';
+export { default as TableSkeleton } from './feedback/TableSkeleton.vue';
+
 /** Lists */
 export { default as NavList } from './list/NavList.vue';
 
@@ -27,10 +33,18 @@ export { default as ButtonSpinner } from './button/ButtonSpinner.vue';
 
 /** Layouts */
 export { default as Tabs } from './layout/Tabs.vue';
+export { default as Accordion } from './layout/Accordion.vue';
+export { default as Carousel } from './layout/Carousel.vue';
 
 /** Data */
 export { default as DataTable } from './data/DataTable.vue';
 
+/** Media */
+export { default as Image } from './media/Image.vue';
+
 /** Misc */
 export { default as ToggleSwitch } from './misc/ToggleSwitch.vue';
 export { default as CodeBlock } from './misc/CodeBlock.vue';
+export { default as Avatar } from './misc/Avatar.vue';
+export { default as Chip } from './misc/Chip.vue';
+export { default as Tag } from './misc/Tag.vue';
