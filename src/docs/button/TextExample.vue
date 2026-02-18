@@ -5,9 +5,9 @@ import { toHtmlHighlight } from '@/lib/utils';
 
 const heading = 'Text';
 
-const description = 'Use the variant property to render buttons as textual elements.';
+const description = `Use variant="text" to render a borderless button styled only with the colour's text colour.`;
 
-const htmlString = toHtmlHighlight(description, 'variant');
+const htmlString = toHtmlHighlight(description, 'text');
 
 const codeSnippet = `
   <Button label="primary" variant="text" />
@@ -17,7 +17,7 @@ const codeSnippet = `
   <Button label="success" color="success" variant="text" />
 
   <Button label="danger" color="danger" variant="text" />
-  `;
+`;
 </script>
 
 <template>

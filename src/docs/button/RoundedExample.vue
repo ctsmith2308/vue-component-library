@@ -5,15 +5,25 @@ import { toHtmlHighlight } from '@/lib/utils';
 
 const heading = 'Rounded';
 
-const description = 'Use the rounded attribute to give the button rounded edges.';
+const description = 'Use the rounded prop to apply pill-shaped corners instead of the default rounded-md.';
 
-const htmlString = toHtmlHighlight(description, 'variant');
+const htmlString = toHtmlHighlight(description, 'rounded');
 
-const codeSnippet = `<Button label="rounded" rounded />`;
+const codeSnippet = `
+  <Button label="primary" rounded />
+
+  <Button label="secondary" color="secondary" rounded />
+
+  <Button label="outlined" variant="outlined" rounded />
+`;
 </script>
 
 <template>
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
-    <Button label="rounded" rounded />
+    <Button label="primary" rounded />
+
+    <Button label="secondary" color="secondary" rounded />
+
+    <Button label="outlined" variant="outlined" rounded />
   </DocumentExampleSection>
 </template>

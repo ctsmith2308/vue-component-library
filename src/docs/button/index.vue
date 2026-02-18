@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { buttonSectionExamplesConfig } from './config';
-
 import { DocumentComponent } from '@/compositions/document';
 </script>
 

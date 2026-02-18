@@ -3,9 +3,9 @@ import { DocumentApiSection } from '@/compositions/document';
 import { apiReferenceConfig } from './config';
 import { toHtmlHighlight } from '@/lib/utils';
 
-const description = `Button wraps the native button element with color, size, variant, and state props.`;
+const description = `TextInput wraps a native input with label, validation rules, input masking, and Form integration.`;
 
-const htmlString = toHtmlHighlight(description, 'Button');
+const htmlString = toHtmlHighlight(description, 'TextInput');
 </script>
 
 <template>

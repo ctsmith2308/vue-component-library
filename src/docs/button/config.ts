@@ -3,6 +3,7 @@ import { type Component } from 'vue';
 import ApiReference from './ApiReference.vue';
 import ColorExample from './ColorExample.vue';
 import OutlinedExample from './OutlinedExample.vue';
+import GhostExample from './GhostExample.vue';
 import RaisedExample from './RaisedExample.vue';
 import RoundedExample from './RoundedExample.vue';
 import TextExample from './TextExample.vue';
@@ -16,57 +17,73 @@ interface DocSection {
   component: Component;
 }
 
+interface ButtonProps {
+  label?: string;
+  color?: 'primary' | 'secondary' | 'success' | 'danger';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'jumbo';
+  variant?: 'outlined' | 'ghost' | 'text' | 'link';
+  raised?: boolean;
+  rounded?: boolean;
+  loading?: boolean;
+  disabled?: boolean;
+}
+
 const apiReferenceConfig = {
   data: [
     {
       name: 'label',
       type: 'string',
       default: 'undefined',
-      description: 'Text of the button.',
+      description: 'Text rendered inside the button. Use the default slot for richer content.',
     },
     {
       name: 'color',
       type: `'primary' | 'secondary' | 'success' | 'danger'`,
       default: `'primary'`,
-      description: 'Color of the button',
+      description: 'Color theme applied to the button background or border.',
     },
     {
       name: 'size',
       type: `'sm' | 'md' | 'lg' | 'xl' | 'jumbo'`,
       default: `'md'`,
-      description: 'Size of the button.',
+      description: 'Controls the height and max-width of the button.',
     },
     {
       name: 'variant',
-      type: `'outlined' | 'link' | 'text'`,
+      type: `'outlined' | 'ghost' | 'text' | 'link'`,
       default: 'undefined',
-      description: 'Variant styling of the button.',
+      description: `Alternate visual style. outlined adds a coloured border; ghost uses a neutral border; text removes the background; link adds an underline on hover.`,
     },
     {
       name: 'raised',
       type: 'boolean',
       default: 'false',
-      description: 'Adds box shadow to the button.',
+      description: 'Adds a drop shadow beneath the button.',
     },
     {
       name: 'rounded',
       type: 'boolean',
       default: 'false',
-      description: 'Gives rounded border to the button.',
+      description: 'Applies fully rounded (pill) corners instead of the default rounded-md.',
     },
     {
       name: 'loading',
       type: 'boolean',
       default: 'false',
-      description: 'Indicates the loading status of the button.',
+      description: 'Replaces the label with a spinner and sets cursor-progress. Disables click.',
     },
     {
       name: 'disabled',
       type: 'boolean',
       default: 'false',
-      description: 'Indicates the disabled status of the button',
+      description: 'Visually mutes the button and prevents interaction.',
     },
-  ],
+  ] satisfies Array<{
+    name: keyof ButtonProps | string;
+    type: string;
+    default: string;
+    description: string;
+  }>,
   columns: [
     { field: 'name', header: 'Name' },
     { field: 'type', header: 'Type' },
@@ -76,15 +93,16 @@ const apiReferenceConfig = {
 };
 
 const buttonSectionExamplesConfig: DocSection[] = [
-  { id: 'api-ref', label: 'Api Reference', component: ApiReference },
-  { id: 'color', label: 'Colors', component: ColorExample },
-  { id: 'outlined', label: 'Outlined', component: OutlinedExample },
-  { id: 'raised', label: 'Raised', component: RaisedExample },
-  { id: 'rounded', label: 'Rounded', component: RoundedExample },
-  { id: 'text', label: 'Text', component: TextExample },
-  { id: 'size', label: 'Size', component: SizeExample },
-  { id: 'loading', label: 'Loading', component: LoadingExample },
-  { id: 'disabled', label: 'Disabled', component: DisabledExample },
+  { id: 'button-api', label: 'API Reference', component: ApiReference },
+  { id: 'button-color', label: 'Colors', component: ColorExample },
+  { id: 'button-outlined', label: 'Outlined', component: OutlinedExample },
+  { id: 'button-ghost', label: 'Ghost', component: GhostExample },
+  { id: 'button-raised', label: 'Raised', component: RaisedExample },
+  { id: 'button-rounded', label: 'Rounded', component: RoundedExample },
+  { id: 'button-text', label: 'Text', component: TextExample },
+  { id: 'button-size', label: 'Sizes', component: SizeExample },
+  { id: 'button-loading', label: 'Loading', component: LoadingExample },
+  { id: 'button-disabled', label: 'Disabled', component: DisabledExample },
 ];
 
 export { apiReferenceConfig, buttonSectionExamplesConfig };

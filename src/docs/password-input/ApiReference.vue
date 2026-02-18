@@ -3,9 +3,9 @@ import { DocumentApiSection } from '@/compositions/document';
 import { apiReferenceConfig } from './config';
 import { toHtmlHighlight } from '@/lib/utils';
 
-const description = `Button wraps the native button element with color, size, variant, and state props.`;
+const description = `PasswordInput extends TextInput with a show/hide toggle and a default minLength validation rule.`;
 
-const htmlString = toHtmlHighlight(description, 'Button');
+const htmlString = toHtmlHighlight(description, 'PasswordInput');
 </script>
 
 <template>

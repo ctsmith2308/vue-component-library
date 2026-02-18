@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { exampleConfig } from './config';
-
+import { textInputSectionConfig } from './config';
 import { DocumentComponent } from '@/compositions/document';
 </script>
 
 <template>
-  <DocumentComponent :document-sections="exampleConfig" />
+  <DocumentComponent :document-sections="textInputSectionConfig" />
 </template>

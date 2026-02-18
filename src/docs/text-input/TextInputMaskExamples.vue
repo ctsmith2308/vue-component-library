@@ -1,50 +1,38 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-
 import { TextInput } from '@/blocks';
 import { DocumentExampleSection } from '@/compositions/document';
 import { toHtmlHighlight } from '@/lib/utils';
 
-const heading = 'Text Input';
+const heading = 'Input Masks';
 
-const description = `Use the mask property to define the mask type for the input.`;
+const description = `Use the mask prop to restrict what characters the user can type.`;
 
 const htmlString = toHtmlHighlight(description, 'mask');
 
 const codeSnippet = `
-  <TextInput v-model="numberInput" type="text" mask="numeric" placeholder="numeric mask" />
+  <TextInput v-model="numeric" name="numeric" mask="numeric" label="Numeric" placeholder="digits only" />
 
-  <TextInput v-model="alphaInput" type="text" mask="alpha" placeholder="alpha mask" />
+  <TextInput v-model="alpha" name="alpha" mask="alpha" label="Alpha" placeholder="letters only" />
 
-  <TextInput v-model="alphaNumericInput" type="text" mask="alpha_num" placeholder="alpha numeric mask" />
+  <TextInput v-model="alphaNum" name="alphaNum" mask="alpha_num" label="Alpha Numeric" placeholder="letters and digits" />
 
-  <TextInput v-model="alphaDashInput" type="text" mask="alpha_dash" placeholder="alpha dash mask" />
-
+  <TextInput v-model="alphaDash" name="alphaDash" mask="alpha_dash" label="Alpha Dash" placeholder="letters, digits, hyphens" />
 `;
 
-const numberInput = ref('');
-
-const alphaInput = ref('');
-
-const alphaNumericInput = ref('');
-
-const alphaDashInput = ref('');
+const numeric = ref('');
+const alpha = ref('');
+const alphaNum = ref('');
+const alphaDash = ref('');
 </script>
 
 <template>
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
-    <TextInput v-model="numberInput" type="text" mask="numeric" name="numericInput" placeholder="numeric mask" />
-
-    <TextInput v-model="alphaInput" type="text" mask="alpha" name="alphaInput" placeholder="alpha mask" />
-
-    <TextInput
-      v-model="alphaNumericInput"
-      type="text"
-      mask="alpha_num"
-      name="alphaNumericInput"
-      placeholder="alpha numeric mask"
-    />
-
-    <TextInput v-model="alphaDashInput" type="text" mask="alpha_dash" name="alphaDashInput" placeholder="alpha dash mask" />
+    <div class="flex flex-col gap-4 w-full max-w-sm">
+      <TextInput v-model="numeric" name="numeric" mask="numeric" label="Numeric" placeholder="digits only" />
+      <TextInput v-model="alpha" name="alpha" mask="alpha" label="Alpha" placeholder="letters only" />
+      <TextInput v-model="alphaNum" name="alphaNum" mask="alpha_num" label="Alpha Numeric" placeholder="letters and digits" />
+      <TextInput v-model="alphaDash" name="alphaDash" mask="alpha_dash" label="Alpha Dash" placeholder="letters, digits, hyphens" />
+    </div>
   </DocumentExampleSection>
 </template>
