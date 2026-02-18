@@ -10,12 +10,11 @@ const description = `Use v-model for two-way binding. The label prop renders a v
 
 const htmlString = toHtmlHighlight(description, 'label');
 
-const codeSnippet = `
-  <TextInput v-model="username" name="username" label="Username" placeholder="Enter username" />
+const codeSnippet = `<TextInput v-model="username" name="username" label="Username" placeholder="Enter username" />
 
-  <TextInput v-model="email" name="email" type="email" label="Email" placeholder="you@example.com" />
+<TextInput v-model="email" name="email" type="email" label="Email" placeholder="you@example.com" />
 
-  <TextInput v-model="amount" name="amount" type="number" label="Amount" placeholder="0.00" />
+<TextInput v-model="amount" name="amount" type="number" label="Amount" placeholder="0.00" />
 `;
 
 const username = ref('');
@@ -27,7 +26,9 @@ const amount = ref('');
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <div class="flex flex-col gap-4 w-full max-w-sm">
       <TextInput v-model="username" name="username" label="Username" placeholder="Enter username" />
+
       <TextInput v-model="email" name="email" type="email" label="Email" placeholder="you@example.com" />
+
       <TextInput v-model="amount" name="amount" type="number" label="Amount" placeholder="0.00" />
     </div>
   </DocumentExampleSection>

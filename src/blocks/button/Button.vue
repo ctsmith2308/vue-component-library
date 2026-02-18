@@ -14,6 +14,8 @@ interface ButtonProps {
   rounded?: boolean;
   loading?: boolean;
   disabled?: boolean;
+  as?: 'button' | 'a';
+  href?: string;
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -23,6 +25,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   disabled: false,
   raised: false,
   rounded: false,
+  as: 'button',
 });
 
 const slots = useSlots();
@@ -52,11 +55,11 @@ const sizeKeys = {
 };
 
 const iconSizeKeys = {
-  sm: 'size-4', // 16px
-  md: 'size-5', // 20px
-  lg: 'size-6', // 24px
-  xl: 'size-8', // 32px
-  jumbo: 'size-12', // 48px
+  sm: 'size-4',
+  md: 'size-5',
+  lg: 'size-6',
+  xl: 'size-8',
+  jumbo: 'size-12',
 };
 
 const base = 'inline-flex items-center justify-center gap-2';
@@ -98,10 +101,12 @@ const classes = computed(() => [
   hoverClass.value,
   roundedClass.value,
 ]);
+
+const isButton = props.as === 'button';
 </script>
 
 <template>
-  <button :class="classes" :disabled="loading || disabled" type="button">
+  <button v-if="isButton" :class="classes" :disabled="loading || disabled" type="button">
     <ButtonSpinner v-if="loading" :size="size" color="currentColor" />
 
     <template v-else>
@@ -114,4 +119,14 @@ const classes = computed(() => [
       </span>
     </template>
   </button>
+
+  <a v-else :href="href" :class="classes" target="_blank">
+    <span v-if="slots.icon" :class="['flex items-center justify-center', iconWrapperClass]">
+      <slot name="icon" />
+    </span>
+
+    <span v-if="label" class="whitespace-nowrap">
+      {{ label }}
+    </span>
+  </a>
 </template>

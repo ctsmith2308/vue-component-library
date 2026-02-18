@@ -1,20 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import CheckboxInput from '@/blocks/select/CheckboxInput.vue';
-import type { CheckboxData } from '@/blocks/select/types';
+import type { CheckboxData } from '@/blocks';
 import { DocumentExampleSection } from '@/compositions/document';
 import { toHtmlHighlight } from '@/lib/utils';
+
 const heading = 'Basic';
 const description = `Use v-model for two-way boolean binding. Provide a data object with id, name, and label.`;
 const htmlString = toHtmlHighlight(description, 'v-model');
-const codeSnippet = `
-  <CheckboxInput v-model="accepted" :data="termsData" />
-`;
+const codeSnippet = `<CheckboxInput v-model="accepted" :data="termsData" />`;
+
 const accepted = ref(false);
 const newsletter = ref(true);
 const termsData: CheckboxData = { id: 'terms-cb', name: 'terms', label: 'I accept the terms and conditions' };
 const newsletterData: CheckboxData = { id: 'newsletter-cb', name: 'newsletter', label: 'Subscribe to newsletter' };
 </script>
+
 <template>
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <div class="flex flex-col gap-1">

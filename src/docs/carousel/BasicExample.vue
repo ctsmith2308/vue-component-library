@@ -6,13 +6,11 @@ import { toHtmlHighlight } from '@/lib/utils';
 const heading = 'Basic';
 const description = `Provide items via the value prop and use the item slot to customise each slide.`;
 const htmlString = toHtmlHighlight(description, 'value');
-const codeSnippet = `
-  <Carousel :value="slides" :num-visible="1">
-    <template #item="{ data }">
-      <div>{{ data.title }}</div>
-    </template>
-  </Carousel>
-
+const codeSnippet = `<Carousel :value="slides" :num-visible="1">
+  <template #item="{ data }">
+    <div>{{ data.title }}</div>
+  </template>
+</Carousel>
 `;
 
 interface Slide {

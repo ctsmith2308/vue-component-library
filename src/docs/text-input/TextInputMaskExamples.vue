@@ -10,14 +10,13 @@ const description = `Use the mask prop to restrict what characters the user can 
 
 const htmlString = toHtmlHighlight(description, 'mask');
 
-const codeSnippet = `
-  <TextInput v-model="numeric" name="numeric" mask="numeric" label="Numeric" placeholder="digits only" />
+const codeSnippet = `<TextInput v-model="numeric" name="numeric" mask="numeric" label="Numeric" placeholder="digits only" />
 
-  <TextInput v-model="alpha" name="alpha" mask="alpha" label="Alpha" placeholder="letters only" />
+<TextInput v-model="alpha" name="alpha" mask="alpha" label="Alpha" placeholder="letters only" />
 
-  <TextInput v-model="alphaNum" name="alphaNum" mask="alpha_num" label="Alpha Numeric" placeholder="letters and digits" />
+<TextInput v-model="alphaNum" name="alphaNum" mask="alpha_num" label="Alpha Numeric" placeholder="letters and digits" />
 
-  <TextInput v-model="alphaDash" name="alphaDash" mask="alpha_dash" label="Alpha Dash" placeholder="letters, digits, hyphens" />
+<TextInput v-model="alphaDash" name="alphaDash" mask="alpha_dash" label="Alpha Dash" placeholder="letters, digits, hyphens" />
 `;
 
 const numeric = ref('');
@@ -30,9 +29,24 @@ const alphaDash = ref('');
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <div class="flex flex-col gap-4 w-full max-w-sm">
       <TextInput v-model="numeric" name="numeric" mask="numeric" label="Numeric" placeholder="digits only" />
+
       <TextInput v-model="alpha" name="alpha" mask="alpha" label="Alpha" placeholder="letters only" />
-      <TextInput v-model="alphaNum" name="alphaNum" mask="alpha_num" label="Alpha Numeric" placeholder="letters and digits" />
-      <TextInput v-model="alphaDash" name="alphaDash" mask="alpha_dash" label="Alpha Dash" placeholder="letters, digits, hyphens" />
+
+      <TextInput
+        v-model="alphaNum"
+        name="alphaNum"
+        mask="alpha_num"
+        label="Alpha Numeric"
+        placeholder="letters and digits"
+      />
+
+      <TextInput
+        v-model="alphaDash"
+        name="alphaDash"
+        mask="alpha_dash"
+        label="Alpha Dash"
+        placeholder="letters, digits, hyphens"
+      />
     </div>
   </DocumentExampleSection>
 </template>

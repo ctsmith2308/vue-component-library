@@ -2,13 +2,16 @@
 import { Avatar } from '@/blocks';
 import { DocumentExampleSection } from '@/compositions/document';
 import { toHtmlHighlight } from '@/lib/utils';
+
 const heading = 'Basic';
 const description = `Avatar derives initials from the label prop. Use the image prop to render a photo instead.`;
 const htmlString = toHtmlHighlight(description, 'label');
-const codeSnippet = `
-  <Avatar label="Alice Johnson" size="md" />
-  <Avatar src="https://..." size="md" />
+
+const codeSnippet = `<Avatar label="Alice Johnson" size="md" />
+
+<Avatar src="https://..." size="md" />
 `;
+
 const sizes = ['sm', 'md', 'lg', 'xl'] as const;
 </script>
 <template>

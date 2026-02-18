@@ -9,10 +9,7 @@ const description = `Pass an array of objects to data and define columns with a 
 
 const htmlString = toHtmlHighlight(description, 'data');
 
-const codeSnippet = `
-  <DataTable :data="rows" :columns="columns" />
-
-`;
+const codeSnippet = `<DataTable :data="rows" :columns="columns" />`;
 
 interface User {
   name: string;

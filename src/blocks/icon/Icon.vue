@@ -12,6 +12,7 @@ import {
   Bars3Icon,
   ArrowLongUpIcon,
   ArrowLongDownIcon,
+  LinkIcon,
 } from '@heroicons/vue/24/outline';
 
 import GithubIcon from './GithubIcon.vue';
@@ -28,6 +29,7 @@ const iconComponentKeys = {
   ArrowLongUpIcon,
   ArrowLongDownIcon,
   GithubIcon,
+  LinkIcon,
 } as const;
 
 interface IconProps {

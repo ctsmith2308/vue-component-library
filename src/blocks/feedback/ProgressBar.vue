@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<ProgressBarProps>(), {
 
 const colorClasses = {
   primary: 'bg-brand',
-  secondary: 'bg-brand-secondary',
+  secondary: 'bg-secondary',
   success: 'bg-success',
   danger: 'bg-danger',
 };
@@ -33,7 +33,7 @@ const progressWidth = computed(() => `${progressValue.value}%`);
 
 <template>
   <div class="progress-bar w-full">
-    <div 
+    <div
       class="progress-track bg-surface-alt rounded-full overflow-hidden relative"
       :style="{ height }"
       role="progressbar"
@@ -46,13 +46,10 @@ const progressWidth = computed(() => `${progressValue.value}%`);
         :class="['progress-fill h-full transition-all duration-300 ease-out', colorClasses[color]]"
         :style="{ width: progressWidth }"
       ></div>
-      
-      <div
-        v-else
-        :class="['progress-indeterminate h-full', colorClasses[color]]"
-      ></div>
+
+      <div v-else :class="['progress-indeterminate h-full', colorClasses[color]]"></div>
     </div>
-    
+
     <div v-if="showValue && mode === 'determinate'" class="text-center mt-2 text-sm text-content-text-secondary">
       {{ Math.round(progressValue) }}%
     </div>

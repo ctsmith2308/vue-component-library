@@ -9,11 +9,9 @@ const description = `The shape prop accepts rectangle, circle, or square. Use si
 
 const htmlString = toHtmlHighlight(description, 'shape');
 
-const codeSnippet = `
-  <Skeleton shape="rectangle" width="100%" height="1.5rem" />
-  <Skeleton shape="circle" size="3rem" />
-  <Skeleton shape="square" size="3rem" />
-
+const codeSnippet = `<Skeleton shape="rectangle" width="100%" height="1.5rem" />
+<Skeleton shape="circle" size="3rem" />
+<Skeleton shape="square" size="3rem" />
 `;
 </script>
 

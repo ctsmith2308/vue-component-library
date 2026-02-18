@@ -9,12 +9,11 @@ const description = 'Use the rounded prop to apply pill-shaped corners instead o
 
 const htmlString = toHtmlHighlight(description, 'rounded');
 
-const codeSnippet = `
-  <Button label="primary" rounded />
+const codeSnippet = `<Button label="primary" rounded />
 
-  <Button label="secondary" color="secondary" rounded />
+<Button label="secondary" color="secondary" rounded />
 
-  <Button label="outlined" variant="outlined" rounded />
+<Button label="outlined" variant="outlined" rounded />
 `;
 </script>
 

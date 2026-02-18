@@ -33,6 +33,7 @@
 
 @theme {
   @include color-variants('brand', #0d6efd);
+  // @include color-variants('brand', #f43f5e);
   @include color-variants('secondary', #a855f7);
   @include color-variants('success', #198754);
   @include color-variants('danger', #dc3545);
@@ -67,6 +68,6 @@
 
 @layer components {
   .inline-highlight {
-    @apply rounded-md text-brand-dark py-1 px-1 bg-brand-light;
+    @apply rounded-md text-content-text-muted py-1 px-1 bg-brand-light;
   }
 }

@@ -10,27 +10,26 @@ const description = `Wrap TextInput inside a Form to get automatic validation. P
 
 const htmlString = toHtmlHighlight(description, 'rules');
 
-const codeSnippet = `
-  <Form @submit="onSubmit">
-    <TextInput
-      v-model="email"
-      name="email"
-      type="email"
-      label="Email"
-      placeholder="you@example.com"
-      :rules="{ required: true, email: true }"
-    />
+const codeSnippet = `<Form @submit="onSubmit">
+  <TextInput
+    v-model="email"
+    name="email"
+    type="email"
+    label="Email"
+    placeholder="you@example.com"
+    :rules="{ required: true, email: true }"
+  />
 
-    <TextInput
-      v-model="username"
-      name="username"
-      label="Username"
-      placeholder="min 3 characters"
-      :rules="{ required: true, minLength: 3 }"
-    />
+  <TextInput
+    v-model="username"
+    name="username"
+    label="Username"
+    placeholder="min 3 characters"
+    :rules="{ required: true, minLength: 3 }"
+  />
 
-    <Button type="submit" label="Submit" />
-  </Form>
+  <Button type="submit" label="Submit" />
+</Form>
 `;
 
 const email = ref('');

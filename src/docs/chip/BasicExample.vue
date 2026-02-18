@@ -2,13 +2,15 @@
 import { Chip } from '@/blocks';
 import { DocumentExampleSection } from '@/compositions/document';
 import { toHtmlHighlight } from '@/lib/utils';
+
 const heading = 'Colors';
 const description = `The color prop supports primary, secondary, success, and danger.`;
 const htmlString = toHtmlHighlight(description, 'color');
-const codeSnippet = `
-  <Chip label="Primary" color="primary" />
-  <Chip label="Success" color="success" />
+const codeSnippet = `<Chip label="Primary" color="primary" />
+
+<Chip label="Success" color="success" />
 `;
+
 const colors = ['primary', 'secondary', 'success', 'danger'] as const;
 </script>
 <template>

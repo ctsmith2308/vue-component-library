@@ -9,15 +9,14 @@ const description = `Use the color property to change the color of the button.`;
 
 const htmlString = toHtmlHighlight(description, 'color');
 
-const codeSnippet = `
-  <Button label="primary" />
+const codeSnippet = `<Button label="primary" />
 
-  <Button label="secondary" color="secondary" />
+<Button label="secondary" color="secondary" />
 
-  <Button label="success" color="success" />
+<Button label="success" color="success" />
 
-  <Button label="danger" color="danger" />
-  `;
+<Button label="danger" color="danger" />
+`;
 </script>
 
 <template>

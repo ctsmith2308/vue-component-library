@@ -9,12 +9,13 @@ const description = `Use the size prop to control spinner dimensions from sm to 
 
 const htmlString = toHtmlHighlight(description, 'size');
 
-const codeSnippet = `
-  <ProgressSpinner size="sm" />
-  <ProgressSpinner size="md" />
-  <ProgressSpinner size="lg" />
-  <ProgressSpinner size="xl" />
+const codeSnippet = `<ProgressSpinner size="sm" />
 
+<ProgressSpinner size="md" />
+
+<ProgressSpinner size="lg" />
+
+<ProgressSpinner size="xl" />
 `;
 
 const sizes = ['sm', 'md', 'lg', 'xl'] as const;

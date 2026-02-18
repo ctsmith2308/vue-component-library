@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<TagProps>(), {
 
 const severityClasses = {
   primary: 'bg-brand text-white',
-  secondary: 'bg-brand-secondary text-white',
+  secondary: 'bg-secondary text-white',
   success: 'bg-success text-white',
   danger: 'bg-danger text-white',
   warning: 'bg-yellow-500 text-white',

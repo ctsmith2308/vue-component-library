@@ -6,13 +6,11 @@ import { toHtmlHighlight } from '@/lib/utils';
 const heading = 'Error Fallback';
 const description = `When an image fails to load, the component renders the error slot. Override it to display a custom fallback.`;
 const htmlString = toHtmlHighlight(description, 'error');
-const codeSnippet = `
-  <Image src="/broken.jpg" alt="Broken">
-    <template #error>
-      <span>Image unavailable</span>
-    </template>
-  </Image>
-
+const codeSnippet = `<Image src="/broken.jpg" alt="Broken">
+  <template #error>
+    <span>Image unavailable</span>
+  </template>
+</Image>
 `;
 </script>
 

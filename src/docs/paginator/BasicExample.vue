@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+
 import Paginator from '@/blocks/data/Paginator.vue';
 import { DocumentExampleSection } from '@/compositions/document';
 import { toHtmlHighlight } from '@/lib/utils';
@@ -10,14 +11,12 @@ const description = `Provide totalRecords and rows to drive the paginator. Liste
 
 const htmlString = toHtmlHighlight(description, 'totalRecords');
 
-const codeSnippet = `
-  <Paginator
-    :total-records="100"
-    :rows="10"
-    :first="first"
-    @page="onPage"
-  />
-
+const codeSnippet = `<Paginator
+  :total-records="100"
+  :rows="10"
+  :first="first"
+  @page="onPage"
+/>
 `;
 
 const first = ref(0);

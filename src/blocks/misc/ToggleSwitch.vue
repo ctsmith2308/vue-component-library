@@ -72,21 +72,23 @@ const containerClasses = computed(() => [
 </script>
 
 <template>
-  <div :class="containerClasses">
-    <button
-      type="button"
-      role="switch"
-      :aria-checked="modelValue"
-      :aria-label="label"
-      :class="trackClasses"
-      :disabled="disabled"
-      @click="toggle"
-    >
-      <span :class="thumbClasses"></span>
-    </button>
+  <div class="inline-flex items-center gap-3">
+    <div :class="containerClasses">
+      <button
+        type="button"
+        role="switch"
+        :aria-checked="modelValue"
+        :aria-label="label"
+        :class="trackClasses"
+        :disabled="disabled"
+        @click="toggle"
+      >
+        <span :class="thumbClasses"></span>
+      </button>
 
-    <label v-if="label" class="text-sm text-content-text cursor-pointer select-none" @click="toggle">
-      {{ label }}
-    </label>
+      <label v-if="label" class="text-sm text-content-text cursor-pointer select-none" @click="toggle">
+        {{ label }}
+      </label>
+    </div>
   </div>
 </template>

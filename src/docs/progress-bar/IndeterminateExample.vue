@@ -9,10 +9,7 @@ const description = `Set mode to indeterminate for a continuously animating bar 
 
 const htmlString = toHtmlHighlight(description, 'indeterminate');
 
-const codeSnippet = `
-  <ProgressBar mode="indeterminate" color="primary" />
-
-`;
+const codeSnippet = `<ProgressBar mode="indeterminate" color="primary" />`;
 </script>
 
 <template>

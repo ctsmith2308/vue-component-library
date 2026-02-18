@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import SelectInput from '@/blocks/select/SelectInput.vue';
-import type { SelectData } from '@/blocks/select/types';
+import { type SelectData, SelectInput } from '@/blocks';
 import { DocumentExampleSection } from '@/compositions/document';
 import { toHtmlHighlight } from '@/lib/utils';
+
 const heading = 'Basic';
 const description = `Pass a data object with id, name, label, and an options array to drive the dropdown.`;
 const htmlString = toHtmlHighlight(description, 'data');
-const codeSnippet = `
-  <SelectInput :data="selectData" />
-`;
+const codeSnippet = `<SelectInput :data="selectData" />`;
+
 const selectData: SelectData = {
   id: 'framework-select',
   name: 'framework',
@@ -21,6 +20,7 @@ const selectData: SelectData = {
   ],
 };
 </script>
+
 <template>
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <div class="w-full max-w-xs">

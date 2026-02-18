@@ -6,10 +6,7 @@ import { toHtmlHighlight } from '@/lib/utils';
 const heading = 'Basic';
 const description = `Provide a src URL. The component shows a skeleton while loading and falls back on error.`;
 const htmlString = toHtmlHighlight(description, 'src');
-const codeSnippet = `
-  <Image src="https://picsum.photos/seed/vue/400/250" alt="Sample" />
-
-`;
+const codeSnippet = `<Image src="https://picsum.photos/seed/vue/400/250" alt="Sample" />`;
 </script>
 
 <template>

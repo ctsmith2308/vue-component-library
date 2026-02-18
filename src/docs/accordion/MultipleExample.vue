@@ -7,10 +7,7 @@ import { toHtmlHighlight } from '@/lib/utils';
 const heading = 'Multiple & Disabled';
 const description = `Set multiple to allow several panels open at once. Mark a tab disabled to prevent it from being toggled.`;
 const htmlString = toHtmlHighlight(description, 'multiple');
-const codeSnippet = `
-  <Accordion :tabs="tabs" :multiple="true" :active-index="[0, 1]" />
-
-`;
+const codeSnippet = `<Accordion :tabs="tabs" :multiple="true" :active-index="[0, 1]" />`;
 
 const tabs: AccordionTab[] = [
   { header: 'Panel One', content: 'First panel — starts open.' },

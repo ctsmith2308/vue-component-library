@@ -9,14 +9,13 @@ const description = `Use variant="text" to render a borderless button styled onl
 
 const htmlString = toHtmlHighlight(description, 'text');
 
-const codeSnippet = `
-  <Button label="primary" variant="text" />
+const codeSnippet = `<Button label="primary" variant="text" />
 
-  <Button label="secondary" color="secondary" variant="text" />
+<Button label="secondary" color="secondary" variant="text" />
 
-  <Button label="success" color="success" variant="text" />
+<Button label="success" color="success" variant="text" />
 
-  <Button label="danger" color="danger" variant="text" />
+<Button label="danger" color="danger" variant="text" />
 `;
 </script>
 

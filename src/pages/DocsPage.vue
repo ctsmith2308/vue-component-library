@@ -16,10 +16,10 @@ const toggleSidebar = () => {
 <template>
   <TheHeader @toggle-sidebar-display="toggleSidebar" />
 
-  <main class="flex flex-row">
+  <main class="flex flex-row px-10 bg-page lg:px-20">
     <aside
       :class="[
-        'fixed top-10 left-0 h-screen w-64 overflow-y-auto shrink-0 z-91 shadow-lg bg-page',
+        'fixed top-15 left-0 h-screen w-64 overflow-y-auto shrink-0 z-91 shadow-lg bg-page',
         'transition-transform duration-300 ease-in-out',
         'md:sticky md:translate-x-0 md:shadow-none',
         isSidebarOpen ? 'translate-x-0' : '-translate-x-full',

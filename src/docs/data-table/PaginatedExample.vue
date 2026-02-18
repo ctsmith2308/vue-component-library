@@ -9,10 +9,7 @@ const description = `Enable pagination with the paginated prop and control rows 
 
 const htmlString = toHtmlHighlight(description, 'paginated');
 
-const codeSnippet = `
-  <DataTable :data="rows" :columns="columns" :paginated="true" :rows="5" />
-
-`;
+const codeSnippet = `<DataTable :data="rows" :columns="columns" :paginated="true" :rows="5" />`;
 
 interface Employee {
   id: number;
@@ -31,7 +28,7 @@ const columns = [
 const rows: Employee[] = Array.from({ length: 20 }, (_, i) => ({
   id: i + 1,
   name: `Employee ${i + 1}`,
-  department: ['Engineering', 'Marketing', 'Sales', 'Design'][i % 4],
+  department: ['Engineering', 'Marketing', 'Sales', 'Design'][i % 4]!,
   status: i % 3 === 0 ? 'Inactive' : 'Active',
 }));
 </script>

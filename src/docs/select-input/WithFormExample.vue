@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { Form, Button } from '@/blocks';
-import SelectInput from '@/blocks/select/SelectInput.vue';
-import type { SelectData } from '@/blocks/select/types';
+import { type SelectData, Form, Button, SelectInput } from '@/blocks';
 import { DocumentExampleSection } from '@/compositions/document';
 import { toHtmlHighlight } from '@/lib/utils';
+
 const heading = 'With Form';
 const description = `Embed SelectInput inside a Form component for submit handling.`;
 const htmlString = toHtmlHighlight(description, 'Form');
-const codeSnippet = `
-  <Form @submit="onSubmit">
-    <SelectInput :data="roleData" />
-    <Button type="submit" label="Submit" />
-  </Form>
+const codeSnippet = `<Form @submit="onSubmit">
+  <SelectInput :data="roleData" />
+  <Button type="submit" label="Submit" />
+</Form>
 `;
+
 const roleData: SelectData = {
   id: 'role-select',
   name: 'role',
@@ -23,10 +22,12 @@ const roleData: SelectData = {
     { value: 'viewer', displayValue: 'Viewer' },
   ],
 };
+
 const onSubmit = (isValid: boolean): void => {
   console.log('isValid', isValid);
 };
 </script>
+
 <template>
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <Form @submit="onSubmit">

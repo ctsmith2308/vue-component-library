@@ -9,12 +9,11 @@ const description = `Use variant="ghost" for a neutral border button that highli
 
 const htmlString = toHtmlHighlight(description, 'ghost');
 
-const codeSnippet = `
-  <Button label="ghost" variant="ghost" />
+const codeSnippet = `<Button label="ghost" variant="ghost" />
 
-  <Button label="ghost raised" variant="ghost" raised />
+<Button label="ghost raised" variant="ghost" raised />
 
-  <Button label="ghost rounded" variant="ghost" rounded />
+<Button label="ghost rounded" variant="ghost" rounded />
 `;
 </script>
 

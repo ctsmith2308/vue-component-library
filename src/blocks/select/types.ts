@@ -1,4 +1,4 @@
-interface RadioInput {
+interface RadioInputType {
   groupName: string;
   id: string;
   value: string;
@@ -6,7 +6,7 @@ interface RadioInput {
 }
 
 interface RadioInputGroup {
-  radioInputs: RadioInput[];
+  radioInputs: RadioInputType[];
 }
 
 interface SelectInputOptions {
@@ -33,4 +33,12 @@ interface SelectData {
   options: SelectOption[];
 }
 
-export type { RadioInput, RadioInputGroup, SelectInput, SelectInputOptions, SelectOption, SelectData };
+interface CheckboxData {
+  id: string;
+  name: string;
+  label: string;
+  value?: string;
+  checked?: boolean;
+}
+
+export type { RadioInputType, RadioInputGroup, SelectInput, SelectInputOptions, SelectOption, SelectData, CheckboxData };

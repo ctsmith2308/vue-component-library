@@ -9,15 +9,14 @@ const description = 'Use the raised attribute to give the button a shadow.';
 
 const htmlString = toHtmlHighlight(description, 'raised');
 
-const codeSnippet = `
-  <Button label="primary" raised />
+const codeSnippet = `<Button label="primary" raised />
 
-  <Button label="secondary" color="secondary" raised />
+<Button label="secondary" color="secondary" raised />
 
-  <Button label="success" color="success" raised />
+<Button label="success" color="success" raised />
 
-  <Button label="danger" color="danger" raised />
-  `;
+<Button label="danger" color="danger" raised />
+`;
 </script>
 
 <template>

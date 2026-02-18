@@ -9,16 +9,15 @@ const description = 'Use the size prop to control the height and max-width of th
 
 const htmlString = toHtmlHighlight(description, 'size');
 
-const codeSnippet = `
-  <Button label="sm" size="sm" />
+const codeSnippet = `<Button label="sm" size="sm" />
 
-  <Button label="md" size="md" />
+<Button label="md" size="md" />
 
-  <Button label="lg" size="lg" />
+<Button label="lg" size="lg" />
 
-  <Button label="xl" size="xl" />
+<Button label="xl" size="xl" />
 
-  <Button label="jumbo" size="jumbo" />
+<Button label="jumbo" size="jumbo" />
 `;
 </script>
 

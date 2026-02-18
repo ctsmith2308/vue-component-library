@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+
 import { PasswordInput } from '@/blocks';
 import { DocumentExampleSection } from '@/compositions/document';
 import { toHtmlHighlight } from '@/lib/utils';
@@ -10,9 +11,7 @@ const description = `PasswordInput includes a show/hide toggle button. It always
 
 const htmlString = toHtmlHighlight(description, 'minLength');
 
-const codeSnippet = `
-  <PasswordInput v-model="password" name="password" label="Password" />
-`;
+const codeSnippet = `<PasswordInput v-model="password" name="password" label="Password" />`;
 
 const password = ref('');
 </script>

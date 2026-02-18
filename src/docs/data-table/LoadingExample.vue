@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+
 import { DataTable, Button } from '@/blocks';
 import { DocumentExampleSection } from '@/compositions/document';
 import { toHtmlHighlight } from '@/lib/utils';
@@ -10,10 +11,7 @@ const description = `Set loading to true to display the skeleton loader while da
 
 const htmlString = toHtmlHighlight(description, 'loading');
 
-const codeSnippet = `
-  <DataTable :data="[]" :columns="columns" :loading="isLoading" :rows="4" />
-
-`;
+const codeSnippet = `<DataTable :data="[]" :columns="columns" :loading="isLoading" :rows="4" />`;
 
 interface Row {
   name: string;
@@ -39,13 +37,9 @@ const toggleLoading = () => {
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <div class="w-full flex flex-col gap-4">
       <div class="flex justify-start">
-        <Button
-          :label="isLoading ? 'Stop Loading' : 'Start Loading'"
-          size="sm"
-          variant="outlined"
-          @click="toggleLoading"
-        />
+        <Button :label="isLoading ? 'Stop Loading' : 'Start Loading'" size="sm" variant="outlined" @click="toggleLoading" />
       </div>
+
       <DataTable :data="rows" :columns="columns" :loading="isLoading" :rows="4" />
     </div>
   </DocumentExampleSection>

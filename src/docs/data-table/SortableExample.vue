@@ -9,12 +9,10 @@ const description = `Add sortable: true to any column definition to enable clien
 
 const htmlString = toHtmlHighlight(description, 'sortable');
 
-const codeSnippet = `
-  <DataTable
-    :data="rows"
-    :columns="[{ field: 'name', header: 'Name', sortable: true }, ...]"
-  />
-
+const codeSnippet = `<DataTable
+  :data="rows"
+  :columns="[{ field: 'name', header: 'Name', sortable: true }, ...]"
+/>
 `;
 
 interface Product {

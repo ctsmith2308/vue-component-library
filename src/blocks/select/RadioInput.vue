@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { RadioInput } from './types';
+import type { RadioInputType } from './types';
 
 defineProps<{
-  input: RadioInput;
+  input: RadioInputType;
 }>();
 </script>
 

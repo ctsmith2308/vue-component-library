@@ -32,11 +32,15 @@ const navigationList = organizeRoutesByCategory(docRoutesConfig);
           :key="component.name"
           :class="[
             'py-2.5 px-3.5 cursor-pointer rounded-md transition-all duration-200 text-base font-medium',
-            isActive(component.name) ? 'bg-brand text-white hover:bg-blue-700' : 'hover:bg-brand-ghost-hover',
+            isActive(component.name)
+              ? 'bg-brand-light text-content-text-muted hover:bg-brand-light'
+              : 'hover:bg-brand-ghost-hover',
           ]"
           @click="navigateToComponent(component.name)"
         >
-          {{ component.label }}
+          <Text>
+            {{ component.label }}
+          </Text>
         </li>
       </ul>
     </div>

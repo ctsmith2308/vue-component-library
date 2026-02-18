@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-
-interface CheckboxData {
-  id: string;
-  name: string;
-  label: string;
-  value?: string;
-  checked?: boolean;
-}
+import type { CheckboxData } from './types';
 
 interface Props {
   data: CheckboxData;
