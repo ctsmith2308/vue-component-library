@@ -51,7 +51,15 @@ const sizeKeys = {
   jumbo: 'h-16',
 };
 
-const base = 'inline-flex items-center justify-center gap-2 min-w-40 px-4 py-2 ';
+const iconSizeKeys = {
+  sm: 'size-4', // 16px
+  md: 'size-5', // 20px
+  lg: 'size-6', // 24px
+  xl: 'size-8', // 32px
+  jumbo: 'size-12', // 48px
+};
+
+const base = 'inline-flex items-center justify-center gap-2';
 
 const colorClass = computed(() => {
   if (props.disabled) return 'bg-disabled text-content-text-secondary-muted';
@@ -72,9 +80,19 @@ const hoverClass = computed(() =>
   props.loading ? 'cursor-progress' : props.disabled ? 'cursor-not-allowed' : 'cursor-pointer',
 );
 
+const isIconOnly = computed(() => {
+  const hasIcon = !!slots.icon;
+  const hasText = props.label;
+
+  return hasIcon && !hasText;
+});
+
+const iconWrapperClass = computed(() => iconSizeKeys[props.size]);
+
 const classes = computed(() => [
   base,
   colorClass.value,
+  isIconOnly.value ? 'aspect-square !p-0' : 'px-4',
   sizeClass.value,
   raisedClass.value,
   hoverClass.value,
@@ -83,15 +101,17 @@ const classes = computed(() => [
 </script>
 
 <template>
-  <button :class="classes" :disabled="loading || disabled">
+  <button :class="classes" :disabled="loading || disabled" type="button">
     <ButtonSpinner v-if="loading" :size="size" color="currentColor" />
 
-    <span v-if="slots.icon">
-      <slot name="icon" />
-    </span>
+    <template v-else>
+      <span v-if="slots.icon" :class="['flex items-center justify-center', iconWrapperClass]">
+        <slot name="icon" />
+      </span>
 
-    <span v-if="label && !loading">{{ label }}</span>
-
-    <slot v-else />
+      <span v-if="label" class="whitespace-nowrap">
+        {{ label }}
+      </span>
+    </template>
   </button>
 </template>

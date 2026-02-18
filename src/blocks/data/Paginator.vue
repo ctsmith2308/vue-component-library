@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid';
+import { Button, Icon } from '@/blocks';
 
 interface PaginatorProps {
   totalRecords: number;
@@ -46,22 +46,10 @@ const visiblePages = computed(() => {
   return pages;
 });
 
-const buttonClasses = computed(() => (isDisabled: boolean) => [
-  'p-2 rounded hover:bg-surface-alt transition-colors',
-  { 'opacity-50 cursor-not-allowed': isDisabled },
-]);
-
-const pageButtonClasses = computed(() => (page: number) => [
-  'px-3 py-1 rounded text-sm transition-colors min-w-[2rem]',
-  {
-    'bg-brand text-white': currentPage.value === page,
-    'hover:bg-surface-alt': currentPage.value !== page,
-  },
-]);
-
 const onPageChange = (page: number) => {
   if (page >= 0 && page < pageCount.value) {
     const first = page * props.rows;
+
     emit('page', {
       page,
       first,
@@ -89,67 +77,41 @@ const onNextPage = () => onPageChange(currentPage.value + 1);
     <!-- Page Controls -->
     <div class="flex items-center gap-1">
       <!-- First -->
-      <button
-        type="button"
-        :class="buttonClasses(isFirstPage)"
-        :disabled="isFirstPage"
-        @click="onFirstPage"
-        aria-label="First page"
-      >
-        <slot name="first-icon">
-          <ChevronDoubleLeftIcon />
-        </slot>
-      </button>
+      <Button size="sm" variant="outlined" :disabled="isFirstPage" aria-label="First page" @click="onFirstPage">
+        <template #icon>
+          <Icon iconType="ChevronDoubleLeftIcon" />
+        </template>
+      </Button>
 
       <!-- Previous -->
-      <button
-        type="button"
-        :class="buttonClasses(isFirstPage)"
-        :disabled="isFirstPage"
-        @click="onPrevPage"
-        aria-label="Previous page"
-      >
-        <slot name="prev-icon">
-          <ChevronLeftIcon />
-        </slot>
-      </button>
+      <Button size="sm" variant="outlined" :disabled="isFirstPage" @click="onPrevPage" aria-label="Previous page">
+        <template #icon>
+          <Icon iconType="ChevronLeftIcon" />
+        </template>
+      </Button>
 
       <!-- Page Numbers -->
-      <button
+      <Button
         v-for="page in visiblePages"
         :key="page"
-        type="button"
-        :class="pageButtonClasses(page)"
+        :label="String(page + 1)"
+        variant="text"
         @click="onPageChange(page)"
-      >
-        {{ page + 1 }}
-      </button>
+      />
 
       <!-- Next -->
-      <button
-        type="button"
-        :class="buttonClasses(isLastPage)"
-        :disabled="isLastPage"
-        @click="onNextPage"
-        aria-label="Next page"
-      >
-        <slot name="next-icon">
-          <ChevronRightIcon />
-        </slot>
-      </button>
+      <Button size="sm" variant="outlined" :disabled="isLastPage" @click="onNextPage" aria-label="Next page">
+        <template #icon>
+          <Icon iconType="ChevronRightIcon" />
+        </template>
+      </Button>
 
       <!-- Last -->
-      <button
-        type="button"
-        :class="buttonClasses(isLastPage)"
-        :disabled="isLastPage"
-        @click="onLastPage"
-        aria-label="Last page"
-      >
-        <slot name="last-icon">
-          <ChevronDoubleRightIcon />
-        </slot>
-      </button>
+      <Button size="sm" variant="outlined" :disabled="isLastPage" @click="onLastPage" aria-label="Last page">
+        <template #icon>
+          <Icon iconType="ChevronDoubleRightIcon" />
+        </template>
+      </Button>
     </div>
   </nav>
 </template>

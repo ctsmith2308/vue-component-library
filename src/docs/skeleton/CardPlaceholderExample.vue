@@ -23,13 +23,15 @@ const codeSnippet = `
 
 const loaded = ref(false);
 
-const toggle = () => { loaded.value = !loaded.value; };
+const toggle = () => {
+  loaded.value = !loaded.value;
+};
 </script>
 
 <template>
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <div class="w-full flex flex-col gap-4">
-      <Button :label="loaded ? 'Show Skeleton' : 'Show Content'" size="sm" variant="outlined" @click="toggle" />
+      <Button :label="loaded ? 'Show Skeleton' : 'Show Content'" variant="outlined" @click="toggle" />
 
       <div v-if="!loaded" class="flex flex-col gap-4 w-full max-w-sm">
         <div v-for="i in 3" :key="i" class="flex gap-3 items-start">
@@ -43,9 +45,12 @@ const toggle = () => { loaded.value = !loaded.value; };
 
       <div v-else class="flex flex-col gap-4 w-full max-w-sm">
         <div v-for="i in 3" :key="i" class="flex gap-3 items-start">
-          <div class="w-10 h-10 rounded-full bg-brand flex items-center justify-center text-white text-sm font-semibold shrink-0">
+          <div
+            class="w-10 h-10 rounded-full bg-brand flex items-center justify-center text-white text-sm font-semibold shrink-0"
+          >
             {{ String.fromCharCode(64 + i) }}
           </div>
+
           <div>
             <p class="font-medium text-content-text text-sm">User {{ i }}</p>
             <p class="text-xs text-content-text-secondary">user{{ i }}@example.com</p>

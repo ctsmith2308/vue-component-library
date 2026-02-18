@@ -117,6 +117,7 @@ watch(isOpen, (newVal: boolean) => {
       :aria-labelledby="data.id + '-label'"
     >
       <span class="selected-text">{{ selectedLabel }}</span>
+
       <span class="chevron-wrapper" :class="{ 'chevron-open': isOpen }">
         <ChevronDownIcon />
       </span>
@@ -203,11 +204,6 @@ watch(isOpen, (newVal: boolean) => {
 
 .chevron-wrapper.chevron-open {
   rotate: -180deg;
-}
-
-.chevron-icon {
-  width: 1.5rem;
-  height: 1.5rem;
 }
 
 .dropdown-wrapper {

@@ -48,6 +48,9 @@ export { default as Card } from './surfaces/Card.vue';
 export { default as Image } from './media/Image.vue';
 export * from './media/types';
 
+/** Custom Icons */
+export { default as Icon } from './icon/Icon.vue';
+
 /** Misc */
 export { default as ToggleSwitch } from './misc/ToggleSwitch.vue';
 export { default as CodeBlock } from './misc/CodeBlock.vue';
