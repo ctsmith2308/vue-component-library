@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue';
 
-import { ChevronDownIcon } from '../icons';
+import { ChevronDownIcon } from '@heroicons/vue/24/solid';
 
 interface SelectOption {
   value: string;
