@@ -1,10 +1,5 @@
 <script setup lang="ts" generic="T">
-export interface ListItem<T = unknown> {
-  label: string;
-  value: T;
-  active?: boolean;
-  children?: ListItem<T>[];
-}
+import type { ListItem } from './types';
 
 interface Props {
   items: ListItem<T>[];

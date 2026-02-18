@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-
-interface AccordionTab {
-  header: string;
-  content?: string;
-  disabled?: boolean;
-}
+import type { AccordionTab } from './types';
 
 interface AccordionProps {
   tabs: AccordionTab[];

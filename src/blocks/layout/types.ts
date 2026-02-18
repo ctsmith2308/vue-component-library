@@ -19,4 +19,11 @@ interface TabsProps {
   activeIndex: number;
 }
 
-export type { Tab, AccordionTab, TabsProps };
+interface ListItem<T = unknown> {
+  label: string;
+  value: T;
+  active?: boolean;
+  children?: ListItem<T>[];
+}
+
+export type { Tab, AccordionTab, TabsProps, ListItem };
