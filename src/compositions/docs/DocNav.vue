@@ -9,7 +9,7 @@ const route = useRoute();
 const router = useRouter();
 
 const navigateToComponent = (componentName: string) => {
-  router.push(`/${componentName}`);
+  router.push({ name: componentName });
 };
 
 const isActive = (componentName: string) => {

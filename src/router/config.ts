@@ -7,18 +7,18 @@ const docRoutesConfig: DocRoute[] = [
     category: 'Button',
     component: () => import('@/docs/button/index.vue'),
   },
-  // {
-  //   name: 'textInput',
-  //   label: 'TextInput',
-  //   category: 'Form',
-  //   component: () => import('@/pages/docs/TextInputPage.vue'),
-  // },
-  // {
-  //   name: 'selectInput',
-  //   label: 'SelectInput',
-  //   category: 'Form',
-  //   component: () => import('@/pages/docs/SelectInputPage.vue'),
-  // },
+  {
+    name: 'password-input',
+    label: 'PasswordInput',
+    category: 'Form',
+    component: () => import('@/docs/password-input/index.vue'),
+  },
+  {
+    name: 'text-input',
+    label: 'TextInput',
+    category: 'Form',
+    component: () => import('@/docs/text-input/index.vue'),
+  },
 ];
 
 // Helper function to organize routes by category

@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { Heading, Text, CodeBlock, Card } from '@/blocks';
+import { Heading, CodeBlock, Card } from '@/blocks';
 
 defineProps<{
   heading: string;
+  description: string;
   codeSnippet: string;
 }>();
 </script>
@@ -13,9 +14,7 @@ defineProps<{
       {{ heading }}
     </Heading>
 
-    <Text>
-      <slot name="description" />
-    </Text>
+    <div class="text-content-text-secondary leading-relaxed" v-html="description" />
 
     <Card>
       <div class="flex flex-row flex-wrap items-center justify-center gap-2 py-2 min-h-24">

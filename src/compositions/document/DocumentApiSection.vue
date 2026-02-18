@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import {
-  Heading,
-  Text,
-  // DataTable
-} from '@/blocks';
+import { Heading, DataTable } from '@/blocks';
 
 interface ApiSectionProps {
   heading?: string;
+  description: string;
   apiTableData: {
-    data: Array<{ prop: string; type: string; default: string }>;
+    data: Array<{ name: string; type: string; default: string; description: string }>;
     columns: Array<{ field: string; header: string }>;
   };
 }
@@ -23,14 +20,12 @@ const onRowClick = () => {
 </script>
 
 <template>
-  <section class="flex flex-1 flex-col gap-5">
+  <section class="flex flex-1 flex-col gap-5 p-4 bg-page">
     <Heading :size="3">
       {{ heading }}
     </Heading>
 
-    <Text>
-      <slot name="description" />
-    </Text>
+    <div class="text-content-text-secondary leading-relaxed" v-html="description" />
 
     <DataTable :data="apiTableData.data" :columns="apiTableData.columns" @rowClick="onRowClick" />
   </section>
