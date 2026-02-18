@@ -19,6 +19,36 @@ const docRoutesConfig: DocRoute[] = [
     category: 'Form',
     component: () => import('@/docs/text-input/index.vue'),
   },
+  {
+    name: 'data-table',
+    label: 'DataTable',
+    category: 'Data',
+    component: () => import('@/docs/data/index.vue'),
+  },
+  {
+    name: 'feedback',
+    label: 'Feedback',
+    category: 'Feedback',
+    component: () => import('@/docs/feedback/index.vue'),
+  },
+  {
+    name: 'misc',
+    label: 'Misc',
+    category: 'Misc',
+    component: () => import('@/docs/misc/index.vue'),
+  },
+  {
+    name: 'select',
+    label: 'Select',
+    category: 'Select',
+    component: () => import('@/docs/select/index.vue'),
+  },
+  {
+    name: 'typography',
+    label: 'Typography',
+    category: 'Typography',
+    component: () => import('@/docs/typography/index.vue'),
+  },
 ];
 
 // Helper function to organize routes by category

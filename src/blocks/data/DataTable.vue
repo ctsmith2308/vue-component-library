@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue';
 import TableHeaderCell from './TableHeaderCell.vue';
 import TableRow from './TableRow.vue';
-import TableSkeleton from './TableSkeletonLoader.vue';
+import TableSkeleton from './TableSkeleton.vue';
 import Paginator from './Paginator.vue';
 
 interface Column {

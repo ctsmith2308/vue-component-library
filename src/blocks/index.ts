@@ -11,11 +11,17 @@ export { default as Form } from './form/FormComponent.vue';
 export { default as PasswordInput } from './form/PasswordInput.vue';
 export { default as TextInput } from './form/TextInput.vue';
 
+/** Select */
+export { default as SelectInput } from './select/SelectInput.vue';
+export { default as CheckboxInput } from './select/CheckboxInput.vue';
+export { default as DatePicker } from './select/DatePicker.vue';
+export { default as RadioInput } from './select/RadioInput.vue';
+
 /** Feedback */
 export { default as ProgressBar } from './feedback/ProgressBar.vue';
 export { default as ProgressSpinner } from './feedback/ProgressSpinner.vue';
 export { default as Skeleton } from './feedback/Skeleton.vue';
-export { default as TableSkeleton } from './feedback/TableSkeleton.vue';
+export { default as TableSkeleton } from './data/TableSkeleton.vue';
 
 /** Lists */
 export { default as NavList } from './list/NavList.vue';

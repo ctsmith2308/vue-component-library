@@ -21,4 +21,16 @@ interface SelectInput {
   options: SelectInputOptions[];
 }
 
-export type { RadioInput, RadioInputGroup, SelectInput, SelectInputOptions };
+interface SelectOption {
+  value: string;
+  displayValue: string;
+}
+
+interface SelectData {
+  id: string;
+  name: string;
+  label: string;
+  options: SelectOption[];
+}
+
+export type { RadioInput, RadioInputGroup, SelectInput, SelectInputOptions, SelectOption, SelectData };

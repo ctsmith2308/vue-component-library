@@ -3,17 +3,7 @@ import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue';
 
 import { ChevronDownIcon } from '@heroicons/vue/24/solid';
 
-interface SelectOption {
-  value: string;
-  displayValue: string;
-}
-
-interface SelectData {
-  id: string;
-  name: string;
-  label: string;
-  options: SelectOption[];
-}
+import type { SelectData, SelectOption } from './types';
 
 interface Props {
   data: SelectData;
