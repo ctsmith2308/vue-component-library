@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 import { TheHeader } from '@/compositions/header';
 import { TheFooter } from '@/compositions/footer';
-import { DocNav } from '@/compositions/docs';
+import { DocumentNavigation } from '@/compositions/document';
 
 const isSidebarOpen = ref(false);
 
@@ -25,7 +25,7 @@ const toggleSidebar = () => {
         isSidebarOpen ? 'translate-x-0' : '-translate-x-full',
       ]"
     >
-      <DocNav />
+      <DocumentNavigation />
     </aside>
 
     <div class="flex w-screen">
