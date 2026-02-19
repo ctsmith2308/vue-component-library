@@ -1,60 +1,91 @@
 @use 'tailwindcss';
 
-@mixin color-variants($name, $base) {
+@mixin color-variants($name, $base, $include-disabled: false) {
   --color-#{$name}: #{$base};
   --color-#{$name}-light: oklch(from #{$base} calc(l + 0.25) c h);
   --color-#{$name}-dark: oklch(from #{$base} calc(l - 0.15) c h);
   --color-#{$name}-solid-hover: oklch(from #{$base} calc(l - 0.08) c h);
   --color-#{$name}-ghost-hover: oklch(from #{$base} l c h / 0.1);
+  --color-#{$name}-contrast: oklch(from #{$base} calc((0.6 - l) * 999) 0 h); // 👈
+
+  @if $include-disabled {
+    --color-disabled-bg: oklch(from #{$base} calc(l + 0.1) c h);
+    --color-disabled-border: oklch(from #{$base} calc(l + 0.05) c h);
+    --color-disabled-text: oklch(from #{$base} calc(l - 0.2) c h);
+    --color-disabled-icon: oklch(from #{$base} calc(l + (1 - l) * 0.55) c h);
+  }
 }
 
-@mixin text-colors($base, $mode: 'dark') {
+@mixin typography($base, $mode: 'light') {
   --color-content-text: #{$base};
+  --color-content-link: oklch(from #{$base} calc(l - 0.1) c h / 0.85);
+  --color-content-code: oklch(from #{$base} l calc(c + 0.08) h);
 
   @if $mode == 'dark' {
     --color-content-text-secondary: oklch(from #{$base} calc(l + (1 - l) * 0.7) c h);
     --color-content-text-muted: oklch(from #{$base} calc(l + (1 - l) * 0.85) c h);
+    --color-content-text-placeholder: oklch(from #{$base} calc(l + (1 - l) * 0.55) c h);
   } @else {
     --color-content-text-secondary: oklch(from #{$base} calc(l * 0.6) c h);
     --color-content-text-muted: oklch(from #{$base} calc(l * 0.4) c h);
+    --color-content-text-placeholder: oklch(from #{$base} calc(l + (1 - l) * 0.55) c h);
   }
 }
-@mixin surface-colors($page-base, $surface-base) {
+
+@mixin surface-colors($page-base, $surface-base, $mode: 'light', $border-base: null) {
   --color-page: #{$page-base};
-  --color-page-alt: oklch(from #{$page-base} calc(l + 0.05) c h);
+  --color-page-contrast: oklch(from #{$page-base} calc((0.6 - l) * 999) 0 h);
   --color-surface: #{$surface-base};
-  --color-surface-alt: oklch(from #{$surface-base} calc(l + 0.1) c h);
+  --color-surface-contrast: oklch(from #{$surface-base} calc((0.6 - l) * 999) 0 h);
+
+  @if $mode == 'dark' {
+    --color-page-alt: oklch(from #{$page-base} calc(l + 0.05) c h);
+    --color-surface-alt: oklch(from #{$surface-base} calc(l + 0.1) c h);
+  } @else {
+    --color-page-alt: oklch(from #{$page-base} calc(l - 0.03) c h);
+    --color-surface-alt: oklch(from #{$surface-base} calc(l - 0.06) c h);
+  }
+
+  @if $border-base {
+    --color-surface-border: #{$border-base};
+    --color-input-border: #{$border-base};
+  }
 }
 
-@mixin border-colors($base) {
-  --color-surface-border: #{$base};
-  --color-input-border: #{$base};
+@mixin panel-colors($base, $mode: 'light') {
+  --color-panel-bg: #{$base};
+  --color-panel-contrast: oklch(from #{$base} calc((0.6 - l) * 999) 0 h);
+  --color-panel-bg-alt: oklch(from #{$base} calc(l - 0.04) c h);
+  --color-panel-border: oklch(from #{$base} calc(l - 0.08) c h);
+  --color-panel-stripe: oklch(from #{$base} calc(l + 0.03) c h);
+
+  @if $mode == 'dark' {
+    --color-panel-text: oklch(from #{$base} calc(l + (1 - l) * 0.75) c h);
+    --color-panel-text-secondary: oklch(from #{$base} calc(l + (1 - l) * 0.5) c h);
+  } @else {
+    --color-panel-text: oklch(from #{$base} calc(l * 0.35) c h);
+    --color-panel-text-secondary: oklch(from #{$base} calc(l * 0.55) c h);
+  }
 }
 
 @theme {
   @include color-variants('brand', #0d6efd);
-  // @include color-variants('brand', #f43f5e);
   @include color-variants('secondary', #a855f7);
   @include color-variants('success', #198754);
   @include color-variants('danger', #dc3545);
   @include color-variants('warning', #ffc107);
-  @include color-variants('disabled', #6c757d);
+  @include color-variants('disabled', #6c757d, true);
 
-  // Text colors from base
-  @include text-colors(#212529, 'light');
-
-  // Surface colors
-  @include surface-colors(#f8fafc, #ffffff);
-
-  // Border colors
-  @include border-colors(#e2e8f0);
+  @include typography(#212529, 'light');
+  @include surface-colors(#f8fafc, #ffffff, 'light', #e2e8f0);
+  @include panel-colors(#e2e8f0, 'light');
 }
 
-/* Dark mode */
+/* Dark Mode */
 [data-theme='dark'] {
-  @include text-colors(#e5e7eb, 'dark');
-  @include surface-colors(#000000, #0d1117);
-  @include border-colors(#27272a);
+  @include typography(#e5e7eb, 'dark');
+  @include surface-colors(#000000, #0d1117, 'dark', #27272a);
+  @include panel-colors(#1e2530, 'dark');
 }
 
 .theme-transition,

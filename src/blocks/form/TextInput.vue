@@ -4,6 +4,7 @@ import { computed, toRef } from 'vue';
 import type { TextInputProps } from './types';
 import { applyMask } from './lib';
 import { useFormField } from './composables';
+import Text from '../typography/Text.vue';
 
 const props = withDefaults(defineProps<TextInputProps>(), {
   placeholder: 'Placeholder...',
@@ -32,12 +33,10 @@ const onInput = (event: Event): void => {
 
   if (props.mask) {
     value = applyMask(value, props.mask);
-
     target.value = value;
   }
 
   emit('update:modelValue', value);
-
   updateValue(value);
 };
 
@@ -50,11 +49,10 @@ const className = computed(() => props.fluid && 'w-full');
 
 <template>
   <div :class="className">
-    <label v-if="label" class="block text-sm font-medium text-content-text mb-1">
+    <Text v-if="label" tag="label" size="sm" color="default" class="block font-medium mb-1">
       {{ label }}
-
       <span v-if="isRequired" class="text-danger ml-0.5">*</span>
-    </label>
+    </Text>
 
     <div class="relative">
       <slot name="prefix" />
@@ -76,6 +74,6 @@ const className = computed(() => props.fluid && 'w-full');
       <slot name="suffix" />
     </div>
 
-    <p v-if="error" class="text-xs text-danger mt-1">{{ error }}</p>
+    <Text v-if="error" tag="p" size="sm" color="danger" class="mt-1">{{ error }}</Text>
   </div>
 </template>

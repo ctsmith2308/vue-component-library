@@ -37,7 +37,7 @@ const toggleLoading = () => {
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <div class="w-full flex flex-col gap-4">
       <div class="flex justify-start">
-        <Button :label="isLoading ? 'Stop Loading' : 'Start Loading'" size="sm" variant="outlined" @click="toggleLoading" />
+        <Button :label="isLoading ? 'Stop Loading' : 'Start Loading'" variant="outlined" @click="toggleLoading" />
       </div>
 
       <DataTable :data="rows" :columns="columns" :loading="isLoading" :rows="4" />

@@ -16,6 +16,7 @@ interface ButtonProps {
   disabled?: boolean;
   as?: 'button' | 'a';
   href?: string;
+  iconPosition?: 'left' | 'right';
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -26,25 +27,26 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   raised: false,
   rounded: false,
   as: 'button',
+  iconPosition: 'left',
 });
 
 const slots = useSlots();
 
 const colorKeys = {
-  primary: 'bg-brand hover:bg-brand-solid-hover text-white',
-  secondary: 'bg-secondary hover:bg-secondary-solid-hover text-white',
-  success: 'bg-success hover:bg-success-solid-hover text-white',
-  danger: 'bg-danger hover:bg-danger-solid-hover text-white',
+  primary: 'bg-brand hover:bg-brand-solid-hover text-brand-contrast',
+  secondary: 'bg-secondary hover:bg-secondary-solid-hover text-secondary-contrast',
+  success: 'bg-success hover:bg-success-solid-hover text-success-contrast',
+  danger: 'bg-danger hover:bg-danger-solid-hover text-danger-contrast',
 };
 
 const outlinedKeys = {
-  primary: 'bg-transparent hover:bg-brand-ghost-hover border-1 border-brand text-brand',
-  secondary: 'bg-transparent hover:bg-secondary-ghost-hover border-1 border-secondary text-secondary',
-  success: 'bg-transparent hover:bg-success-ghost-hover border-1 border-success text-success',
-  danger: 'bg-transparent hover:bg-danger-ghost-hover border-1 border-danger text-danger',
+  primary: 'bg-transparent hover:bg-brand-ghost-hover border border-brand text-brand',
+  secondary: 'bg-transparent hover:bg-secondary-ghost-hover border border-secondary text-secondary',
+  success: 'bg-transparent hover:bg-success-ghost-hover border border-success text-success',
+  danger: 'bg-transparent hover:bg-danger-ghost-hover border border-danger text-danger',
 };
 
-const ghostStyle = 'bg-transparent border-1 border-surface-border hover:border-brand text-brand';
+const ghostStyle = 'bg-surface border border-surface-border hover:border-brand text-content-text hover:text-brand';
 
 const sizeKeys = {
   sm: 'h-6',
@@ -59,17 +61,17 @@ const iconSizeKeys = {
   md: 'size-5',
   lg: 'size-6',
   xl: 'size-8',
-  jumbo: 'size-12',
+  jumbo: 'size-10', // fallback to xl — no Icon size beyond xl
 };
 
 const base = 'inline-flex items-center justify-center gap-2';
 
 const colorClass = computed(() => {
-  if (props.disabled) return 'bg-disabled text-content-text-secondary-muted';
+  if (props.disabled) return 'bg-disabled-bg text-disabled-text border-disabled-border';
   if (props.variant === 'ghost') return ghostStyle;
   if (props.variant === 'outlined') return outlinedKeys[props.color];
   if (props.variant === 'text') return `${outlinedKeys[props.color]} border-none`;
-  if (props.variant === 'link') return 'hover:underline text-black';
+  if (props.variant === 'link') return 'hover:underline text-content-text';
   return colorKeys[props.color];
 });
 
@@ -83,12 +85,9 @@ const hoverClass = computed(() =>
   props.loading ? 'cursor-progress' : props.disabled ? 'cursor-not-allowed' : 'cursor-pointer',
 );
 
-const isIconOnly = computed(() => {
-  const hasIcon = !!slots.icon;
-  const hasText = props.label;
+const iconPositionClass = computed(() => (props.iconPosition === 'right' ? 'flex-row-reverse' : 'flex-row'));
 
-  return hasIcon && !hasText;
-});
+const isIconOnly = computed(() => !!slots.icon && !props.label);
 
 const iconWrapperClass = computed(() => iconSizeKeys[props.size]);
 
@@ -100,13 +99,12 @@ const classes = computed(() => [
   raisedClass.value,
   hoverClass.value,
   roundedClass.value,
+  iconPositionClass.value,
 ]);
-
-const isButton = props.as === 'button';
 </script>
 
 <template>
-  <button v-if="isButton" :class="classes" :disabled="loading || disabled" type="button">
+  <button v-if="props.as === 'button'" :class="classes" :disabled="loading || disabled" type="button">
     <ButtonSpinner v-if="loading" :size="size" color="currentColor" />
 
     <template v-else>

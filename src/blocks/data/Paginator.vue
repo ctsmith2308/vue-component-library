@@ -66,9 +66,7 @@ const onNextPage = () => onPageChange(currentPage.value + 1);
 </script>
 
 <template>
-  <nav
-    class="paginator flex items-center justify-between gap-2 bg-surface p-3 rounded-lg border border-surface-border flex-wrap"
-  >
+  <nav class="flex items-center justify-between gap-2 bg-surface p-3 rounded-lg border border-surface-border flex-wrap">
     <!-- Info -->
     <div class="text-sm text-content-text-secondary">
       <slot name="start"> Showing {{ first + 1 }} to {{ Math.min(first + rows, totalRecords) }} of {{ totalRecords }} </slot>
@@ -77,14 +75,14 @@ const onNextPage = () => onPageChange(currentPage.value + 1);
     <!-- Page Controls -->
     <div class="flex items-center gap-1">
       <!-- First -->
-      <Button size="sm" variant="outlined" :disabled="isFirstPage" aria-label="First page" @click="onFirstPage">
+      <Button size="sm" variant="text" :disabled="isFirstPage" aria-label="First page" @click="onFirstPage">
         <template #icon>
           <Icon iconType="ChevronDoubleLeftIcon" />
         </template>
       </Button>
 
       <!-- Previous -->
-      <Button size="sm" variant="outlined" :disabled="isFirstPage" @click="onPrevPage" aria-label="Previous page">
+      <Button size="sm" variant="text" :disabled="isFirstPage" @click="onPrevPage" aria-label="Previous page">
         <template #icon>
           <Icon iconType="ChevronLeftIcon" />
         </template>
@@ -95,19 +93,19 @@ const onNextPage = () => onPageChange(currentPage.value + 1);
         v-for="page in visiblePages"
         :key="page"
         :label="String(page + 1)"
-        variant="text"
+        :variant="page === currentPage ? 'outlined' : 'text'"
         @click="onPageChange(page)"
       />
 
       <!-- Next -->
-      <Button size="sm" variant="outlined" :disabled="isLastPage" @click="onNextPage" aria-label="Next page">
+      <Button size="sm" variant="text" :disabled="isLastPage" @click="onNextPage" aria-label="Next page">
         <template #icon>
           <Icon iconType="ChevronRightIcon" />
         </template>
       </Button>
 
       <!-- Last -->
-      <Button size="sm" variant="outlined" :disabled="isLastPage" @click="onLastPage" aria-label="Last page">
+      <Button size="sm" variant="text" :disabled="isLastPage" @click="onLastPage" aria-label="Last page">
         <template #icon>
           <Icon iconType="ChevronDoubleRightIcon" />
         </template>
@@ -115,12 +113,3 @@ const onNextPage = () => onPageChange(currentPage.value + 1);
     </div>
   </nav>
 </template>
-
-<style scoped>
-@media (max-width: 640px) {
-  .paginator {
-    font-size: 0.875rem;
-    padding: 0.5rem;
-  }
-}
-</style>

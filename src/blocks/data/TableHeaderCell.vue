@@ -39,7 +39,7 @@ const onHeaderClick = () => {
 </script>
 
 <template>
-  <th :class="headerClasses" :style="{ width: column.width }" @click="onHeaderClick">
+  <th :class="headerClasses" :style="column.width ? { width: column.width } : undefined" @click="onHeaderClick">
     <div class="flex items-center gap-2">
       <span>{{ column.header }}</span>
 

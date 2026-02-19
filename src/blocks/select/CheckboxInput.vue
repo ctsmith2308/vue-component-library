@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import type { CheckboxData } from './types';
+import Icon from '../icon/Icon.vue';
+import Text from '../typography/Text.vue';
 
 interface Props {
   data: CheckboxData;
@@ -18,10 +20,8 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>();
 
-// Use v-model if provided, otherwise use internal state with initial checked value
 const isChecked = ref<boolean>(props.modelValue !== undefined ? props.modelValue : (props.data.checked ?? false));
 
-// Watch for external v-model changes
 watch(
   () => props.modelValue,
   (newValue) => {
@@ -39,10 +39,14 @@ const handleChange = (): void => {
 
 <template>
   <div class="inline-block">
-    <label
+    <Text
+      tag="label"
+      size="md"
+      color="default"
       :for="data.id"
-      class="flex items-center gap-2.5 cursor-pointer select-none p-2.5 rounded-lg transition-colors duration-200 hover:bg-brand-lighter"
+      class="flex items-center gap-2.5 cursor-pointer select-none p-2.5 rounded-lg transition-colors duration-200 hover:bg-brand-ghost-hover"
     >
+      <!-- Native input hidden but peer-connected for focus state -->
       <input
         type="checkbox"
         :id="data.id"
@@ -50,25 +54,18 @@ const handleChange = (): void => {
         :value="data.value"
         v-model="isChecked"
         @change="handleChange"
-        class="absolute opacity-0 pointer-events-none h-0 w-0 focus:outline-none peer"
+        class="absolute opacity-0 pointer-events-none h-0 w-0 peer"
       />
+
+      <!-- Custom checkbox visual -->
       <span
-        class="w-5 h-5 border-2 rounded flex items-center justify-center transition-all duration-200 shrink-0 peer-focus:outline-none"
-        :class="isChecked ? 'bg-brand border-input-border' : 'bg-surface border-input-border'"
+        class="w-5 h-5 border-2 rounded flex items-center justify-center shrink-0 transition-all duration-200 peer-focus-visible:ring-2 peer-focus-visible:ring-brand peer-focus-visible:ring-offset-1"
+        :class="isChecked ? 'bg-brand border-brand' : 'bg-transparent border-input-border hover:bg-brand-ghost-hover'"
       >
-        <svg
-          v-if="isChecked"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="3"
-          stroke="currentColor"
-          class="w-3.5 h-3.5 text-white"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-        </svg>
+        <Icon v-if="isChecked" iconType="CheckIcon" size="sm" class="text-brand-contrast" />
       </span>
-      <span class="text-base">{{ data.label }}</span>
-    </label>
+
+      {{ data.label }}
+    </Text>
   </div>
 </template>

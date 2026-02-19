@@ -1,12 +1,7 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
 import { computed } from 'vue';
 
-interface Column {
-  field: string;
-  header: string;
-  sortable?: boolean;
-  width?: string;
-}
+import type { Column } from './types';
 
 interface TableRowProps<T> {
   row: T;
@@ -35,7 +30,7 @@ const onRowClick = () => {
 
 <template>
   <tr :class="rowClasses" @click="onRowClick">
-    <td v-for="column in columns" :key="column.field" class="px-4 py-3 text-sm text-content-text">
+    <td v-for="column in columns" :key="column.field" class="px-4 py-3 text-sm text-content-text min-w-50">
       <slot :name="`cell-${column.field}`" :data="row" :value="row[column.field]">
         {{ row[column.field] }}
       </slot>

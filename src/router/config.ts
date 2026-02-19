@@ -150,6 +150,12 @@ const docRoutesConfig: DocRoute[] = [
     component: () => import('@/docs/tag/index.vue'),
   },
   {
+    name: 'icon',
+    label: 'Icon',
+    category: 'Misc',
+    component: () => import('@/docs/icon/index.vue'),
+  },
+  {
     name: 'toggle-switch',
     label: 'ToggleSwitch',
     category: 'Misc',

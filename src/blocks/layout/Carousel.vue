@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { Button, Icon } from '@/blocks';
 
 interface CarouselProps {
   value: unknown[];
@@ -90,40 +91,28 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    class="carousel relative w-full overflow-hidden bg-surface rounded-lg"
-    @mouseenter="stopAutoplay"
-    @mouseleave="startAutoplay"
-  >
+  <div class="relative w-full overflow-hidden bg-surface rounded-lg" @mouseenter="stopAutoplay" @mouseleave="startAutoplay">
     <!-- Previous Button -->
-    <button
+    <Button
       v-if="showNavigators && canGoPrev"
-      type="button"
-      class="carousel-nav carousel-nav-prev absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white p-2 rounded-full shadow-md transition-all"
+      variant="outlined"
+      class="absolute left-2 top-1/2 -translate-y-1/2 z-10 transition-all"
       @click="prev"
       aria-label="Previous"
+      raised
     >
-      <slot name="prev-icon">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            fill-rule="evenodd"
-            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </slot>
-    </button>
+      <template #icon>
+        <Icon iconType="ChevronLeftIcon" />
+      </template>
+    </Button>
 
     <!-- Carousel Items -->
-    <div class="carousel-container overflow-hidden">
-      <div
-        class="carousel-items flex transition-transform duration-300 ease-in-out"
-        :style="{ transform: `translateX(${translateX}%)` }"
-      >
+    <div class="overflow-hidden">
+      <div class="flex transition-transform duration-300 ease-in-out" :style="{ transform: `translateX(${translateX}%)` }">
         <div
           v-for="(item, index) in value"
           :key="index"
-          class="carousel-item flex-shrink-0 px-2"
+          class="flex-shrink-0 px-2"
           :style="{ width: `${100 / numVisible}%` }"
         >
           <slot name="item" :data="item" :index="index">
@@ -135,27 +124,22 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <!-- Next Button -->
-    <button
+    <!-- Next Button-->
+    <Button
       v-if="showNavigators && canGoNext"
-      type="button"
-      class="carousel-nav carousel-nav-next absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white p-2 rounded-full shadow-md transition-all"
+      variant="outlined"
+      class="absolute right-2 top-1/2 -translate-y-1/2 z-10 transition-all"
       @click="next"
       aria-label="Next"
+      raised
     >
-      <slot name="next-icon">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            fill-rule="evenodd"
-            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </slot>
-    </button>
+      <template #icon>
+        <Icon iconType="ChevronRightIcon" />
+      </template>
+    </Button>
 
     <!-- Indicators -->
-    <div v-if="showIndicators" class="carousel-indicators flex justify-center gap-2 py-4">
+    <div v-if="showIndicators" class="flex justify-center gap-2 py-4">
       <button
         v-for="page in totalPages"
         :key="page"
@@ -173,18 +157,3 @@ onUnmounted(() => {
     </div>
   </div>
 </template>
-
-<style scoped>
-@media (max-width: 640px) {
-  .carousel-nav {
-    width: 2rem;
-    height: 2rem;
-    padding: 0.25rem;
-  }
-
-  .carousel-nav svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-}
-</style>

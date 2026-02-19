@@ -18,13 +18,13 @@ const { scrollToSection } = useScrollToSection({ updateUrl: true });
 
 <template>
   <div class="flex flex-row w-full min-w-0">
-    <div class="flex-1 flex flex-col min-w-0 gap-10 p-10 bg-page">
+    <div class="flex-1 flex flex-col min-w-0 gap-10 p-5 bg-page">
       <component v-for="section in documentSections" :key="section.id" :id="section.id" :is="section.component" />
     </div>
 
     <div class="w-1/6 hidden md:block bg-page">
-      <div class="flex flex-col pt-5 px-10 gap-2 bg-page">
-        <Heading :size="3">Content</Heading>
+      <div class="flex flex-col pt-5 justify-start gap-2 bg-page">
+        <Heading :size="4">Content</Heading>
 
         <NavList :items="documentSections" @select="scrollToSection" />
       </div>

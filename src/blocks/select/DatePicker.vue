@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
 
+import Button from '../button/Button.vue';
+import Icon from '../icon/Icon.vue';
+
 interface DatePickerProps {
   modelValue?: Date | null;
   placeholder?: string;
@@ -41,17 +44,15 @@ const monthName = computed(() => {
 const calendarDays = computed(() => {
   const days = [];
   const blanks = firstDayOfMonth.value;
-  
-  // Add blank days for alignment
+
   for (let i = 0; i < blanks; i++) {
     days.push(null);
   }
-  
-  // Add actual days
+
   for (let i = 1; i <= daysInMonth.value; i++) {
     days.push(i);
   }
-  
+
   return days;
 });
 
@@ -66,22 +67,18 @@ const formattedDate = computed(() => {
 
 const isDateDisabled = (day: number | null) => {
   if (!day) return true;
-  
-  const date = new Date(
-    currentMonth.value.getFullYear(),
-    currentMonth.value.getMonth(),
-    day
-  );
-  
+
+  const date = new Date(currentMonth.value.getFullYear(), currentMonth.value.getMonth(), day);
+
   if (props.minDate && date < props.minDate) return true;
   if (props.maxDate && date > props.maxDate) return true;
-  
+
   return false;
 };
 
 const isSelected = (day: number | null) => {
   if (!day || !selectedDate.value) return false;
-  
+
   return (
     day === selectedDate.value.getDate() &&
     currentMonth.value.getMonth() === selectedDate.value.getMonth() &&
@@ -91,7 +88,7 @@ const isSelected = (day: number | null) => {
 
 const isToday = (day: number | null) => {
   if (!day) return false;
-  
+
   const today = new Date();
   return (
     day === today.getDate() &&
@@ -102,32 +99,20 @@ const isToday = (day: number | null) => {
 
 const selectDate = (day: number | null) => {
   if (!day || isDateDisabled(day)) return;
-  
-  const newDate = new Date(
-    currentMonth.value.getFullYear(),
-    currentMonth.value.getMonth(),
-    day
-  );
-  
+
+  const newDate = new Date(currentMonth.value.getFullYear(), currentMonth.value.getMonth(), day);
+
   selectedDate.value = newDate;
   emit('update:modelValue', newDate);
   showCalendar.value = false;
 };
 
 const previousMonth = () => {
-  currentMonth.value = new Date(
-    currentMonth.value.getFullYear(),
-    currentMonth.value.getMonth() - 1,
-    1
-  );
+  currentMonth.value = new Date(currentMonth.value.getFullYear(), currentMonth.value.getMonth() - 1, 1);
 };
 
 const nextMonth = () => {
-  currentMonth.value = new Date(
-    currentMonth.value.getFullYear(),
-    currentMonth.value.getMonth() + 1,
-    1
-  );
+  currentMonth.value = new Date(currentMonth.value.getFullYear(), currentMonth.value.getMonth() + 1, 1);
 };
 
 const toggleCalendar = () => {
@@ -136,66 +121,60 @@ const toggleCalendar = () => {
   }
 };
 
-watch(() => props.modelValue, (newVal) => {
-  selectedDate.value = newVal || null;
-  if (newVal) {
-    currentMonth.value = new Date(newVal);
-  }
-});
+watch(
+  () => props.modelValue,
+  (newVal) => {
+    selectedDate.value = newVal || null;
+    if (newVal) {
+      currentMonth.value = new Date(newVal);
+    }
+  },
+);
 </script>
 
 <template>
-  <div class="datepicker relative w-full">
+  <div class="relative w-full">
+    <!-- Trigger button — ghost style, full width, custom layout -->
     <button
       type="button"
       :class="[
-        'input-base border-base hocus-base w-full text-left flex items-center justify-between',
-        { 'opacity-50 cursor-not-allowed': disabled }
+        'w-full inline-flex items-center justify-between px-3 gap-3 h-8 rounded-md transition-colors',
+        'bg-transparent border border-input-border hover:border-brand text-content-text',
+        disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
       ]"
       @click="toggleCalendar"
       :disabled="disabled"
     >
-      <span :class="{ 'text-content-text-secondary': !selectedDate }">
+      <span :class="!selectedDate ? 'text-content-text-secondary' : 'text-content-text'">
         {{ formattedDate || placeholder }}
       </span>
-      <slot name="calendar-icon">
-        <svg class="w-5 h-5 text-content-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-      </slot>
+
+      <Icon iconType="CalendarDaysIcon" class="text-content-text-secondary" />
     </button>
 
-    <!-- Calendar Dropdown -->
+    <!-- Calendar dropdown -->
     <div
       v-if="showCalendar"
-      class="absolute top-full left-0 mt-2 bg-surface border border-surface-border rounded-lg shadow-lg z-50 p-4 w-full sm:w-80"
+      class="absolute top-full left-0 mt-2 bg-surface border border-input-border rounded-lg shadow-lg z-50 p-4 w-full sm:w-80"
     >
-      <!-- Month Navigation -->
+      <!-- Month navigation -->
       <div class="flex items-center justify-between mb-4">
-        <button
-          type="button"
-          class="p-1 hover:bg-surface-alt rounded"
-          @click="previousMonth"
-        >
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
-        </button>
-        
-        <span class="font-semibold text-sm">{{ monthName }}</span>
-        
-        <button
-          type="button"
-          class="p-1 hover:bg-surface-alt rounded"
-          @click="nextMonth"
-        >
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-          </svg>
-        </button>
+        <Button variant="ghost" size="sm" rounded @click="previousMonth">
+          <template #icon>
+            <Icon iconType="ChevronLeftIcon" />
+          </template>
+        </Button>
+
+        <span class="font-semibold text-sm text-content-text">{{ monthName }}</span>
+
+        <Button variant="ghost" size="sm" rounded @click="nextMonth">
+          <template #icon>
+            <Icon iconType="ChevronRightIcon" />
+          </template>
+        </Button>
       </div>
 
-      <!-- Day Headers -->
+      <!-- Day headers -->
       <div class="grid grid-cols-7 gap-1 mb-2">
         <div
           v-for="day in ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']"
@@ -206,7 +185,7 @@ watch(() => props.modelValue, (newVal) => {
         </div>
       </div>
 
-      <!-- Calendar Days -->
+      <!-- Calendar days -->
       <div class="grid grid-cols-7 gap-1">
         <button
           v-for="(day, index) in calendarDays"
@@ -215,12 +194,12 @@ watch(() => props.modelValue, (newVal) => {
           :class="[
             'aspect-square flex items-center justify-center text-sm rounded transition-colors',
             {
-              'text-content-text-secondary': !day,
-              'hover:bg-brand-lighter cursor-pointer': day && !isDateDisabled(day),
+              invisible: !day,
+              'hover:bg-brand-ghost-hover cursor-pointer text-content-text': day && !isDateDisabled(day),
               'bg-brand text-white': isSelected(day),
-              'border border-brand': isToday(day) && !isSelected(day),
-              'opacity-50 cursor-not-allowed': isDateDisabled(day),
-            }
+              'border border-brand text-brand': isToday(day) && !isSelected(day),
+              'text-disabled-text opacity-50 cursor-not-allowed': isDateDisabled(day) && !!day,
+            },
           ]"
           @click="selectDate(day)"
           :disabled="isDateDisabled(day)"
@@ -231,10 +210,6 @@ watch(() => props.modelValue, (newVal) => {
     </div>
 
     <!-- Overlay to close calendar -->
-    <div
-      v-if="showCalendar"
-      class="fixed inset-0 z-40"
-      @click="showCalendar = false"
-    ></div>
+    <div v-if="showCalendar" class="fixed inset-0 z-40" @click="showCalendar = false"></div>
   </div>
 </template>

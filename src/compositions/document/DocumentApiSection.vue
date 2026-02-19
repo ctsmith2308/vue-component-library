@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { Heading, DataTable } from '@/blocks';
+import type { ApiSectionTableData } from './types';
+import { Heading, DataTable, type DataTableColumn } from '@/blocks';
 
 interface ApiSectionProps {
   heading?: string;
   description: string;
   apiTableData: {
-    data: Array<{ name: string; type: string; default: string; description: string }>;
-    columns: Array<{ field: string; header: string }>;
+    data: ApiSectionTableData[];
+    columns: DataTableColumn[];
   };
 }
 

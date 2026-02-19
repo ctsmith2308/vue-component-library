@@ -6,6 +6,9 @@ import SortableExample from './SortableExample.vue';
 import PaginatedExample from './PaginatedExample.vue';
 import LoadingExample from './LoadingExample.vue';
 
+import type { ApiSectionTableData } from '@/compositions/document';
+import type { DataTableColumn } from '@/blocks';
+
 interface DocSection {
   id: string;
   label: string;
@@ -14,7 +17,7 @@ interface DocSection {
 
 interface DataTableProps {
   data: Record<string, unknown>[];
-  columns: Array<{ field: string; header: string; sortable?: boolean; width?: string }>;
+  columns: DataTableColumn;
   hoverable?: boolean;
   bordered?: boolean;
   loading?: boolean;
@@ -24,7 +27,12 @@ interface DataTableProps {
   totalRecords?: number;
 }
 
-const apiReferenceConfig = {
+interface Config {
+  data: ApiSectionTableData[];
+  columns: DataTableColumn[];
+}
+
+const apiReferenceConfig: Config = {
   data: [
     {
       name: 'data',
@@ -88,7 +96,7 @@ const apiReferenceConfig = {
   }>,
   columns: [
     { field: 'name', header: 'Name' },
-    { field: 'type', header: 'Type' },
+    { field: 'type', header: 'Type', width: '80px', wrap: true },
     { field: 'default', header: 'Default' },
     { field: 'description', header: 'Description' },
   ],

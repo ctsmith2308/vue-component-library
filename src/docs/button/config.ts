@@ -10,6 +10,8 @@ import TextExample from './TextExample.vue';
 import SizeExample from './SizeExample.vue';
 import LoadingExample from './LoadingExample.vue';
 import DisabledExample from './DisabledExample.vue';
+import IconOnlyExample from './IconOnlyExample.vue';
+import IconExample from './IconExample.vue';
 
 interface DocSection {
   id: string;
@@ -78,6 +80,24 @@ const apiReferenceConfig = {
       default: 'false',
       description: 'Visually mutes the button and prevents interaction.',
     },
+    {
+      name: 'as',
+      type: `'button' | 'a'`,
+      default: `'button'`,
+      description: `Renders as a native button or anchor element. Use 'a' with href to create a link-styled button.`,
+    },
+    {
+      name: 'href',
+      type: 'string',
+      default: 'undefined',
+      description: `URL passed to the anchor's href when as="a". Opens in a new tab.`,
+    },
+    {
+      name: 'iconPosition',
+      type: `'left' | 'right'`,
+      default: `'left'`,
+      description: `Controls whether the icon slot renders before or after the label. Has no effect on icon-only buttons.`,
+    },
   ] satisfies Array<{
     name: keyof ButtonProps | string;
     type: string;
@@ -103,6 +123,8 @@ const buttonSectionExamplesConfig: DocSection[] = [
   { id: 'button-size', label: 'Sizes', component: SizeExample },
   { id: 'button-loading', label: 'Loading', component: LoadingExample },
   { id: 'button-disabled', label: 'Disabled', component: DisabledExample },
+  { id: 'button-with-icon', label: 'Icon and Label', component: IconExample },
+  { id: 'button-icon-only', label: 'Icon Only', component: IconOnlyExample },
 ];
 
 export { apiReferenceConfig, buttonSectionExamplesConfig };

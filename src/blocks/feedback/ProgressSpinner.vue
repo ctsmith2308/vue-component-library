@@ -22,34 +22,19 @@ const sizeClasses = {
 
 const colorClasses = {
   primary: 'text-brand',
-  secondary: 'text-brand-secondary',
+  secondary: 'text-secondary',
   success: 'text-success',
   danger: 'text-danger',
 };
 
-const spinnerClasses = computed(() => [
-  'spinner animate-spin',
-  sizeClasses[props.size],
-  colorClasses[props.color],
-]);
+const spinnerClasses = computed(() => ['spinner animate-spin', sizeClasses[props.size], colorClasses[props.color]]);
 </script>
 
 <template>
   <div class="progress-spinner inline-flex items-center justify-center">
-    <svg
-      :class="spinnerClasses"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <circle
-        class="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        :stroke-width="strokeWidth"
-      ></circle>
+    <svg :class="spinnerClasses" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" :stroke-width="strokeWidth"></circle>
+
       <path
         class="opacity-75"
         fill="currentColor"

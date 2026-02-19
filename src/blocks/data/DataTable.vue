@@ -1,16 +1,10 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
 import { ref, computed } from 'vue';
+import type { Column } from './types';
 import TableHeaderCell from './TableHeaderCell.vue';
 import TableRow from './TableRow.vue';
 import TableSkeleton from './TableSkeleton.vue';
 import Paginator from './Paginator.vue';
-
-interface Column {
-  field: string;
-  header: string;
-  sortable?: boolean;
-  width?: string;
-}
 
 interface DataTableProps<T> {
   data: T[];
@@ -69,9 +63,7 @@ const totalRecordsCount = computed(() => {
   return props.totalRecords ?? props.data.length;
 });
 
-const tableClasses = computed(() => [
-  'datatable-container overflow-x-auto bg-surface rounded-lg border border-surface-border',
-]);
+const tableClasses = computed(() => ['w-full overflow-x-auto  bg-surface rounded-lg border border-surface-border']);
 
 const onSort = (field: string) => {
   if (sortField.value === field) {
@@ -98,7 +90,7 @@ const onPageChange = (event: { page: number; first: number; rows: number; pageCo
   <div class="datatable-wrapper w-full space-y-4">
     <div :class="tableClasses">
       <table class="w-full">
-        <thead class="bg-surface-alt border-b border-surface-border">
+        <thead class="bg-panel-bg-alt border-b border-panel-border">
           <tr>
             <TableHeaderCell
               v-for="column in columns"
@@ -153,23 +145,7 @@ const onPageChange = (event: { page: number; first: number; rows: number; pageCo
       :rows="rows"
       :first="first"
       @page="onPageChange"
-    >
-      <template #start>
-        <slot name="paginator-start" />
-      </template>
-      <template #first-icon>
-        <slot name="first-icon" />
-      </template>
-      <template #prev-icon>
-        <slot name="prev-icon" />
-      </template>
-      <template #next-icon>
-        <slot name="next-icon" />
-      </template>
-      <template #last-icon>
-        <slot name="last-icon" />
-      </template>
-    </Paginator>
+    />
   </div>
 </template>
 

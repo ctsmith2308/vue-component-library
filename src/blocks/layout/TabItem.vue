@@ -9,7 +9,7 @@ const props = defineProps<{
 const tabClass = computed(() => [
   'px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-2',
   {
-    'text-brand-heavier border-b-1 border-brand-heavier': props.isActive,
+    'text-brand-dark border-b-1 border-brand-dark': props.isActive,
     'text-content-text-secondary hover:text-brand hover:border-brand-lighter border-transparent border-b-1': !props.isActive,
   },
 ]);

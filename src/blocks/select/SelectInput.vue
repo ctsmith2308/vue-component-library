@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue';
 
-import { ChevronDownIcon } from '@heroicons/vue/24/solid';
+import Icon from '../icon/Icon.vue';
+import Text from '../typography/Text.vue';
 
 import type { SelectData, SelectOption } from './types';
 
@@ -17,7 +18,8 @@ const selectContainer = ref<HTMLDivElement | null>(null);
 const optionRefs = ref<(HTMLLIElement | null)[]>([]);
 
 const selectedLabel = computed<string>(() => {
-  const selected = props.data.options.find((opt) => opt.value === selectedValue.value);
+  const selected = props.data.options.find((opt: SelectOption) => opt.value === selectedValue.value);
+
   return selected ? selected.displayValue : 'Please select';
 });
 
@@ -27,6 +29,7 @@ const toggleDropdown = (): void => {
 
 const openAndFocusFirst = (): void => {
   isOpen.value = true;
+
   setTimeout(() => {
     if (optionRefs.value[0]) {
       optionRefs.value[0].focus();
@@ -36,8 +39,10 @@ const openAndFocusFirst = (): void => {
 
 const openAndFocusLast = (): void => {
   isOpen.value = true;
+
   setTimeout(() => {
     const lastIndex = props.data.options.length - 1;
+
     if (optionRefs.value[lastIndex]) {
       optionRefs.value[lastIndex].focus();
     }
@@ -46,6 +51,7 @@ const openAndFocusLast = (): void => {
 
 const selectOption = (option: SelectOption): void => {
   selectedValue.value = option.value;
+
   closeDropdown();
 };
 
@@ -55,6 +61,7 @@ const closeDropdown = (): void => {
 
 const focusNext = (currentIndex: number): void => {
   const nextIndex = currentIndex + 1;
+
   if (nextIndex < props.data.options.length && optionRefs.value[nextIndex]) {
     optionRefs.value[nextIndex]!.focus();
   }
@@ -62,12 +69,12 @@ const focusNext = (currentIndex: number): void => {
 
 const focusPrevious = (currentIndex: number): void => {
   const prevIndex = currentIndex - 1;
+
   if (prevIndex >= 0 && optionRefs.value[prevIndex]) {
     optionRefs.value[prevIndex]!.focus();
   }
 };
 
-// Close dropdown when clicking outside
 const handleClickOutside = (event: MouseEvent): void => {
   if (selectContainer.value && !selectContainer.value.contains(event.target as Node)) {
     closeDropdown();
@@ -82,7 +89,6 @@ onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside);
 });
 
-// Clear option refs when dropdown closes
 watch(isOpen, (newVal: boolean) => {
   if (!newVal) {
     optionRefs.value = [];
@@ -91,22 +97,23 @@ watch(isOpen, (newVal: boolean) => {
 </script>
 
 <template>
-  <div class="custom-select" ref="selectContainer">
-    <label :for="data.id" class="visually-hidden">
+  <div class="relative w-full" ref="selectContainer">
+    <!-- Visually hidden label -->
+    <Text tag="label" :for="data.id" class="sr-only">
       {{ data.label }}
-    </label>
+    </Text>
 
     <!-- Hidden native select for form submission -->
-    <select :name="data.name" :id="data.id" v-model="selectedValue" class="hidden-select">
+    <select :name="data.name" :id="data.id" v-model="selectedValue" class="absolute opacity-0 pointer-events-none h-0 w-0">
       <option v-for="(option, idx) in data.options" :key="idx" :value="option.value">
         {{ option.displayValue }}
       </option>
     </select>
 
-    <!-- Custom dropdown button -->
+    <!-- Custom dropdown button — ghost style, full width -->
     <button
       type="button"
-      class="select-button input-base border-base hocus-base"
+      class="w-full inline-flex justify-between items-center px-3 h-8 gap-3 rounded-md cursor-pointer bg-transparent border border-surface-border hover:border-brand text-brand transition-colors"
       @click="toggleDropdown"
       @keydown.enter.prevent="toggleDropdown"
       @keydown.space.prevent="toggleDropdown"
@@ -116,21 +123,27 @@ watch(isOpen, (newVal: boolean) => {
       :aria-haspopup="true"
       :aria-labelledby="data.id + '-label'"
     >
-      <span class="selected-text">{{ selectedLabel }}</span>
+      <span class="flex-1 text-left">{{ selectedLabel }}</span>
 
-      <span class="chevron-wrapper" :class="{ 'chevron-open': isOpen }">
-        <ChevronDownIcon />
+      <span
+        class="flex items-center size-5 text-[#999] transition-[rotate] duration-200 ease-in-out"
+        :class="{ 'rotate-[-180deg]': isOpen }"
+      >
+        <Icon iconType="ChevronDownIcon" />
       </span>
     </button>
 
     <!-- Dropdown list -->
-    <div v-if="isOpen" class="dropdown-wrapper bg-surface rounded-2xl">
-      <ul class="dropdown-list" role="listbox">
+    <div
+      v-if="isOpen"
+      class="absolute top-[calc(100%+1px)] left-0 w-full z-[1000] shadow-[0_0_10px_0_rgba(0,0,0,0.1)] border border-surface-border rounded-lg overflow-hidden bg-surface"
+    >
+      <ul class="list-none m-0 p-0" role="listbox">
         <li
           v-for="(option, idx) in data.options"
           :key="idx"
-          class="dropdown-option"
-          :class="{ selected: selectedValue === option.value }"
+          class="flex justify-between items-center px-[10px] py-[10px] cursor-pointer transition-all duration-400 bg-surface border-b border-surface-border last:border-b-0 hover:bg-brand-ghost-hover focus:bg-brand-ghost-hover focus:outline-none"
+          :class="{ 'bg-brand-ghost-hover': selectedValue === option.value }"
           role="option"
           :aria-selected="selectedValue === option.value"
           tabindex="0"
@@ -146,102 +159,9 @@ watch(isOpen, (newVal: boolean) => {
             }
           "
         >
-          {{ option.displayValue }}
+          <Text tag="span">{{ option.displayValue }}</Text>
         </li>
       </ul>
     </div>
   </div>
 </template>
-
-<style scoped>
-.visually-hidden {
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-}
-
-.hidden-select {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  height: 0;
-  width: 0;
-}
-
-.custom-select {
-  position: relative;
-  width: 100%;
-}
-
-.select-button {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  cursor: pointer;
-  background: none;
-  text-align: left;
-  appearance: none;
-}
-
-.selected-text {
-  flex: 1;
-}
-
-.chevron-wrapper {
-  display: flex;
-  align-items: center;
-  transition: rotate 0.2s ease;
-  color: #999999;
-}
-
-.chevron-wrapper.chevron-open {
-  rotate: -180deg;
-}
-
-.dropdown-wrapper {
-  position: absolute;
-  top: calc(100% + 1px);
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  border: var(--color-input-border);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.dropdown-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.dropdown-option {
-  padding: 10px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: 0.4s;
-  background: var(--color-surface);
-  border-bottom: var(--color-input-border);
-}
-
-.dropdown-option:last-child {
-  border-bottom: none;
-}
-
-.dropdown-option:hover,
-.dropdown-option:focus {
-  background: var(--color-brand-lighter);
-  outline: none;
-}
-</style>

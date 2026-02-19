@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { RadioInputType } from './types';
+import Text from '../typography/Text.vue';
 
 defineProps<{
   input: RadioInputType;
@@ -10,8 +11,8 @@ defineProps<{
   <div class="flex flex-row gap-2">
     <input type="radio" :id="input.id" :name="input.groupName" :value="input.value" />
 
-    <label :for="input.id">
+    <Text tag="label" :for="input.id">
       {{ input.label }}
-    </label>
+    </Text>
   </div>
 </template>
