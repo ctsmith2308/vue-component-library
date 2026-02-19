@@ -3,8 +3,8 @@ import { DocumentApiSection } from '@/compositions/document';
 import { apiReferenceConfig } from './config';
 import { toHtmlHighlight } from '@/lib/utils';
 
-const description = `Avatar renders initials derived from a label, a user image, or a custom icon slot.`;
-const htmlString = toHtmlHighlight(description, 'Avatar');
+const description = `Popover displays floating content anchored to a trigger element. It is controlled imperatively via a template ref, exposing show, hide, and toggle methods — matching PrimeVue's Popover API.`;
+const htmlString = toHtmlHighlight(description, 'Popover');
 </script>
 
 <template>

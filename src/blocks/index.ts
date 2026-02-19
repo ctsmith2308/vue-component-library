@@ -44,6 +44,10 @@ export * from './feedback/types';
 /** Surfaces */
 export { default as Card } from './surfaces/Card.vue';
 
+/** Overlay */
+export { default as Popover } from './overlay/Popover.vue';
+export * from './overlay/types';
+
 /** Media */
 export { default as Image } from './media/Image.vue';
 export * from './media/types';

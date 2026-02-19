@@ -7,6 +7,8 @@ function useTheme() {
     const theme = val ? 'dark' : 'light';
 
     document.documentElement.setAttribute('data-theme', theme);
+    // For other themes in the future:
+    // document.documentElement.setAttribute('data-theme', 'retro-green'); - See: main.scss
 
     localStorage.setItem('theme', theme);
   };

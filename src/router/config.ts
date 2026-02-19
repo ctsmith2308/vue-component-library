@@ -116,6 +116,15 @@ const docRoutesConfig: DocRoute[] = [
     component: () => import('@/docs/skeleton/index.vue'),
   },
 
+  // ── Overlay ──────────────────────────────────────────────────────────────
+
+  {
+    name: 'popover',
+    label: 'Popover',
+    category: 'Overlay',
+    component: () => import('@/docs/popover/index.vue'),
+  },
+
   // ── Media ───────────────────────────────────────────────────────────────────
   {
     name: 'image',
