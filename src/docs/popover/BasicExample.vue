@@ -30,7 +30,7 @@ const codeSnippet = `<Popover ref="basicPop">
 
 <template>
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
-    <div class="flex flex-row gap-6 items-center justify-center w-full">
+    <div class="flex flex-row flex-wrap gap-6 items-center justify-center w-full">
       <!-- Basic -->
       <Button label="Basic" variant="outlined" @click="(e: MouseEvent) => basicPop?.toggle(e)" />
 

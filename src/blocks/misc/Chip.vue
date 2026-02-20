@@ -21,7 +21,7 @@ const emit = defineEmits<{
 
 const colorClasses = {
   primary: 'bg-brand-lighter text-brand border-brand',
-  secondary: 'bg-brand-secondary-lighter text-brand-secondary border-brand-secondary',
+  secondary: 'bg-secondary-lighter text-secondary border-secondary',
   success: 'bg-success-lighter text-success border-success',
   danger: 'bg-danger-lighter text-danger border-danger',
 };

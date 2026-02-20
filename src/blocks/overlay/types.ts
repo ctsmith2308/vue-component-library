@@ -14,4 +14,26 @@ interface PlacementCandidate {
   arrow: ArrowDirection;
 }
 
-export type { ArrowDirection, Placement, PlacementResult, PlacementCandidate };
+interface OverlayProps {
+  isOpen: boolean;
+}
+
+interface DrawerProps {
+  isOpen: boolean;
+  position?: DrawerPosition;
+  size?: DrawerSize;
+}
+
+type DrawerPosition = 'left' | 'right' | 'top' | 'bottom';
+type DrawerSize = 'sm' | 'md' | 'lg' | 'full';
+
+export type {
+  ArrowDirection,
+  Placement,
+  PlacementResult,
+  PlacementCandidate,
+  OverlayProps,
+  DrawerProps,
+  DrawerPosition,
+  DrawerSize,
+};

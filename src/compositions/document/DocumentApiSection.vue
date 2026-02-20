@@ -21,7 +21,7 @@ const onRowClick = () => {
 </script>
 
 <template>
-  <section class="flex flex-1 flex-col gap-5 bg-page">
+  <section class="flex flex-col gap-5 bg-page">
     <Heading :size="3">
       {{ heading }}
     </Heading>

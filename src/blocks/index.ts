@@ -46,6 +46,7 @@ export { default as Card } from './surfaces/Card.vue';
 
 /** Overlay */
 export { default as Popover } from './overlay/Popover.vue';
+export { default as Drawer } from './overlay/Drawer.vue';
 export * from './overlay/types';
 
 /** Media */

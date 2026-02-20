@@ -21,20 +21,27 @@ const sizes = ['sm', 'md', 'lg', 'xl'] as const;
       <div class="flex items-end gap-4 flex-wrap justify-center">
         <div v-for="size in sizes" :key="size" class="flex flex-col items-center gap-2">
           <Avatar :label="`${size.toUpperCase()} User`" :size="size" shape="circle" />
+
           <span class="text-xs text-content-text-secondary">{{ size }}</span>
         </div>
       </div>
+
       <div class="flex items-center gap-4">
         <div class="flex flex-col items-center gap-1">
           <Avatar label="Jane Doe" size="lg" shape="circle" />
+
           <span class="text-xs text-content-text-secondary">Circle</span>
         </div>
+
         <div class="flex flex-col items-center gap-1">
           <Avatar label="Jane Doe" size="lg" shape="square" />
+
           <span class="text-xs text-content-text-secondary">Square</span>
         </div>
+
         <div class="flex flex-col items-center gap-1">
-          <Avatar src="https://picsum.photos/seed/avatar/64/64" size="lg" shape="circle" />
+          <Avatar image="https://picsum.photos/seed/avatar/64/64" size="lg" shape="circle" />
+
           <span class="text-xs text-content-text-secondary">Image</span>
         </div>
       </div>

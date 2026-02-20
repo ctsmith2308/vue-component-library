@@ -125,6 +125,13 @@ const docRoutesConfig: DocRoute[] = [
     component: () => import('@/docs/popover/index.vue'),
   },
 
+  {
+    name: 'drawer',
+    label: 'Drawer',
+    category: 'Overlay',
+    component: () => import('@/docs/drawer/index.vue'),
+  },
+
   // ── Media ───────────────────────────────────────────────────────────────────
   {
     name: 'image',

@@ -90,6 +90,12 @@
   @include typography(#e5e7eb, 'dark');
   @include surface-colors(#000000, #0d1117, 'dark', #27272a);
   @include panel-colors(#1e2530, 'dark');
+
+  // @include typography(#ffb300, 'dark');
+  // @include surface-colors(#1a1200, #1f1800, 'dark', #ffb300);
+  // @include panel-colors(#2a1f00, 'dark');
+  // @include color-variants('brand', #ffb300);
+  // @include color-variants('disabled', #3a2e00, true);
 }
 
 [data-theme='blue'] {
@@ -135,15 +141,6 @@
   @include panel-colors(#1a001a, 'dark');
   @include color-variants('brand', #cc0000);
   @include color-variants('disabled', #2a0a0a, true);
-}
-
-.theme-transition,
-.theme-transition * {
-  transition:
-    background-color 300ms ease-in-out,
-    border-color 300ms ease-in-out,
-    color 300ms ease-in-out,
-    box-shadow 300ms ease-in-out;
 }
 
 @layer components {
@@ -290,4 +287,9 @@
   inset: 0;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
   animation: wave 1.5s infinite;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 600ms;
 }

@@ -19,6 +19,7 @@ import {
   EyeSlashIcon,
   PaintBrushIcon,
   SparklesIcon,
+  XMarkIcon,
 } from '@heroicons/vue/24/outline';
 
 import GithubIcon from './GithubIcon.vue';
@@ -42,6 +43,7 @@ const iconComponentKeys = {
   EyeSlashIcon,
   PaintBrushIcon,
   SparklesIcon,
+  XMarkIcon,
 } as const;
 
 type IconSize = 'sm' | 'md' | 'lg' | 'xl';

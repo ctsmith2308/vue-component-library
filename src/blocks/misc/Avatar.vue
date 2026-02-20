@@ -34,10 +34,10 @@ const avatarClasses = computed(() => [
 const initials = computed(() => {
   if (!props.label) return '';
 
-  const names = props.label.split(' ');
+  const names = props.label.split(' ').filter((name) => name.length > 0);
 
   if (names.length >= 2) {
-    return `${names[0][0]}${names[1][0]}`.toUpperCase();
+    return `${names[0]?.[0]}${names[1]?.[0]}`.toUpperCase();
   }
 
   return props.label.substring(0, 2).toUpperCase();
@@ -47,6 +47,7 @@ const initials = computed(() => {
 <template>
   <div :class="avatarClasses">
     <img v-if="image" :src="image" :alt="label || 'Avatar'" class="w-full h-full object-cover" />
+
     <span v-else-if="icon" class="flex items-center justify-center">
       <slot name="icon"></slot>
     </span>

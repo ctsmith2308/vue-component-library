@@ -20,7 +20,7 @@ const navigationList = organizeRoutesByCategory(docRoutesConfig);
 </script>
 
 <template>
-  <nav class="flex flex-col gap-4 p-5 overflow-y-auto">
+  <nav class="flex flex-col gap-4 md:p-5 overflow-y-auto">
     <Heading :size="4">Components</Heading>
 
     <div v-for="(route, idx) in navigationList" :key="idx" class="flex flex-col gap-2">
