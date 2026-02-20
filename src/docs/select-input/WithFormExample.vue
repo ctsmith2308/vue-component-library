@@ -7,14 +7,17 @@ const heading = 'With Form';
 const description = `Embed SelectInput inside a Form component for submit handling.`;
 const htmlString = toHtmlHighlight(description, 'Form');
 const codeSnippet = `<Form @submit="onSubmit">
-  <SelectInput :data="roleData" />
+  <SelectInput
+    name="role"
+    :rules="{ required: true }"
+    :data="roleData"
+  />
   <Button type="submit" label="Submit" />
 </Form>
 `;
 
 const roleData: SelectData = {
   id: 'role-select',
-  name: 'role',
   label: 'Role',
   options: [
     { value: 'admin', displayValue: 'Admin' },
@@ -32,7 +35,8 @@ const onSubmit = (isValid: boolean): void => {
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <Form @submit="onSubmit">
       <div class="flex flex-col gap-4 w-full max-w-xs">
-        <SelectInput :data="roleData" />
+        <SelectInput name="role" :rules="{ required: true }" :data="roleData" />
+
         <Button type="submit" label="Submit" />
       </div>
     </Form>

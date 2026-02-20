@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import type { CheckboxData } from './types';
+import { ref, watch, toRef } from 'vue';
+import type { CheckboxData, ValidationRule } from './types';
+import { useFormField } from './composables';
 import Icon from '../icon/Icon.vue';
 import Text from '../typography/Text.vue';
 
 interface Props {
   data: CheckboxData;
   modelValue?: boolean;
+  name: string;
+  rules?: ValidationRule;
 }
 
 interface Emits {
@@ -19,6 +22,8 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<Emits>();
+
+const { error, isRequired, updateValue, markTouched } = useFormField(toRef(props, 'name'));
 
 const isChecked = ref<boolean>(props.modelValue !== undefined ? props.modelValue : (props.data.checked ?? false));
 
@@ -34,6 +39,8 @@ watch(
 const handleChange = (): void => {
   emit('update:modelValue', isChecked.value);
   emit('change', isChecked.value);
+  updateValue(isChecked.value);
+  markTouched();
 };
 </script>
 
@@ -50,10 +57,12 @@ const handleChange = (): void => {
       <input
         type="checkbox"
         :id="data.id"
-        :name="data.name"
+        :name="name"
         :value="data.value"
         v-model="isChecked"
         @change="handleChange"
+        :aria-required="isRequired"
+        :aria-invalid="!!error"
         class="absolute opacity-0 pointer-events-none h-0 w-0 peer"
       />
 
@@ -66,6 +75,9 @@ const handleChange = (): void => {
       </span>
 
       {{ data.label }}
+      <span v-if="isRequired" class="text-danger ml-0.5">*</span>
     </Text>
+
+    <Text v-if="error" tag="p" size="sm" color="danger" class="mt-1 ml-2.5">{{ error }}</Text>
   </div>
 </template>

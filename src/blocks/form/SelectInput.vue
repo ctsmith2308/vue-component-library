@@ -1,16 +1,21 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue';
+import { ref, computed, toRef, onMounted, onBeforeUnmount, watch } from 'vue';
 
 import Icon from '../icon/Icon.vue';
 import Text from '../typography/Text.vue';
+import { useFormField } from './composables';
 
-import type { SelectData, SelectOption } from './types';
+import type { SelectData, SelectOption, ValidationRule } from './types';
 
 interface Props {
   data: SelectData;
+  name: string;
+  rules?: ValidationRule;
 }
 
 const props = defineProps<Props>();
+
+const { error, isRequired, updateValue, markTouched } = useFormField(toRef(props, 'name'));
 
 const isOpen = ref<boolean>(false);
 const selectedValue = ref<string>(props.data.options[0]?.value || '');
@@ -49,14 +54,15 @@ const openAndFocusLast = (): void => {
   }, 0);
 };
 
-const selectOption = (option: SelectOption): void => {
-  selectedValue.value = option.value;
-
-  closeDropdown();
-};
-
 const closeDropdown = (): void => {
   isOpen.value = false;
+  markTouched();
+};
+
+const selectOption = (option: SelectOption): void => {
+  selectedValue.value = option.value;
+  updateValue(option.value);
+  closeDropdown();
 };
 
 const focusNext = (currentIndex: number): void => {
@@ -104,16 +110,24 @@ watch(isOpen, (newVal: boolean) => {
     </Text>
 
     <!-- Hidden native select for form submission -->
-    <select :name="data.name" :id="data.id" v-model="selectedValue" class="absolute opacity-0 pointer-events-none h-0 w-0">
+    <select
+      :name="name"
+      :id="data.id"
+      v-model="selectedValue"
+      :aria-required="isRequired"
+      :aria-invalid="!!error"
+      class="absolute opacity-0 pointer-events-none h-0 w-0"
+    >
       <option v-for="(option, idx) in data.options" :key="idx" :value="option.value">
         {{ option.displayValue }}
       </option>
     </select>
 
-    <!-- Custom dropdown button — ghost style, full width -->
+    <!-- Custom dropdown button -->
     <button
       type="button"
-      class="w-full inline-flex justify-between items-center px-3 h-8 gap-3 rounded-md cursor-pointer bg-transparent border border-surface-border hover:border-brand text-brand transition-colors"
+      class="w-full inline-flex justify-between items-center px-3 h-8 gap-3 rounded-md cursor-pointer bg-transparent border hover:border-brand text-brand transition-colors"
+      :class="error ? 'border-danger' : 'border-surface-border'"
       @click="toggleDropdown"
       @keydown.enter.prevent="toggleDropdown"
       @keydown.space.prevent="toggleDropdown"
@@ -163,5 +177,7 @@ watch(isOpen, (newVal: boolean) => {
         </li>
       </ul>
     </div>
+
+    <Text v-if="error" tag="p" size="sm" color="danger" class="mt-1">{{ error }}</Text>
   </div>
 </template>

@@ -21,6 +21,30 @@ const docRoutesConfig: DocRoute[] = [
     category: 'Form',
     component: () => import('@/docs/text-input/index.vue'),
   },
+  {
+    name: 'checkbox-input',
+    label: 'CheckboxInput',
+    category: 'Form',
+    component: () => import('@/docs/checkbox-input/index.vue'),
+  },
+  {
+    name: 'date-picker',
+    label: 'DatePicker',
+    category: 'Form',
+    component: () => import('@/docs/date-picker/index.vue'),
+  },
+  {
+    name: 'radio-input',
+    label: 'RadioInput',
+    category: 'Form',
+    component: () => import('@/docs/radio-input/index.vue'),
+  },
+  {
+    name: 'select-input',
+    label: 'SelectInput',
+    category: 'Form',
+    component: () => import('@/docs/select-input/index.vue'),
+  },
 
   // ── Layout ──────────────────────────────────────────────────────────────────
   {
@@ -40,32 +64,6 @@ const docRoutesConfig: DocRoute[] = [
     label: 'Tabs',
     category: 'Layout',
     component: () => import('@/docs/tabs/index.vue'),
-  },
-
-  // ── Select ──────────────────────────────────────────────────────────────────
-  {
-    name: 'checkbox-input',
-    label: 'CheckboxInput',
-    category: 'Select',
-    component: () => import('@/docs/checkbox-input/index.vue'),
-  },
-  {
-    name: 'date-picker',
-    label: 'DatePicker',
-    category: 'Select',
-    component: () => import('@/docs/date-picker/index.vue'),
-  },
-  {
-    name: 'radio-input',
-    label: 'RadioInput',
-    category: 'Select',
-    component: () => import('@/docs/radio-input/index.vue'),
-  },
-  {
-    name: 'select-input',
-    label: 'SelectInput',
-    category: 'Select',
-    component: () => import('@/docs/select-input/index.vue'),
   },
 
   // ── Typography ──────────────────────────────────────────────────────────────

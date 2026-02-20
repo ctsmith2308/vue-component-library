@@ -8,14 +8,24 @@ const heading = 'With Form';
 const description = `Embed CheckboxInput inside a Form for validation and submission handling.`;
 const htmlString = toHtmlHighlight(description, 'Form');
 const codeSnippet = `<Form @submit="onSubmit">
-  <CheckboxInput v-model="accepted" :data="termsData" />
+  <CheckboxInput
+    v-model="accepted"
+    name="terms"
+    :rules="{ required: true }"
+    :data="termsData"
+  />
 
   <Button type="submit" label="Submit" />
 </Form>
 `;
 
 const accepted = ref(false);
-const termsData: CheckboxData = { id: 'form-terms-cb', name: 'terms', label: 'I accept the terms and conditions' };
+
+const termsData: CheckboxData = {
+  id: 'form-terms-cb',
+  label: 'I accept the terms and conditions',
+};
+
 const onSubmit = (isValid: boolean): void => {
   console.log('isValid', isValid);
 };
@@ -25,7 +35,7 @@ const onSubmit = (isValid: boolean): void => {
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <Form @submit="onSubmit">
       <div class="flex flex-col gap-4">
-        <CheckboxInput v-model="accepted" :data="termsData" />
+        <CheckboxInput v-model="accepted" name="terms" :rules="{ required: true }" :data="termsData" role="checkbox" />
 
         <Button type="submit" label="Submit" />
       </div>

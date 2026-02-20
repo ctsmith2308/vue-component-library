@@ -49,6 +49,49 @@ interface FormField {
   touched: boolean;
 }
 
+interface RadioInputType {
+  groupName: string;
+  id: string;
+  value: string;
+  label: string;
+}
+
+interface RadioInputGroup {
+  radioInputs: RadioInputType[];
+}
+
+interface SelectInputOptions {
+  value: string;
+  displayValue: string;
+}
+
+interface SelectInput {
+  name: string;
+  id: string;
+  label: string;
+  options: SelectInputOptions[];
+}
+
+interface SelectOption {
+  value: string;
+  displayValue: string;
+}
+
+interface SelectData {
+  id: string;
+  // name: string;
+  label: string;
+  options: SelectOption[];
+}
+
+interface CheckboxData {
+  id: string;
+  // name: string;
+  label: string;
+  value?: string;
+  checked?: boolean;
+}
+
 export type {
   TextInputProps,
   MaskType,
@@ -58,4 +101,11 @@ export type {
   FormProps,
   ParsedField,
   FormField,
+  RadioInputType,
+  RadioInputGroup,
+  SelectInput,
+  SelectInputOptions,
+  SelectOption,
+  SelectData,
+  CheckboxData,
 };

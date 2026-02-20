@@ -7,7 +7,13 @@ const heading = 'With Form';
 const description = `Embed RadioInput options inside a Form for submission handling.`;
 const htmlString = toHtmlHighlight(description, 'Form');
 const codeSnippet = `<Form @submit="onSubmit">
-  <RadioInput v-for="opt in billingOptions" :key="opt.id" :input="opt" />
+  <RadioInput
+    v-for="opt in billingOptions"
+    :key="opt.id"
+    name="billing"
+    :rules="{ required: true }"
+    :input="opt"
+  />
   <Button type="submit" label="Submit" />
 </Form>
 `;
@@ -26,7 +32,8 @@ const onSubmit = (isValid: boolean): void => {
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <Form @submit="onSubmit">
       <div class="flex flex-col gap-3">
-        <RadioInput v-for="opt in billingOptions" :key="opt.id" :input="opt" />
+        <RadioInput v-for="opt in billingOptions" :key="opt.id" name="billing" :rules="{ required: true }" :input="opt" />
+
         <Button type="submit" label="Submit" />
       </div>
     </Form>

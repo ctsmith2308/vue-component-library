@@ -10,7 +10,6 @@ const codeSnippet = `<SelectInput :data="selectData" />`;
 
 const selectData: SelectData = {
   id: 'framework-select',
-  name: 'framework',
   label: 'Framework',
   options: [
     { value: 'vue', displayValue: 'Vue 3' },
@@ -24,7 +23,7 @@ const selectData: SelectData = {
 <template>
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <div class="w-full max-w-xs">
-      <SelectInput :data="selectData" />
+      <SelectInput name="framework" :data="selectData" />
     </div>
   </DocumentExampleSection>
 </template>

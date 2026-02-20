@@ -11,14 +11,11 @@ export { default as Text } from './typography/Text.vue';
 export { default as Form } from './form/FormComponent.vue';
 export { default as PasswordInput } from './form/PasswordInput.vue';
 export { default as TextInput } from './form/TextInput.vue';
+export { default as SelectInput } from './form/SelectInput.vue';
+export { default as CheckboxInput } from './form/CheckboxInput.vue';
+export { default as DatePicker } from './form/DatePicker.vue';
+export { default as RadioInput } from './form/RadioInput.vue';
 export * from './form/types';
-
-/** Select */
-export { default as SelectInput } from './select/SelectInput.vue';
-export { default as CheckboxInput } from './select/CheckboxInput.vue';
-export { default as DatePicker } from './select/DatePicker.vue';
-export { default as RadioInput } from './select/RadioInput.vue';
-export * from './select/types';
 
 /** Data */
 export { default as DataTable } from './data/DataTable.vue';

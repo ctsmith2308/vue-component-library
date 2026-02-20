@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import RadioInput from '@/blocks/select/RadioInput.vue';
-import type { RadioInputType } from '@/blocks';
+import { type RadioInputType, RadioInput } from '@/blocks';
 import { DocumentExampleSection } from '@/compositions/document';
 import { toHtmlHighlight } from '@/lib/utils';
 
@@ -19,7 +18,7 @@ const planOptions: RadioInputType[] = [
 <template>
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <div class="flex flex-col gap-2">
-      <RadioInput v-for="opt in planOptions" :key="opt.id" :input="opt" />
+      <RadioInput v-for="opt in planOptions" :key="opt.id" :input="opt" name="planOptionsRadioInput" />
     </div>
   </DocumentExampleSection>
 </template>

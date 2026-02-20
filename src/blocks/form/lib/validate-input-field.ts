@@ -1,10 +1,11 @@
 import type { ValidationRule } from '../types';
 
-type ValidatorFn = (value: unknown, rules: ValidationRule, fieldName: string) => string | null;
+type ValidatorFn = (value: unknown, fieldName: string, rules?: ValidationRule) => string | null;
 
 const validators: Record<keyof ValidationRule, ValidatorFn> = {
-  required: (value, _, fieldName) => {
-    const hasValue = value !== null && value !== undefined && value !== '' && !(Array.isArray(value) && value.length === 0);
+  required: (value, fieldName) => {
+    const isEmptyArray = Array.isArray(value) && value.length === 0;
+    const hasValue = !isEmptyArray && !!value;
 
     return hasValue ? null : `${fieldName} is required`;
   },
@@ -24,16 +25,16 @@ const validators: Record<keyof ValidationRule, ValidatorFn> = {
     }
   },
 
-  minLength: (value, rules, fieldName) => {
-    const isMinLength = String(value).length >= rules.minLength!;
+  minLength: (value, fieldName, rules) => {
+    const isMinLength = String(value).length >= rules!.minLength!;
 
-    return isMinLength ? null : `${fieldName} must be at least ${rules.minLength} characters`;
+    return isMinLength ? null : `${fieldName} must be at least ${rules!.minLength} characters`;
   },
 
-  maxLength: (value, rules, fieldName) => {
-    const isMaxLength = String(value).length <= rules.maxLength!;
+  maxLength: (value, fieldName, rules) => {
+    const isMaxLength = String(value).length <= rules!.maxLength!;
 
-    return isMaxLength ? null : `${fieldName} must be at most ${rules.maxLength} characters`;
+    return isMaxLength ? null : `${fieldName} must be at most ${rules!.maxLength} characters`;
   },
 };
 
@@ -42,7 +43,7 @@ const validatorOrder: Array<keyof ValidationRule> = ['required', 'email', 'url',
 const validateField = (value: unknown, rules: ValidationRule, fieldName: string): string | undefined => {
   for (const key of validatorOrder) {
     if (key in rules) {
-      const error = validators[key]?.(value, rules, fieldName);
+      const error = validators[key]?.(value, fieldName, rules);
 
       if (error) return error;
     }
