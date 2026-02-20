@@ -34,9 +34,7 @@ const navigationList = organizeRoutesByCategory(docRoutesConfig);
           :key="component.name"
           :class="[
             'cursor-pointer rounded-md transition-all duration-200 font-medium px-2',
-            isActive(component.name)
-              ? 'bg-brand-light text-content-text-muted hover:bg-brand-light'
-              : 'hover:bg-brand-ghost-hover',
+            isActive(component.name) ? 'bg-brand text-content-text-muted hover:bg-brand-dark' : 'hover:bg-brand-ghost-hover',
           ]"
           @click="navigateToComponent(component.name)"
         >

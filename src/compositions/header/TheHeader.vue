@@ -2,6 +2,7 @@
 import { Text, Button, Icon } from '@/blocks';
 
 import ThemeToggler from './ThemeToggler.vue';
+import ThemePalette from './ThemePalette.vue';
 
 const emit = defineEmits(['toggleSidebarDisplay']);
 
@@ -26,14 +27,16 @@ const githubLink = 'https://github.com/ctsmith2308/vue-component-library';
       <Text>LOGO</Text>
     </div>
 
-    <div class="flex flex-row gap-4 items-center">
+    <div class="flex flex-row gap-2 items-center">
+      <ThemePalette />
+
+      <ThemeToggler />
+
       <Button as="a" variant="ghost" size="md" :href="githubLink">
         <template #icon>
           <Icon iconType="GithubIcon" />
         </template>
       </Button>
-
-      <ThemeToggler />
     </div>
   </header>
 </template>

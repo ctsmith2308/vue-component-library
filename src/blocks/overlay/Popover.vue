@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, nextTick, onUnmounted } from 'vue';
+
 import type { Placement, PlacementResult, PlacementCandidate } from './types';
-import Button from '../button/Button.vue';
 
 interface PopoverProps {
   dismissable?: boolean;
@@ -18,18 +18,31 @@ const emit = defineEmits<{
   hide: [];
 }>();
 
+// ─── Constants ────────────────────────────────────────────────
 const ARROW_SIZE = 8;
 const GAP = ARROW_SIZE + 4;
+const MARGIN = 8;
 
+// ─── State ────────────────────────────────────────────────────
 const visible = ref<boolean>(false);
+const positioned = ref<boolean>(false);
 const popEl = ref<HTMLElement | null>(null);
 const trigger = ref<HTMLElement | null>(null);
 const coords = ref<PlacementResult>({ top: 0, left: 0, arrow: 'top', placement: 'bottom' });
 const arrowOff = ref<number>(0);
 
+// ─── Positioning ──────────────────────────────────────────────
+function clamp(p: PlacementCandidate, placement: Placement, vw: number, vh: number, pRect: DOMRect): PlacementResult {
+  return {
+    ...p,
+    placement,
+    top: Math.min(Math.max(p.top, MARGIN), vh - pRect.height - MARGIN),
+    left: Math.min(Math.max(p.left, MARGIN), vw - pRect.width - MARGIN),
+  };
+}
+
 function calcPosition(tRect: DOMRect, pRect: DOMRect): PlacementResult {
   const vw = window.innerWidth;
-
   const vh = window.innerHeight;
 
   const placements: Record<Placement, PlacementCandidate> = {
@@ -43,34 +56,19 @@ function calcPosition(tRect: DOMRect, pRect: DOMRect): PlacementResult {
 
   for (const placement of order) {
     const p = placements[placement];
-
     const fitsV = p.top >= 0 && p.top + pRect.height <= vh;
-
     const fitsH = p.left >= 0 && p.left + pRect.width <= vw;
-
-    if (fitsV && fitsH) return { ...p, placement };
+    if (fitsV && fitsH) return clamp(p, placement, vw, vh, pRect);
   }
 
-  // Fallback: bottom, clamped to viewport
-  const fallback = placements.bottom;
-  return {
-    top: Math.min(Math.max(fallback.top, 8), vh - pRect.height - 8),
-
-    left: Math.min(Math.max(fallback.left, 8), vw - pRect.width - 8),
-
-    arrow: 'top',
-
-    placement: 'bottom',
-  };
+  return clamp(placements.bottom, 'bottom', vw, vh, pRect);
 }
 
 function reposition(): void {
   if (!trigger.value || !popEl.value) return;
 
   const tRect = trigger.value.getBoundingClientRect();
-
   const pRect = popEl.value.getBoundingClientRect();
-
   const pos = calcPosition(tRect, pRect);
 
   arrowOff.value =
@@ -81,19 +79,18 @@ function reposition(): void {
   coords.value = pos;
 }
 
+// ─── Outside click ────────────────────────────────────────────
 function onOutsideClick(event: MouseEvent): void {
   const target = event.target as Node;
-
   if (popEl.value?.contains(target)) return;
   if (trigger.value?.contains(target)) return;
-
   hide();
 }
 
+// ─── Listeners ────────────────────────────────────────────────
 function attachListeners(): void {
   window.addEventListener('resize', reposition);
   window.addEventListener('scroll', reposition, true);
-
   if (props.dismissable) document.addEventListener('mousedown', onOutsideClick);
 }
 
@@ -103,21 +100,27 @@ function detachListeners(): void {
   document.removeEventListener('mousedown', onOutsideClick);
 }
 
+// ─── Public API ───────────────────────────────────────────────
 function show(event: MouseEvent): void {
   trigger.value = (event.currentTarget ?? event.target) as HTMLElement;
-
+  positioned.value = false;
   visible.value = true;
-
   emit('show');
 
+  // nextTick puts the element in the DOM; rAF waits for the browser to paint
+  // so getBoundingClientRect() returns real dimensions, not zeros
   nextTick(() => {
-    reposition();
-    attachListeners();
+    requestAnimationFrame(() => {
+      reposition();
+      positioned.value = true;
+      attachListeners();
+    });
   });
 }
 
 function hide(): void {
   visible.value = false;
+  positioned.value = false;
   emit('hide');
   detachListeners();
 }
@@ -134,16 +137,20 @@ onUnmounted(detachListeners);
 
 defineExpose({ show, hide, toggle });
 
+// ─── Style helpers ────────────────────────────────────────────
 function arrowInlineStyle(): Record<string, string> {
   const isVertical = coords.value.arrow === 'top' || coords.value.arrow === 'bottom';
-
   return isVertical
     ? { left: `${arrowOff.value}px`, transform: 'translateX(-50%)' }
     : { top: `${arrowOff.value}px`, transform: 'translateY(-50%)' };
 }
 
 function rootInlineStyle(): Record<string, string> {
-  return { top: `${coords.value.top}px`, left: `${coords.value.left}px` };
+  return {
+    top: `${coords.value.top}px`,
+    left: `${coords.value.left}px`,
+    visibility: positioned.value ? 'visible' : 'hidden',
+  };
 }
 </script>
 
@@ -185,7 +192,7 @@ function rootInlineStyle(): Record<string, string> {
               'border-l-[var(--color-surface-border)] top-0 left-0': coords.arrow === 'right',
             }"
           />
-          <!-- Fill layer (offsets 2px to sit inside border) -->
+          <!-- Fill layer -->
           <span
             class="absolute border-8 border-transparent"
             :class="{
@@ -198,7 +205,14 @@ function rootInlineStyle(): Record<string, string> {
         </span>
 
         <!-- Close button -->
-        <Button v-if="showCloseIcon" class="absolute top-1.5 right-2" aria-label="Close" @click="hide"> &times; </Button>
+        <button
+          v-if="showCloseIcon"
+          class="absolute top-1.5 right-2 flex items-center justify-center size-5 rounded bg-transparent border-none cursor-pointer text-[var(--color-content-text-muted)] hover:bg-[var(--color-surface-alt)] hover:text-[var(--color-content-text)] transition-colors duration-150 text-base leading-none"
+          aria-label="Close"
+          @click="hide"
+        >
+          &times;
+        </button>
 
         <!-- Content -->
         <div class="px-4 py-3 text-[0.875rem] leading-relaxed text-[var(--color-content-text)]">

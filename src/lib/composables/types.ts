@@ -13,4 +13,12 @@ interface ScrollToSectionOptions {
   offset?: number; // For fixed headers
 }
 
-export type { ExampleSection, ScrollToSectionOptions };
+type Color = 'blue' | 'green' | 'yellow' | 'orange' | 'fuchsia';
+type TailwindClass = 'bg-blue-500' | 'bg-orange-500' | 'bg-green-500' | 'bg-yellow-500' | 'bg-fuchsia-500';
+
+interface ColorPalette {
+  tailwindClass: TailwindClass;
+  color: Color;
+}
+
+export type { ExampleSection, ScrollToSectionOptions, ColorPalette, Color };

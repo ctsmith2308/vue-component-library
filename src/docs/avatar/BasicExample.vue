@@ -14,6 +14,7 @@ const codeSnippet = `<Avatar label="Alice Johnson" size="md" />
 
 const sizes = ['sm', 'md', 'lg', 'xl'] as const;
 </script>
+
 <template>
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <div class="flex flex-col gap-6 items-center w-full">

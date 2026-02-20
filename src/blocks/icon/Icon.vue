@@ -17,6 +17,8 @@ import {
   CalendarDaysIcon,
   EyeIcon,
   EyeSlashIcon,
+  PaintBrushIcon,
+  SparklesIcon,
 } from '@heroicons/vue/24/outline';
 
 import GithubIcon from './GithubIcon.vue';
@@ -38,6 +40,8 @@ const iconComponentKeys = {
   CalendarDaysIcon,
   EyeIcon,
   EyeSlashIcon,
+  PaintBrushIcon,
+  SparklesIcon,
 } as const;
 
 type IconSize = 'sm' | 'md' | 'lg' | 'xl';

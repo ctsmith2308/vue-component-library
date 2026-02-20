@@ -1,4 +1,6 @@
 @use 'tailwindcss';
+@import 'highlight.js/styles/github-dark-dimmed.css';
+@import 'highlight.js/styles/github-dark.css';
 
 @mixin color-variants($name, $base, $include-disabled: false) {
   --color-#{$name}: #{$base};
@@ -82,10 +84,30 @@
 }
 
 /* Dark Mode */
-[data-theme='dark'] {
+[data-mode='dark'] {
   @include typography(#e5e7eb, 'dark');
   @include surface-colors(#000000, #0d1117, 'dark', #27272a);
   @include panel-colors(#1e2530, 'dark');
+}
+
+[data-theme='blue'] {
+  @include color-variants('brand', #0d6efd);
+}
+
+[data-theme='green'] {
+  @include color-variants('brand', '#22c55e');
+}
+
+[data-theme='orange'] {
+  @include color-variants('brand', '#f97316');
+}
+
+[data-theme='yellow'] {
+  @include color-variants('brand', '#eab308');
+}
+
+[data-theme='fuchsia'] {
+  @include color-variants('brand', #d946ef);
 }
 
 /* Other Themes */
@@ -140,15 +162,19 @@
   .btn-sm {
     @apply h-6 text-sm;
   }
+
   .btn-md {
     @apply h-8 text-sm;
   }
+
   .btn-lg {
     @apply h-10 text-base;
   }
+
   .btn-xl {
     @apply h-12 text-base;
   }
+
   .btn-jumbo {
     @apply h-16 text-lg;
   }
@@ -159,12 +185,15 @@
   .btn-primary {
     @apply bg-brand text-brand-contrast hover:bg-brand-solid-hover;
   }
+
   .btn-secondary {
     @apply bg-secondary text-secondary-contrast hover:bg-secondary-solid-hover;
   }
+
   .btn-success {
     @apply bg-success text-success-contrast hover:bg-success-solid-hover;
   }
+
   .btn-danger {
     @apply bg-danger text-danger-contrast hover:bg-danger-solid-hover;
   }
@@ -175,12 +204,15 @@
   .btn-outlined-primary {
     @apply bg-transparent border border-brand text-brand hover:bg-brand-ghost-hover;
   }
+
   .btn-outlined-secondary {
     @apply bg-transparent border border-secondary text-secondary hover:bg-secondary-ghost-hover;
   }
+
   .btn-outlined-success {
     @apply bg-transparent border border-success text-success hover:bg-success-ghost-hover;
   }
+
   .btn-outlined-danger {
     @apply bg-transparent border border-danger text-danger hover:bg-danger-ghost-hover;
   }
@@ -191,12 +223,15 @@
   .btn-text-primary {
     @apply bg-transparent border-none text-brand hover:bg-brand-ghost-hover;
   }
+
   .btn-text-secondary {
     @apply bg-transparent border-none text-secondary hover:bg-secondary-ghost-hover;
   }
+
   .btn-text-success {
     @apply bg-transparent border-none text-success hover:bg-success-ghost-hover;
   }
+
   .btn-text-danger {
     @apply bg-transparent border-none text-danger hover:bg-danger-ghost-hover;
   }
@@ -221,9 +256,11 @@
   .btn-rounded {
     @apply rounded-full;
   }
+
   .btn-raised {
     @apply shadow-md/30;
   }
+
   .btn-icon {
     @apply aspect-square !p-0;
   }

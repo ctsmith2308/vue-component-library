@@ -11,9 +11,12 @@ const description = `Compose multiple Skeleton elements to mirror the layout of 
 const htmlString = toHtmlHighlight(description, 'Skeleton');
 
 const codeSnippet = `<div class="flex gap-3 items-start">
+
   <Skeleton shape="circle" size="2.5rem" />
+
   <div class="flex flex-col gap-2 flex-1">
     <Skeleton height="0.75rem" width="55%" />
+
     <Skeleton height="0.75rem" width="35%" />
   </div>
 </div>

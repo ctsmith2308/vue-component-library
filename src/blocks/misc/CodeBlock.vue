@@ -11,7 +11,7 @@ defineProps<{
 const { isDark } = useTheme();
 
 const codeBlockTheme = computed(() => {
-  return isDark.value ? 'github-dimmed' : 'github-dark';
+  return isDark.value ? 'github-dark' : 'github-dark-dimmed';
 });
 </script>
 

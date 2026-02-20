@@ -14,4 +14,4 @@ interface PlacementCandidate {
   arrow: ArrowDirection;
 }
 
-export type { ArrowDirection, PlacementResult, PlacementCandidate, Placement };
+export type { ArrowDirection, Placement, PlacementResult, PlacementCandidate };
