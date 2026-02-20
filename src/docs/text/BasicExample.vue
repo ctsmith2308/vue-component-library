@@ -21,21 +21,25 @@ const tags = ['p', 'div', 'span', 'label'] as const;
     <div class="flex flex-col gap-4 w-full">
       <div class="flex flex-col gap-1">
         <span class="text-xs text-content-text-secondary font-mono">size="sm"</span>
+
         <Text size="sm">Small body text — useful for captions and secondary details.</Text>
       </div>
 
       <div class="flex flex-col gap-1">
         <span class="text-xs text-content-text-secondary font-mono">default</span>
+
         <Text>Default body text with relaxed line-height for comfortable reading.</Text>
       </div>
 
       <div class="flex flex-col gap-1">
         <span class="text-xs text-content-text-secondary font-mono">size="lg"</span>
+
         <Text size="lg">Large lead text for introductory paragraphs or callouts.</Text>
       </div>
 
       <div class="flex flex-col gap-1">
         <span class="text-xs text-content-text-secondary font-mono">tag variants</span>
+
         <div class="flex gap-2 flex-wrap">
           <Text v-for="tag in tags" :key="tag" :tag="tag" size="sm">{{ tag }}</Text>
         </div>

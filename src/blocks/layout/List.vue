@@ -21,7 +21,7 @@ const handleItemClick = (item: ListItem<T>) => {
     <ListItem
       v-for="(item, idx) in items"
       :key="idx"
-      :class="{ active: item.active }"
+      :class="{ active: 'bg-color-brand' }"
       clickable
       @click="handleItemClick(item)"
     >
@@ -32,19 +32,3 @@ const handleItemClick = (item: ListItem<T>) => {
     </ListItem>
   </ul>
 </template>
-
-<style scoped>
-.active {
-  font-weight: 600;
-  color: var(--primary-color);
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-ul ul {
-  padding-left: 1rem;
-}
-</style>

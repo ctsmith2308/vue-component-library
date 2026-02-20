@@ -1,0 +1,76 @@
+@layer components {
+  .base-radius {
+    @apply rounded-md;
+  }
+
+  .card {
+    @apply rounded-md w-full max-w-full bg-surface border border-surface-border p-4;
+  }
+
+  .panel {
+    @apply rounded-md bg-surface border border-surface-border overflow-hidden;
+  }
+
+  .panel-header {
+    @apply bg-panel-bg border-b border-panel-border px-4 py-3;
+  }
+
+  .panel-body {
+    @apply px-4 py-3;
+  }
+
+  .dropdown {
+    @apply rounded-md bg-surface border border-surface-border shadow-md overflow-hidden;
+  }
+
+  .dropdown-item {
+    @apply px-3 py-2.5 cursor-pointer bg-surface border-b border-surface-border last:border-b-0 hover:bg-brand-ghost-hover focus:bg-brand-ghost-hover focus:outline-none;
+  }
+
+  .table-wrapper {
+    @apply rounded-md w-full overflow-x-auto bg-surface border border-surface-border;
+  }
+
+  .table-header {
+    @apply bg-panel-bg border-b border-panel-border;
+  }
+
+  .table-header-cell {
+    @apply px-4 py-3 text-left text-sm font-semibold text-content-text;
+  }
+
+  .table-header-cell--sortable {
+    @apply cursor-pointer hover:bg-surface-alt select-none;
+  }
+
+  .table-row {
+    @apply border-b border-surface-border last:border-b-0;
+  }
+  .table-row--hoverable {
+    @apply hover:bg-surface-alt cursor-pointer;
+  }
+
+  .table-cell {
+    @apply px-4 py-3 text-sm text-content-text;
+  }
+
+  .table-empty {
+    @apply px-4 py-8 text-center text-content-text-secondary;
+  }
+
+  .accordion-header {
+    @apply w-full flex items-center justify-between px-4 py-3 text-left transition-colors cursor-pointer hover:bg-surface-alt;
+  }
+
+  .accordion-header--active {
+    @apply bg-surface-alt;
+  }
+
+  .accordion-header--disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .accordion-body {
+    @apply px-4 py-3 border-t border-surface-border;
+  }
+}

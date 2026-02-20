@@ -1,0 +1,48 @@
+@use '../mixins' as *;
+
+[data-mode='dark'] {
+  font-family: 'Press Start 2P', system-ui, sans-serif;
+
+  @include typography(#e5e7eb, 'dark');
+  @include surface-colors(#000000, #0d1117, 'dark', #27272a);
+  @include panel-colors(#1e2530, 'dark');
+
+  .base-radius,
+  .btn,
+  .card,
+  .panel,
+  .dropdown,
+  .input-base,
+  .input-trigger,
+  .chip {
+    border-radius: 0;
+  }
+
+  .text-heading-1 {
+    @apply text-2xl;
+  }
+
+  .text-heading-2 {
+    @apply text-xl;
+  }
+
+  .text-heading-3 {
+    @apply text-lg;
+  }
+
+  .text-heading-4 {
+    @apply text-base;
+  }
+
+  .text-heading-5 {
+    @apply text-sm;
+  }
+
+  .text-body-md {
+    @apply text-xs;
+  }
+
+  .text-body-lg {
+    @apply text-sm;
+  }
+}

@@ -17,9 +17,9 @@ const emit = defineEmits<{
 }>();
 
 const rowClasses = computed(() => [
-  'border-b border-surface-border last:border-b-0',
+  'table-row',
   {
-    'hover:color-hover cursor-pointer': props.hoverable,
+    'table-row--hoverable': props.hoverable,
   },
 ]);
 
@@ -30,7 +30,7 @@ const onRowClick = () => {
 
 <template>
   <tr :class="rowClasses" @click="onRowClick">
-    <td v-for="column in columns" :key="column.field" class="px-4 py-3 text-sm text-content-text min-w-50">
+    <td v-for="column in columns" :key="column.field" class="table-cell">
       <slot :name="`cell-${column.field}`" :data="row" :value="row[column.field]">
         {{ row[column.field] }}
       </slot>

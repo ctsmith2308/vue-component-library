@@ -63,20 +63,15 @@ const onLeave = (el: Element) => {
 
 <template>
   <div class="w-full space-y-2">
-    <div
-      v-for="(tab, index) in tabs"
-      :key="index"
-      class="bg-surface border border-surface-border rounded-lg overflow-hidden"
-    >
+    <div v-for="(tab, index) in tabs" :key="index" class="panel">
       <!-- Header -->
       <button
         type="button"
         :class="[
-          'w-full flex items-center justify-between px-4 py-3 text-left transition-colors',
+          'accordion-header',
           {
-            'hover:bg-surface-alt cursor-pointer': !tab.disabled,
-            'opacity-50 cursor-not-allowed': tab.disabled,
-            'bg-surface-alt': isActive(index),
+            'accordion-header--disabled': tab.disabled,
+            'accordion-header--active': isActive(index),
           },
         ]"
         @click="toggle(index)"
@@ -95,7 +90,7 @@ const onLeave = (el: Element) => {
       <!-- Content -->
       <Transition name="accordion" @enter="onEnter" @after-enter="onAfterEnter" @leave="onLeave">
         <div v-if="isActive(index)" class="accordion-content overflow-hidden transition-all duration-200">
-          <div class="px-4 py-3 border-t border-surface-border">
+          <div class="accordion-body">
             <Text tag="span">
               {{ tab.content }}
             </Text>

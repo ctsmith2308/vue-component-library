@@ -1,0 +1,128 @@
+@layer components {
+  .inline-highlight {
+    @apply rounded-md text-content-code py-1 px-1 bg-surface-alt;
+  }
+
+  /* ---------------------------------- */
+  /* Base                               */
+  /* ---------------------------------- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md cursor-pointer transition-colors px-4;
+  }
+
+  /* ---------------------------------- */
+  /* Sizes                              */
+  /* ---------------------------------- */
+  .btn-sm {
+    @apply h-6 text-sm;
+  }
+
+  .btn-md {
+    @apply h-8 text-sm;
+  }
+
+  .btn-lg {
+    @apply h-10 text-base;
+  }
+
+  .btn-xl {
+    @apply h-12 text-base;
+  }
+
+  .btn-jumbo {
+    @apply h-16 text-lg;
+  }
+
+  /* ---------------------------------- */
+  /* Solid                              */
+  /* ---------------------------------- */
+  .btn-primary {
+    @apply bg-brand text-brand-contrast hover:bg-brand-solid-hover;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-contrast hover:bg-secondary-solid-hover;
+  }
+
+  .btn-success {
+    @apply bg-success text-success-contrast hover:bg-success-solid-hover;
+  }
+
+  .btn-danger {
+    @apply bg-danger text-danger-contrast hover:bg-danger-solid-hover;
+  }
+
+  /* ---------------------------------- */
+  /* Outlined                           */
+  /* ---------------------------------- */
+  .btn-outlined-primary {
+    @apply bg-transparent border border-brand text-brand hover:bg-brand-ghost-hover;
+  }
+
+  .btn-outlined-secondary {
+    @apply bg-transparent border border-secondary text-secondary hover:bg-secondary-ghost-hover;
+  }
+
+  .btn-outlined-success {
+    @apply bg-transparent border border-success text-success hover:bg-success-ghost-hover;
+  }
+
+  .btn-outlined-danger {
+    @apply bg-transparent border border-danger text-danger hover:bg-danger-ghost-hover;
+  }
+
+  /* ---------------------------------- */
+  /* Text                               */
+  /* ---------------------------------- */
+  .btn-text-primary {
+    @apply bg-transparent border-none text-brand hover:bg-brand-ghost-hover;
+  }
+
+  .btn-text-secondary {
+    @apply bg-transparent border-none text-secondary hover:bg-secondary-ghost-hover;
+  }
+
+  .btn-text-success {
+    @apply bg-transparent border-none text-success hover:bg-success-ghost-hover;
+  }
+
+  .btn-text-danger {
+    @apply bg-transparent border-none text-danger hover:bg-danger-ghost-hover;
+  }
+
+  /* ---------------------------------- */
+  /* Ghost                              */
+  /* ---------------------------------- */
+  .btn-ghost {
+    @apply bg-surface border border-surface-border text-content-text hover:border-brand hover:text-brand;
+  }
+
+  /* ---------------------------------- */
+  /* Link                               */
+  /* ---------------------------------- */
+  .btn-link {
+    @apply bg-transparent border-none text-content-text hover:underline;
+  }
+
+  /* ---------------------------------- */
+  /* Modifiers                          */
+  /* ---------------------------------- */
+  .btn-rounded {
+    @apply rounded-full;
+  }
+
+  .btn-raised {
+    @apply shadow-md/30;
+  }
+
+  .btn-icon {
+    @apply aspect-square !p-0;
+  }
+
+  /* ---------------------------------- */
+  /* States                             */
+  /* ---------------------------------- */
+  .btn-disabled {
+    @apply bg-disabled-bg text-disabled-text border-disabled-border cursor-not-allowed pointer-events-none;
+  }
+}

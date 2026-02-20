@@ -1,0 +1,25 @@
+@use '../mixins' as *;
+
+[data-theme='retro-green'] {
+  @include typography(#00ff41, 'dark');
+  @include surface-colors(#0d0d0d, #0a1a0a, 'dark', #00ff41);
+  @include panel-colors(#001a00, 'dark');
+  @include color-variants('brand', #00ff41);
+  @include color-variants('disabled', #1a3a1a, true);
+}
+
+[data-theme='retro-amber'] {
+  @include typography(#ffb300, 'dark');
+  @include surface-colors(#1a1200, #1f1800, 'dark', #ffb300);
+  @include panel-colors(#2a1f00, 'dark');
+  @include color-variants('brand', #ffb300);
+  @include color-variants('disabled', #3a2e00, true);
+}
+
+[data-theme='plasma-red'] {
+  @include typography(#e0e0e0, 'dark');
+  @include surface-colors(#0a0a0f, #120a12, 'dark', #cc0000);
+  @include panel-colors(#1a001a, 'dark');
+  @include color-variants('brand', #cc0000);
+  @include color-variants('disabled', #2a0a0a, true);
+}

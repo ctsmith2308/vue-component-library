@@ -1,0 +1,25 @@
+@layer components {
+  .chip {
+    @apply rounded-md inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium border;
+  }
+
+  .tag {
+    @apply inline-flex items-center gap-2 px-2.5 py-1 text-xs font-semibold rounded;
+  }
+
+  .tag-rounded {
+    @apply rounded-full;
+  }
+
+  .tab-item {
+    @apply px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-2;
+  }
+
+  .tab-item--active {
+    @apply text-brand-dark border-b border-brand-dark;
+  }
+
+  .tab-item--inactive {
+    @apply text-content-text-secondary hover:text-brand border-b border-transparent;
+  }
+}

@@ -14,9 +14,9 @@ const props = withDefaults(defineProps<TextProps>(), {
 });
 
 const sizeKeys = {
-  sm: 'text-sm',
-  md: 'text-base',
-  lg: 'text-lg',
+  sm: 'text-body-sm',
+  md: 'text-body-md',
+  lg: 'text-body-lg',
 };
 
 const colorKeys = {
@@ -27,7 +27,7 @@ const colorKeys = {
   brand: 'text-brand',
 };
 
-const textClass = computed(() => ['leading-relaxed', sizeKeys[props.size], colorKeys[props.color]]);
+const textClass = computed(() => [sizeKeys[props.size], colorKeys[props.color]]);
 </script>
 
 <template>

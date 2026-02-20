@@ -27,7 +27,7 @@ const shapeStyles = computed(() => {
       borderRadius: '50%',
     };
   }
-  
+
   if (props.shape === 'square') {
     const size = props.size || props.height;
     return {
@@ -36,7 +36,7 @@ const shapeStyles = computed(() => {
       borderRadius: props.borderRadius,
     };
   }
-  
+
   return {
     width: props.width,
     height: props.height,
@@ -52,43 +52,7 @@ const animationClass = computed(() => {
 </script>
 
 <template>
-  <div
-    :class="['skeleton bg-surface-alt', animationClass]"
-    :style="shapeStyles"
-  >
+  <div :class="['skeleton bg-surface-alt', animationClass]" :style="shapeStyles">
     <slot></slot>
   </div>
 </template>
-
-<style scoped>
-.skeleton {
-  display: inline-block;
-  position: relative;
-  overflow: hidden;
-}
-
-@keyframes wave {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-.animate-wave::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.5),
-    transparent
-  );
-  animation: wave 1.5s infinite;
-}
-</style>

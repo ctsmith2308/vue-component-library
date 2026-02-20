@@ -1,0 +1,29 @@
+@layer components {
+  .input-base {
+    @apply rounded-md w-full px-3 h-8 bg-transparent border border-input-border transition-colors hover:border-brand focus:border-brand focus:outline-none;
+  }
+
+  .input-error {
+    @apply border-danger;
+  }
+
+  .input-trigger {
+    @apply rounded-md w-full px-3 h-8 bg-transparent border border-input-border transition-colors hover:border-brand inline-flex justify-between items-center cursor-pointer;
+  }
+
+  .checkbox-box {
+    @apply w-5 h-5 border-2 rounded flex items-center justify-center shrink-0 transition-all duration-200;
+  }
+
+  .checkbox-box--checked {
+    @apply bg-brand border-brand;
+  }
+
+  .checkbox-box--unchecked {
+    @apply bg-transparent border-input-border hover:bg-brand-ghost-hover;
+  }
+
+  .checkbox-label {
+    @apply flex items-center gap-2.5 cursor-pointer select-none p-2.5 rounded-lg transition-colors hover:bg-brand-ghost-hover;
+  }
+}

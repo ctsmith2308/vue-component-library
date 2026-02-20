@@ -1,0 +1,39 @@
+@layer components {
+  /* ---------------------------------- */
+  /* Text                               */
+  /* ---------------------------------- */
+  .text-body-sm {
+    @apply text-sm;
+  }
+
+  .text-body-md {
+    @apply text-base;
+  }
+
+  .text-body-lg {
+    @apply text-lg;
+  }
+
+  /* ---------------------------------- */
+  /* Heading                            */
+  /* ---------------------------------- */
+  .text-heading-1 {
+    @apply text-5xl font-extrabold;
+  }
+
+  .text-heading-2 {
+    @apply text-4xl font-bold;
+  }
+
+  .text-heading-3 {
+    @apply text-3xl font-semibold;
+  }
+
+  .text-heading-4 {
+    @apply text-2xl font-semibold;
+  }
+
+  .text-heading-5 {
+    @apply text-xl font-semibold;
+  }
+}

@@ -25,9 +25,9 @@ const isActive = computed(() => props.sortField === props.column.field);
 const isSortable = computed(() => props.column.sortable);
 
 const headerClasses = computed(() => [
-  'px-4 py-3 text-left text-sm font-semibold text-content-text',
+  'table-header-cell',
   {
-    'cursor-pointer hover:bg-gray-100 select-none': isSortable.value,
+    'table-header-cell--sortable': isSortable.value,
   },
 ]);
 
@@ -46,7 +46,9 @@ const onHeaderClick = () => {
       <span v-if="isSortable" class="sort-icon text-content-text-secondary">
         <slot name="sort-icon" :field="column.field" :active="isActive" :order="sortOrder">
           <ArrowLongUpIcon v-if="isActive && sortOrder === 'asc'" class="w-4 h-4" />
+
           <ArrowLongDownIcon v-else-if="isActive && sortOrder === 'desc'" class="w-4 h-4" />
+
           <div v-else class="w-4 h-4 opacity-30">
             <ArrowLongUpIcon class="w-4 h-4" />
           </div>

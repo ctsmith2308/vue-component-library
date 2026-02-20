@@ -29,7 +29,7 @@ const currentUrl = computed(() => window.location.origin + route.fullPath);
       </Button>
     </div>
 
-    <div class="text-content-text-secondary leading-relaxed" v-html="description" />
+    <p class="text-content-text-secondary" v-html="description" />
 
     <Card>
       <div class="flex flex-row flex-wrap items-center justify-center gap-2 py-2 min-h-24">

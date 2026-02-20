@@ -28,7 +28,7 @@ const avatarClasses = computed(() => [
   'inline-flex items-center justify-center overflow-hidden',
   sizeClasses[props.size],
   shapeClass.value,
-  { 'bg-brand text-white': !props.image },
+  { 'bg-brand text-brand-contrast': !props.image },
 ]);
 
 const initials = computed(() => {
