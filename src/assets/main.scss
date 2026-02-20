@@ -1,6 +1,6 @@
 @use 'tailwindcss';
-@import 'highlight.js/styles/github-dark-dimmed.css';
-@import 'highlight.js/styles/github-dark.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 @mixin color-variants($name, $base, $include-disabled: false) {
   --color-#{$name}: #{$base};
@@ -81,6 +81,8 @@
   @include typography(#212529, 'light');
   @include surface-colors(#f8fafc, #ffffff, 'light', #e2e8f0);
   @include panel-colors(#e2e8f0, 'light');
+
+  // --font-nes: 'Press Start 2P', sans-serif;
 }
 
 /* Dark Mode */
