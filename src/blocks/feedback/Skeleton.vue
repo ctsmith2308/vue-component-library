@@ -21,6 +21,7 @@ const props = withDefaults(defineProps<SkeletonProps>(), {
 const shapeStyles = computed(() => {
   if (props.shape === 'circle') {
     const size = props.size || props.height;
+
     return {
       width: size,
       height: size,
@@ -30,6 +31,7 @@ const shapeStyles = computed(() => {
 
   if (props.shape === 'square') {
     const size = props.size || props.height;
+
     return {
       width: size,
       height: size,

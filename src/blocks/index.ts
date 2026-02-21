@@ -53,6 +53,9 @@ export * from './media/types';
 /** Custom Icons */
 export { default as Icon } from './icon/Icon.vue';
 
+/** Logo */
+export { default as Logo } from './logo/Logo.vue';
+
 /** Misc */
 export { default as ToggleSwitch } from './misc/ToggleSwitch.vue';
 export { default as CodeBlock } from './misc/CodeBlock.vue';

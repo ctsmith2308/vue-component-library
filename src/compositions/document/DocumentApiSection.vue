@@ -26,7 +26,7 @@ const onRowClick = () => {
       {{ heading }}
     </Heading>
 
-    <p class="text-content-text-secondary" v-html="description" />
+    <p class="text-content-text-secondary text-body-md" v-html="description" />
 
     <DataTable :data="apiTableData.data" :columns="apiTableData.columns" @rowClick="onRowClick" />
   </section>

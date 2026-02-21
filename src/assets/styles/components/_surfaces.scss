@@ -46,6 +46,7 @@
   .table-row {
     @apply border-b border-surface-border last:border-b-0;
   }
+
   .table-row--hoverable {
     @apply hover:bg-surface-alt cursor-pointer;
   }
@@ -72,5 +73,9 @@
 
   .accordion-body {
     @apply px-4 py-3 border-t border-surface-border;
+  }
+
+  .skeleton {
+    @apply rounded-md inline-block relative overflow-hidden bg-surface-alt;
   }
 }
