@@ -33,7 +33,7 @@ const navigationList = organizeRoutesByCategory(docRoutesConfig);
           v-for="component in route.components"
           :key="component.name"
           :class="[
-            'cursor-pointer base-radius transition-all duration-200 font-medium px-2',
+            'cursor-pointer transition-all duration-200 font-medium px-2',
             isActive(component.name) ? 'bg-brand text-content-text-muted hover:bg-brand-dark' : 'hover:bg-brand-ghost-hover',
           ]"
           @click="navigateToComponent(component.name)"

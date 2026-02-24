@@ -15,6 +15,37 @@
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
     animation: wave 1.5s infinite;
   }
+
+  .progress-indeterminate {
+    @apply absolute top-0 left-0 h-full;
+    width: 30%;
+    animation: progress-indeterminate 2s ease-in-out infinite;
+  }
+}
+
+@layer components {
+  .accordion-content {
+    transition: height 0.2s ease-in-out;
+  }
+
+  .overlay-enter-active,
+  .overlay-leave-active {
+    transition: opacity 300ms ease-out;
+  }
+
+  .overlay-enter-from,
+  .overlay-leave-to {
+    opacity: 0;
+  }
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    left: -30%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 ::view-transition-old(root),

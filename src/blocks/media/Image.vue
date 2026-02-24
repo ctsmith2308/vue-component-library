@@ -9,6 +9,7 @@ interface ImageProps {
   preview?: boolean;
   imageClass?: string;
   imageStyle?: string;
+  fit?: 'cover' | 'contain' | 'fill';
 }
 
 const props = withDefaults(defineProps<ImageProps>(), {
@@ -16,6 +17,7 @@ const props = withDefaults(defineProps<ImageProps>(), {
   preview: false,
   imageClass: '',
   imageStyle: '',
+  fit: 'cover',
 });
 
 const showPreview = ref(false);
@@ -42,13 +44,19 @@ const containerStyle = computed(() => ({
   width: typeof props.width === 'number' ? `${props.width}px` : props.width,
   height: typeof props.height === 'number' ? `${props.height}px` : props.height,
 }));
+
+const fitClass = {
+  cover: 'object-cover',
+  contain: 'object-contain',
+  fill: 'object-fill',
+};
 </script>
 
 <template>
-  <div class="image-container" :style="containerStyle">
-    <div v-if="isLoading" class="image-skeleton bg-surface-alt animate-pulse rounded-lg"></div>
+  <div class="relative inline-block w-full" :style="containerStyle">
+    <div v-if="isLoading" class="absolute inset-0 bg-surface-alt animate-pulse rounded-lg" />
 
-    <div v-if="hasError" class="image-error bg-surface-alt rounded-lg flex items-center justify-center">
+    <div v-if="hasError" class="absolute inset-0 bg-surface-alt rounded-lg flex items-center justify-center">
       <slot name="error">
         <span class="text-content-text-secondary text-sm">Failed to load image</span>
       </slot>
@@ -58,7 +66,12 @@ const containerStyle = computed(() => ({
       v-show="!isLoading && !hasError"
       :src="src"
       :alt="alt"
-      :class="['image', imageClass, { 'cursor-pointer hover:opacity-90 transition-opacity': preview }]"
+      :class="[
+        'w-full h-full rounded-lg',
+        fitClass[fit],
+        imageClass,
+        { 'cursor-pointer hover:opacity-90 transition-opacity': preview },
+      ]"
       :style="imageStyle"
       @load="handleLoad"
       @error="handleError"
@@ -66,27 +79,3 @@ const containerStyle = computed(() => ({
     />
   </div>
 </template>
-
-<style scoped>
-.image-container {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-
-.image,
-.image-skeleton,
-.image-error {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 0.5rem;
-}
-
-.image-skeleton,
-.image-error {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-</style>

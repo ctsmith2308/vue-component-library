@@ -15,15 +15,3 @@ const onClose = () => {
     <div v-if="props.isOpen" class="fixed inset-0 z-20 bg-black/50 backdrop-blur-xs" @click="onClose" />
   </Transition>
 </template>
-
-<style scoped>
-.overlay-enter-active,
-.overlay-leave-active {
-  transition: opacity 300ms ease-out;
-}
-
-.overlay-enter-from,
-.overlay-leave-to {
-  opacity: 0;
-}
-</style>
