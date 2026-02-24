@@ -152,12 +152,6 @@ const docRoutesConfig: DocRoute[] = [
     component: () => import('@/docs/chip/index.vue'),
   },
   {
-    name: 'code-block',
-    label: 'CodeBlock',
-    category: 'Misc',
-    component: () => import('@/docs/code-block/index.vue'),
-  },
-  {
     name: 'tag',
     label: 'Tag',
     category: 'Misc',
