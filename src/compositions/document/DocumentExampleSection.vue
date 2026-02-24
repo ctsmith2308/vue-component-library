@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { Heading, CodeBlock, Card, Button, Icon } from '@/blocks';
+import { Heading, Card, Button, Icon } from '@/blocks';
+import CodeBlock from '../misc/CodeBlock.vue';
 import { computed } from 'vue';
 
 defineProps<{

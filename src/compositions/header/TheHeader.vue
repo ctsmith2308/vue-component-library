@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { Button, Icon, Text, Logo } from '@/blocks';
+import { Button, Icon, Text } from '@/blocks';
 
+import Logo from '../misc/Logo.vue';
 import ThemeToggler from './ThemeToggler.vue';
 import ThemePalette from './ThemePalette.vue';
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type Component } from 'vue';
-import { Heading, NavList } from '@/blocks';
+import { Heading, Text } from '@/blocks';
 import { useScrollToSection } from '@/lib/composables';
 
 interface DocumentSection {
@@ -26,7 +26,16 @@ const { scrollToSection } = useScrollToSection({ updateUrl: true });
       <div class="flex flex-col pt-5 justify-start gap-2 bg-page">
         <Heading :size="4">Content</Heading>
 
-        <NavList :items="documentSections" @select="scrollToSection" />
+        <ul>
+          <li
+            v-for="section in documentSections"
+            :key="section.id"
+            @click="scrollToSection(section.id)"
+            class="cursor-pointer"
+          >
+            <Text>{{ section.label }}</Text>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

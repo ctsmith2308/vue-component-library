@@ -21,14 +21,11 @@ export * from './form/types';
 export { default as DataTable } from './data/DataTable.vue';
 export * from './data/types';
 
-/** Lists */
-export { default as NavList } from './list/NavList.vue';
-export * from './list/types';
-
 /** Layouts */
 export { default as Tabs } from './layout/Tabs.vue';
 export { default as Accordion } from './layout/Accordion.vue';
 export { default as Carousel } from './layout/Carousel.vue';
+export { default as List } from './layout/List.vue';
 export * from './layout/types';
 
 /** Feedback */
@@ -36,7 +33,6 @@ export { default as ProgressBar } from './feedback/ProgressBar.vue';
 export { default as ProgressSpinner } from './feedback/ProgressSpinner.vue';
 export { default as Skeleton } from './feedback/Skeleton.vue';
 export { default as TableSkeleton } from './data/TableSkeleton.vue';
-export * from './feedback/types';
 
 /** Surfaces */
 export { default as Card } from './surfaces/Card.vue';
@@ -48,18 +44,12 @@ export * from './overlay/types';
 
 /** Media */
 export { default as Image } from './media/Image.vue';
-export * from './media/types';
 
 /** Custom Icons */
 export { default as Icon } from './icon/Icon.vue';
 
-/** Logo */
-export { default as Logo } from './logo/Logo.vue';
-
 /** Misc */
 export { default as ToggleSwitch } from './misc/ToggleSwitch.vue';
-export { default as CodeBlock } from './misc/CodeBlock.vue';
 export { default as Avatar } from './misc/Avatar.vue';
 export { default as Chip } from './misc/Chip.vue';
 export { default as Tag } from './misc/Tag.vue';
-export * from './misc/types';
