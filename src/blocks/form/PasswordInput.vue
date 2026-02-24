@@ -3,7 +3,8 @@ import { computed, ref } from 'vue';
 
 import { type TextInputProps } from './types';
 import TextInput from './TextInput.vue';
-import { Button, Icon } from '@/blocks';
+import Button from '../button/Button.vue';
+import Icon from '../icon/Icon.vue';
 
 interface PasswordInputProps extends TextInputProps {
   minLength?: number;

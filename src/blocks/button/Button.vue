@@ -3,7 +3,7 @@ import { computed, useSlots } from 'vue';
 
 import type { ButtonColor, ButtonSize, ButtonVariant } from './types';
 
-import { ButtonSpinner } from '@/blocks';
+import ButtonSpinner from './ButtonSpinner.vue';
 
 interface ButtonProps {
   label?: string;

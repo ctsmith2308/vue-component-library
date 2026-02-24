@@ -6,6 +6,7 @@
   @include color-variants('success', #198754);
   @include color-variants('danger', #dc3545);
   @include color-variants('warning', #ffc107);
+  @include color-variants('info', #0dcaf0);
   @include color-variants('disabled', #6c757d, true);
 
   @include typography(#212529, 'light');

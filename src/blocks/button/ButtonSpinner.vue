@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ButtonSize } from '@/blocks';
+import type { ButtonSize } from './types';
 
 interface SpinnerProps {
   size?: ButtonSize;

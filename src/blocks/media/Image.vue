@@ -20,8 +20,16 @@ const props = withDefaults(defineProps<ImageProps>(), {
   fit: 'cover',
 });
 
+const showPreview = ref(false);
 const isLoading = ref(true);
 const hasError = ref(false);
+
+const openPreview = () => {
+  if (props.preview) {
+    showPreview.value = true;
+    document.body.style.overflow = 'hidden';
+  }
+};
 
 const handleLoad = () => {
   isLoading.value = false;
@@ -67,6 +75,7 @@ const fitClass = {
       :style="imageStyle"
       @load="handleLoad"
       @error="handleError"
+      @click="openPreview"
     />
   </div>
 </template>

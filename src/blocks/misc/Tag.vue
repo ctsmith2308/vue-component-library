@@ -15,12 +15,12 @@ const props = withDefaults(defineProps<TagProps>(), {
 });
 
 const severityClasses = {
-  primary: 'bg-brand text-white',
-  secondary: 'bg-secondary text-white',
-  success: 'bg-success text-white',
-  danger: 'bg-danger text-white',
-  warning: 'bg-yellow-500 text-white',
-  info: 'bg-blue-500 text-white',
+  primary:   'bg-brand text-brand-contrast',
+  secondary: 'bg-secondary text-secondary-contrast',
+  success:   'bg-success text-success-contrast',
+  danger:    'bg-danger text-danger-contrast',
+  warning:   'bg-warning text-warning-contrast',
+  info:      'bg-info text-info-contrast',
 };
 
 const tagClasses = computed(() => [

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue';
-import { Button, Icon } from '@/blocks';
+import Button from '../button/Button.vue';
+import Icon from '../icon/Icon.vue';
 
 interface CarouselProps {
   value: unknown[];
@@ -148,7 +149,7 @@ onUnmounted(() => {
           'w-2 h-2 rounded-full transition-all',
           {
             'bg-brand w-6': Math.floor(currentIndex / numScroll) === page - 1,
-            'bg-gray-300 hover:bg-gray-400': Math.floor(currentIndex / numScroll) !== page - 1,
+            'bg-surface-border hover:bg-surface-alt': Math.floor(currentIndex / numScroll) !== page - 1,
           },
         ]"
         @click="goToPage(page - 1)"

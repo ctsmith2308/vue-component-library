@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 interface Props {
   clickable?: boolean;
 }
@@ -16,20 +18,16 @@ const handleClick = (event: MouseEvent) => {
     emit('click', event);
   }
 };
+
+const classes = computed(() => [
+  {
+    'cursor-pointer hover:bg-surface-alt': props.clickable,
+  },
+]);
 </script>
 
 <template>
-  <li :class="{ clickable }" @click.stop="handleClick">
+  <li :class="classes" @click.stop="handleClick">
     <slot />
   </li>
 </template>
-
-<style scoped>
-li.clickable {
-  cursor: pointer;
-}
-
-li.clickable:hover {
-  background-color: var(--surface-hover);
-}
-</style>

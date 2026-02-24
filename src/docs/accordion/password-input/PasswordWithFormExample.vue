@@ -42,19 +42,9 @@ const onSubmit = (isValid: boolean): void => {
   <DocumentExampleSection :heading="heading" :description="htmlString" :code-snippet="codeSnippet">
     <Form @submit="onSubmit">
       <div class="flex flex-col gap-4 w-full max-w-sm">
-        <PasswordInput
-          v-model="password"
-          name="password"
-          label="Password"
-          :min-length="8"
-        />
+        <PasswordInput v-model="password" name="password" label="Password" :min-length="8" />
 
-        <PasswordInput
-          v-model="confirm"
-          name="confirm"
-          label="Confirm password"
-          :min-length="8"
-        />
+        <PasswordInput v-model="confirm" name="confirm" label="Confirm password" :min-length="8" />
 
         <Button type="submit" label="Create account" />
       </div>

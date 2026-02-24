@@ -42,7 +42,7 @@ const trackClasses = computed(() => [
   sizeClasses[props.size].track,
   {
     'bg-brand': props.modelValue,
-    'bg-gray-300': !props.modelValue,
+    'bg-surface-border': !props.modelValue,
     'opacity-50 cursor-not-allowed': props.disabled,
     'cursor-pointer': !props.disabled,
   },

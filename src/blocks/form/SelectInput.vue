@@ -140,7 +140,7 @@ watch(isOpen, (newVal: boolean) => {
       <span class="flex-1 text-left">{{ selectedLabel }}</span>
 
       <span
-        class="flex items-center size-5 text-[#999] transition-[rotate] duration-200 ease-in-out"
+        class="flex items-center size-5 text-content-text-secondary transition-[rotate] duration-200 ease-in-out"
         :class="{ 'rotate-[-180deg]': isOpen }"
       >
         <Icon iconType="ChevronDownIcon" />

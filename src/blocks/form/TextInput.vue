@@ -68,7 +68,7 @@ const className = computed(() => props.fluid && 'w-full');
         :aria-invalid="!!error"
         @input="onInput"
         @blur="onBlur"
-        class="h-10 w-full p-2 border border-input-border text-content-text rounded-md"
+        class="w-full p-2 border border-input-border text-content-text rounded-md"
       />
 
       <slot name="suffix" />

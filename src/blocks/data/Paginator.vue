@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-import { Button, Icon } from '@/blocks';
+import Button from '../button/Button.vue';
+import Icon from '../icon/Icon.vue';
 
 interface PaginatorProps {
   totalRecords: number;
