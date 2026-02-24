@@ -73,7 +73,7 @@ const containerClasses = computed(() => [
 
 <template>
   <div class="inline-flex items-center gap-3">
-    <div :class="containerClasses">
+    <div :class="containerClasses" id="inner-wrapper">
       <button
         type="button"
         role="switch"
