@@ -1,0 +1,326 @@
+@theme {
+  --color-brand: #0d6efd;
+  --color-brand-light: oklch(from #0d6efd calc(l + 0.25) c h);
+  --color-brand-dark: oklch(from #0d6efd calc(l - 0.15) c h);
+  --color-brand-solid-hover: oklch(from #0d6efd calc(l - 0.08) c h);
+  --color-brand-ghost-hover: oklch(from #0d6efd l c h / 0.1);
+  --color-brand-contrast: oklch(from #0d6efd calc((0.6 - l) * 999) 0 h);
+  --color-secondary: #a855f7;
+  --color-secondary-light: oklch(from #a855f7 calc(l + 0.25) c h);
+  --color-secondary-dark: oklch(from #a855f7 calc(l - 0.15) c h);
+  --color-secondary-solid-hover: oklch(from #a855f7 calc(l - 0.08) c h);
+  --color-secondary-ghost-hover: oklch(from #a855f7 l c h / 0.1);
+  --color-secondary-contrast: oklch(from #a855f7 calc((0.6 - l) * 999) 0 h);
+  --color-success: #198754;
+  --color-success-light: oklch(from #198754 calc(l + 0.25) c h);
+  --color-success-dark: oklch(from #198754 calc(l - 0.15) c h);
+  --color-success-solid-hover: oklch(from #198754 calc(l - 0.08) c h);
+  --color-success-ghost-hover: oklch(from #198754 l c h / 0.1);
+  --color-success-contrast: oklch(from #198754 calc((0.6 - l) * 999) 0 h);
+  --color-danger: #dc3545;
+  --color-danger-light: oklch(from #dc3545 calc(l + 0.25) c h);
+  --color-danger-dark: oklch(from #dc3545 calc(l - 0.15) c h);
+  --color-danger-solid-hover: oklch(from #dc3545 calc(l - 0.08) c h);
+  --color-danger-ghost-hover: oklch(from #dc3545 l c h / 0.1);
+  --color-danger-contrast: oklch(from #dc3545 calc((0.6 - l) * 999) 0 h);
+  --color-warning: #ffc107;
+  --color-warning-light: oklch(from #ffc107 calc(l + 0.25) c h);
+  --color-warning-dark: oklch(from #ffc107 calc(l - 0.15) c h);
+  --color-warning-solid-hover: oklch(from #ffc107 calc(l - 0.08) c h);
+  --color-warning-ghost-hover: oklch(from #ffc107 l c h / 0.1);
+  --color-warning-contrast: oklch(from #ffc107 calc((0.6 - l) * 999) 0 h);
+  --color-info: #0dcaf0;
+  --color-info-light: oklch(from #0dcaf0 calc(l + 0.25) c h);
+  --color-info-dark: oklch(from #0dcaf0 calc(l - 0.15) c h);
+  --color-info-solid-hover: oklch(from #0dcaf0 calc(l - 0.08) c h);
+  --color-info-ghost-hover: oklch(from #0dcaf0 l c h / 0.1);
+  --color-info-contrast: oklch(from #0dcaf0 calc((0.6 - l) * 999) 0 h);
+  --color-disabled: #6c757d;
+  --color-disabled-light: oklch(from #6c757d calc(l + 0.25) c h);
+  --color-disabled-dark: oklch(from #6c757d calc(l - 0.15) c h);
+  --color-disabled-solid-hover: oklch(from #6c757d calc(l - 0.08) c h);
+  --color-disabled-ghost-hover: oklch(from #6c757d l c h / 0.1);
+  --color-disabled-contrast: oklch(from #6c757d calc((0.6 - l) * 999) 0 h);
+  --color-disabled-bg: oklch(from #6c757d calc(l + 0.1) c h);
+  --color-disabled-border: oklch(from #6c757d calc(l + 0.05) c h);
+  --color-disabled-text: oklch(from #6c757d calc(l - 0.2) c h);
+  --color-disabled-icon: oklch(from #6c757d calc(l + (1 - l) * 0.55) c h);
+  --color-content-text: #212529;
+  --color-content-link: oklch(from #212529 calc(l - 0.1) c h / 0.85);
+  --color-content-code: oklch(from #212529 l calc(c + 0.08) h);
+  --color-content-text-placeholder: oklch(from #212529 calc(l + (1 - l) * 0.55) c h);
+  --color-content-text-secondary: oklch(from #212529 calc(l * 0.6) c h);
+  --color-content-text-muted: oklch(from #212529 calc(l * 0.4) c h);
+  --color-page: #f8fafc;
+  --color-page-contrast: oklch(from #f8fafc calc((0.6 - l) * 999) 0 h);
+  --color-surface: #ffffff;
+  --color-surface-contrast: oklch(from #ffffff calc((0.6 - l) * 999) 0 h);
+  --color-page-alt: oklch(from #f8fafc calc(l - 0.03) c h);
+  --color-surface-alt: oklch(from #ffffff calc(l - 0.06) c h);
+  --color-surface-border: #e2e8f0;
+  --color-input-border: #e2e8f0;
+  --color-panel-bg: #e2e8f0;
+  --color-panel-contrast: oklch(from #e2e8f0 calc((0.6 - l) * 999) 0 h);
+  --color-panel-bg-alt: oklch(from #e2e8f0 calc(l - 0.04) c h);
+  --color-panel-border: oklch(from #e2e8f0 calc(l - 0.08) c h);
+  --color-panel-stripe: oklch(from #e2e8f0 calc(l + 0.03) c h);
+  --color-panel-text: oklch(from #e2e8f0 calc(l * 0.35) c h);
+  --color-panel-text-secondary: oklch(from #e2e8f0 calc(l * 0.55) c h);
+}
+
+[data-mode='dark'] {
+  --color-content-text: #e5e7eb;
+  --color-content-link: oklch(from #e5e7eb calc(l - 0.1) c h / 0.85);
+  --color-content-code: oklch(from #e5e7eb l calc(c + 0.08) h);
+  --color-content-text-placeholder: oklch(from #e5e7eb calc(l + (1 - l) * 0.55) c h);
+  --color-content-text-secondary: oklch(from #e5e7eb calc(l + (1 - l) * 0.7) c h);
+  --color-content-text-muted: oklch(from #e5e7eb calc(l + (1 - l) * 0.85) c h);
+  --color-page: #000000;
+  --color-page-contrast: oklch(from #000000 calc((0.6 - l) * 999) 0 h);
+  --color-surface: #0d1117;
+  --color-surface-contrast: oklch(from #0d1117 calc((0.6 - l) * 999) 0 h);
+  --color-page-alt: oklch(from #000000 calc(l + 0.05) c h);
+  --color-surface-alt: oklch(from #0d1117 calc(l + 0.1) c h);
+  --color-surface-border: #27272a;
+  --color-input-border: #27272a;
+  --color-panel-bg: #1e2530;
+  --color-panel-contrast: oklch(from #1e2530 calc((0.6 - l) * 999) 0 h);
+  --color-panel-bg-alt: oklch(from #1e2530 calc(l - 0.04) c h);
+  --color-panel-border: oklch(from #1e2530 calc(l - 0.08) c h);
+  --color-panel-stripe: oklch(from #1e2530 calc(l + 0.03) c h);
+  --color-panel-text: oklch(from #1e2530 calc(l + (1 - l) * 0.75) c h);
+  --color-panel-text-secondary: oklch(from #1e2530 calc(l + (1 - l) * 0.5) c h);
+}
+
+[data-theme='blue'] {
+  --color-brand: #0d6efd;
+  --color-brand-light: oklch(from #0d6efd calc(l + 0.25) c h);
+  --color-brand-dark: oklch(from #0d6efd calc(l - 0.15) c h);
+  --color-brand-solid-hover: oklch(from #0d6efd calc(l - 0.08) c h);
+  --color-brand-ghost-hover: oklch(from #0d6efd l c h / 0.1);
+  --color-brand-contrast: oklch(from #0d6efd calc((0.6 - l) * 999) 0 h);
+}
+
+[data-theme='green'] {
+  --color-brand: #22c55e;
+  --color-brand-light: oklch(from #22c55e calc(l + 0.25) c h);
+  --color-brand-dark: oklch(from #22c55e calc(l - 0.15) c h);
+  --color-brand-solid-hover: oklch(from #22c55e calc(l - 0.08) c h);
+  --color-brand-ghost-hover: oklch(from #22c55e l c h / 0.1);
+  --color-brand-contrast: oklch(from #22c55e calc((0.6 - l) * 999) 0 h);
+}
+
+[data-theme='orange'] {
+  --color-brand: #f97316;
+  --color-brand-light: oklch(from #f97316 calc(l + 0.25) c h);
+  --color-brand-dark: oklch(from #f97316 calc(l - 0.15) c h);
+  --color-brand-solid-hover: oklch(from #f97316 calc(l - 0.08) c h);
+  --color-brand-ghost-hover: oklch(from #f97316 l c h / 0.1);
+  --color-brand-contrast: oklch(from #f97316 calc((0.6 - l) * 999) 0 h);
+}
+
+[data-theme='yellow'] {
+  --color-brand: #eab308;
+  --color-brand-light: oklch(from #eab308 calc(l + 0.25) c h);
+  --color-brand-dark: oklch(from #eab308 calc(l - 0.15) c h);
+  --color-brand-solid-hover: oklch(from #eab308 calc(l - 0.08) c h);
+  --color-brand-ghost-hover: oklch(from #eab308 l c h / 0.1);
+  --color-brand-contrast: oklch(from #eab308 calc((0.6 - l) * 999) 0 h);
+}
+
+[data-theme='fuchsia'] {
+  --color-brand: #d946ef;
+  --color-brand-light: oklch(from #d946ef calc(l + 0.25) c h);
+  --color-brand-dark: oklch(from #d946ef calc(l - 0.15) c h);
+  --color-brand-solid-hover: oklch(from #d946ef calc(l - 0.08) c h);
+  --color-brand-ghost-hover: oklch(from #d946ef l c h / 0.1);
+  --color-brand-contrast: oklch(from #d946ef calc((0.6 - l) * 999) 0 h);
+}
+
+[data-theme='retro-pink'] {
+  font-family: 'Press Start 2P', system-ui, sans-serif;
+  --color-content-text: #ff00aa;
+  --color-content-link: oklch(from #ff00aa calc(l - 0.1) c h / 0.85);
+  --color-content-code: oklch(from #ff00aa l calc(c + 0.08) h);
+  --color-content-text-placeholder: oklch(from #ff00aa calc(l + (1 - l) * 0.55) c h);
+  --color-content-text-secondary: oklch(from #ff00aa calc(l + (1 - l) * 0.7) c h);
+  --color-content-text-muted: oklch(from #ff00aa calc(l + (1 - l) * 0.85) c h);
+  --color-page: #0d0010;
+  --color-page-contrast: oklch(from #0d0010 calc((0.6 - l) * 999) 0 h);
+  --color-surface: #1a0020;
+  --color-surface-contrast: oklch(from #1a0020 calc((0.6 - l) * 999) 0 h);
+  --color-page-alt: oklch(from #0d0010 calc(l + 0.05) c h);
+  --color-surface-alt: oklch(from #1a0020 calc(l + 0.1) c h);
+  --color-surface-border: #ff00aa;
+  --color-input-border: #ff00aa;
+  --color-panel-bg: #130018;
+  --color-panel-contrast: oklch(from #130018 calc((0.6 - l) * 999) 0 h);
+  --color-panel-bg-alt: oklch(from #130018 calc(l - 0.04) c h);
+  --color-panel-border: oklch(from #130018 calc(l - 0.08) c h);
+  --color-panel-stripe: oklch(from #130018 calc(l + 0.03) c h);
+  --color-panel-text: oklch(from #130018 calc(l + (1 - l) * 0.75) c h);
+  --color-panel-text-secondary: oklch(from #130018 calc(l + (1 - l) * 0.5) c h);
+  --color-brand: #ff00aa;
+  --color-brand-light: oklch(from #ff00aa calc(l + 0.25) c h);
+  --color-brand-dark: oklch(from #ff00aa calc(l - 0.15) c h);
+  --color-brand-solid-hover: oklch(from #ff00aa calc(l - 0.08) c h);
+  --color-brand-ghost-hover: oklch(from #ff00aa l c h / 0.1);
+  --color-brand-contrast: oklch(from #ff00aa calc((0.6 - l) * 999) 0 h);
+  --color-disabled: #2d0038;
+  --color-disabled-light: oklch(from #2d0038 calc(l + 0.25) c h);
+  --color-disabled-dark: oklch(from #2d0038 calc(l - 0.15) c h);
+  --color-disabled-solid-hover: oklch(from #2d0038 calc(l - 0.08) c h);
+  --color-disabled-ghost-hover: oklch(from #2d0038 l c h / 0.1);
+  --color-disabled-contrast: oklch(from #2d0038 calc((0.6 - l) * 999) 0 h);
+  --color-disabled-bg: oklch(from #2d0038 calc(l + 0.1) c h);
+  --color-disabled-border: oklch(from #2d0038 calc(l + 0.05) c h);
+  --color-disabled-text: oklch(from #2d0038 calc(l - 0.2) c h);
+  --color-disabled-icon: oklch(from #2d0038 calc(l + (1 - l) * 0.55) c h);
+  --radius-md: 0;
+}
+
+[data-theme='retro-green'] {
+  font-family: 'Press Start 2P', system-ui, sans-serif;
+  --color-content-text: #00ff41;
+  --color-content-link: oklch(from #00ff41 calc(l - 0.1) c h / 0.85);
+  --color-content-code: oklch(from #00ff41 l calc(c + 0.08) h);
+  --color-content-text-placeholder: oklch(from #00ff41 calc(l + (1 - l) * 0.55) c h);
+  --color-content-text-secondary: oklch(from #00ff41 calc(l + (1 - l) * 0.7) c h);
+  --color-content-text-muted: oklch(from #00ff41 calc(l + (1 - l) * 0.85) c h);
+  --color-page: #0d0d0d;
+  --color-page-contrast: oklch(from #0d0d0d calc((0.6 - l) * 999) 0 h);
+  --color-surface: #0a1a0a;
+  --color-surface-contrast: oklch(from #0a1a0a calc((0.6 - l) * 999) 0 h);
+  --color-page-alt: oklch(from #0d0d0d calc(l + 0.05) c h);
+  --color-surface-alt: oklch(from #0a1a0a calc(l + 0.1) c h);
+  --color-surface-border: #00ff41;
+  --color-input-border: #00ff41;
+  --color-panel-bg: #001a00;
+  --color-panel-contrast: oklch(from #001a00 calc((0.6 - l) * 999) 0 h);
+  --color-panel-bg-alt: oklch(from #001a00 calc(l - 0.04) c h);
+  --color-panel-border: oklch(from #001a00 calc(l - 0.08) c h);
+  --color-panel-stripe: oklch(from #001a00 calc(l + 0.03) c h);
+  --color-panel-text: oklch(from #001a00 calc(l + (1 - l) * 0.75) c h);
+  --color-panel-text-secondary: oklch(from #001a00 calc(l + (1 - l) * 0.5) c h);
+  --color-brand: #00ff41;
+  --color-brand-light: oklch(from #00ff41 calc(l + 0.25) c h);
+  --color-brand-dark: oklch(from #00ff41 calc(l - 0.15) c h);
+  --color-brand-solid-hover: oklch(from #00ff41 calc(l - 0.08) c h);
+  --color-brand-ghost-hover: oklch(from #00ff41 l c h / 0.1);
+  --color-brand-contrast: oklch(from #00ff41 calc((0.6 - l) * 999) 0 h);
+  --color-disabled: #1a3a1a;
+  --color-disabled-light: oklch(from #1a3a1a calc(l + 0.25) c h);
+  --color-disabled-dark: oklch(from #1a3a1a calc(l - 0.15) c h);
+  --color-disabled-solid-hover: oklch(from #1a3a1a calc(l - 0.08) c h);
+  --color-disabled-ghost-hover: oklch(from #1a3a1a l c h / 0.1);
+  --color-disabled-contrast: oklch(from #1a3a1a calc((0.6 - l) * 999) 0 h);
+  --color-disabled-bg: oklch(from #1a3a1a calc(l + 0.1) c h);
+  --color-disabled-border: oklch(from #1a3a1a calc(l + 0.05) c h);
+  --color-disabled-text: oklch(from #1a3a1a calc(l - 0.2) c h);
+  --color-disabled-icon: oklch(from #1a3a1a calc(l + (1 - l) * 0.55) c h);
+  --radius-md: 0;
+}
+
+[data-theme='retro-amber'] {
+  font-family: 'Press Start 2P', system-ui, sans-serif;
+  --color-content-text: #ffb300;
+  --color-content-link: oklch(from #ffb300 calc(l - 0.1) c h / 0.85);
+  --color-content-code: oklch(from #ffb300 l calc(c + 0.08) h);
+  --color-content-text-placeholder: oklch(from #ffb300 calc(l + (1 - l) * 0.55) c h);
+  --color-content-text-secondary: oklch(from #ffb300 calc(l + (1 - l) * 0.7) c h);
+  --color-content-text-muted: oklch(from #ffb300 calc(l + (1 - l) * 0.85) c h);
+  --color-page: #1a1200;
+  --color-page-contrast: oklch(from #1a1200 calc((0.6 - l) * 999) 0 h);
+  --color-surface: #1f1800;
+  --color-surface-contrast: oklch(from #1f1800 calc((0.6 - l) * 999) 0 h);
+  --color-page-alt: oklch(from #1a1200 calc(l + 0.05) c h);
+  --color-surface-alt: oklch(from #1f1800 calc(l + 0.1) c h);
+  --color-surface-border: #ffb300;
+  --color-input-border: #ffb300;
+  --color-panel-bg: #2a1f00;
+  --color-panel-contrast: oklch(from #2a1f00 calc((0.6 - l) * 999) 0 h);
+  --color-panel-bg-alt: oklch(from #2a1f00 calc(l - 0.04) c h);
+  --color-panel-border: oklch(from #2a1f00 calc(l - 0.08) c h);
+  --color-panel-stripe: oklch(from #2a1f00 calc(l + 0.03) c h);
+  --color-panel-text: oklch(from #2a1f00 calc(l + (1 - l) * 0.75) c h);
+  --color-panel-text-secondary: oklch(from #2a1f00 calc(l + (1 - l) * 0.5) c h);
+  --color-brand: #ffb300;
+  --color-brand-light: oklch(from #ffb300 calc(l + 0.25) c h);
+  --color-brand-dark: oklch(from #ffb300 calc(l - 0.15) c h);
+  --color-brand-solid-hover: oklch(from #ffb300 calc(l - 0.08) c h);
+  --color-brand-ghost-hover: oklch(from #ffb300 l c h / 0.1);
+  --color-brand-contrast: oklch(from #ffb300 calc((0.6 - l) * 999) 0 h);
+  --color-disabled: #3a2e00;
+  --color-disabled-light: oklch(from #3a2e00 calc(l + 0.25) c h);
+  --color-disabled-dark: oklch(from #3a2e00 calc(l - 0.15) c h);
+  --color-disabled-solid-hover: oklch(from #3a2e00 calc(l - 0.08) c h);
+  --color-disabled-ghost-hover: oklch(from #3a2e00 l c h / 0.1);
+  --color-disabled-contrast: oklch(from #3a2e00 calc((0.6 - l) * 999) 0 h);
+  --color-disabled-bg: oklch(from #3a2e00 calc(l + 0.1) c h);
+  --color-disabled-border: oklch(from #3a2e00 calc(l + 0.05) c h);
+  --color-disabled-text: oklch(from #3a2e00 calc(l - 0.2) c h);
+  --color-disabled-icon: oklch(from #3a2e00 calc(l + (1 - l) * 0.55) c h);
+  --radius-md: 0;
+}
+
+[data-theme='plasma-red'] {
+  --color-page: #331319;
+  --color-page-alt: #3d1a20;
+  --color-surface: #040a10;
+  --color-surface-alt: #0a1018;
+  --color-surface-border: #710100;
+  --color-input-border: #710100;
+  --color-panel-bg: #331319;
+  --color-panel-bg-alt: #3d1a20;
+  --color-panel-border: #710100;
+  --color-panel-stripe: #2a1015;
+  --color-panel-text: #5df4fe;
+  --color-panel-text-secondary: #5df4fe;
+  --color-content-text: #5df4fe;
+  --color-content-text-secondary: #5df4fe;
+  --color-content-text-muted: #5df4fe;
+  --color-content-text-placeholder: #5df4fe;
+  --color-content-link: #5df4fe;
+  --color-content-code: #fdf500;
+  --color-brand: #5df4fe;
+  --color-brand-light: oklch(from #5df4fe calc(l + 0.25) c h);
+  --color-brand-dark: oklch(from #5df4fe calc(l - 0.15) c h);
+  --color-brand-solid-hover: oklch(from #5df4fe calc(l - 0.08) c h);
+  --color-brand-ghost-hover: oklch(from #5df4fe l c h / 0.1);
+  --color-brand-contrast: oklch(from #5df4fe calc((0.6 - l) * 999) 0 h);
+  --color-secondary: #9370db;
+  --color-secondary-light: oklch(from #9370db calc(l + 0.25) c h);
+  --color-secondary-dark: oklch(from #9370db calc(l - 0.15) c h);
+  --color-secondary-solid-hover: oklch(from #9370db calc(l - 0.08) c h);
+  --color-secondary-ghost-hover: oklch(from #9370db l c h / 0.1);
+  --color-secondary-contrast: oklch(from #9370db calc((0.6 - l) * 999) 0 h);
+  --color-success: #28c775;
+  --color-success-light: oklch(from #28c775 calc(l + 0.25) c h);
+  --color-success-dark: oklch(from #28c775 calc(l - 0.15) c h);
+  --color-success-solid-hover: oklch(from #28c775 calc(l - 0.08) c h);
+  --color-success-ghost-hover: oklch(from #28c775 l c h / 0.1);
+  --color-success-contrast: oklch(from #28c775 calc((0.6 - l) * 999) 0 h);
+  --color-danger: #fb3048;
+  --color-danger-light: oklch(from #fb3048 calc(l + 0.25) c h);
+  --color-danger-dark: oklch(from #fb3048 calc(l - 0.15) c h);
+  --color-danger-solid-hover: oklch(from #fb3048 calc(l - 0.08) c h);
+  --color-danger-ghost-hover: oklch(from #fb3048 l c h / 0.1);
+  --color-danger-contrast: oklch(from #fb3048 calc((0.6 - l) * 999) 0 h);
+  --color-warning: #fdf500;
+  --color-warning-light: oklch(from #fdf500 calc(l + 0.25) c h);
+  --color-warning-dark: oklch(from #fdf500 calc(l - 0.15) c h);
+  --color-warning-solid-hover: oklch(from #fdf500 calc(l - 0.08) c h);
+  --color-warning-ghost-hover: oklch(from #fdf500 l c h / 0.1);
+  --color-warning-contrast: oklch(from #fdf500 calc((0.6 - l) * 999) 0 h);
+  --color-disabled: #272932;
+  --color-disabled-light: oklch(from #272932 calc(l + 0.25) c h);
+  --color-disabled-dark: oklch(from #272932 calc(l - 0.15) c h);
+  --color-disabled-solid-hover: oklch(from #272932 calc(l - 0.08) c h);
+  --color-disabled-ghost-hover: oklch(from #272932 l c h / 0.1);
+  --color-disabled-contrast: oklch(from #272932 calc((0.6 - l) * 999) 0 h);
+  --color-disabled-bg: oklch(from #272932 calc(l + 0.1) c h);
+  --color-disabled-border: oklch(from #272932 calc(l + 0.05) c h);
+  --color-disabled-text: oklch(from #272932 calc(l - 0.2) c h);
+  --color-disabled-icon: oklch(from #272932 calc(l + (1 - l) * 0.55) c h);
+  --radius-md: 0;
+}

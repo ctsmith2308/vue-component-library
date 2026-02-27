@@ -1,7 +1,0 @@
-@use '../mixins' as *;
-
-[data-mode='dark'] {
-  @include typography(#e5e7eb, 'dark');
-  @include surface-colors(#000000, #0d1117, 'dark', #27272a);
-  @include panel-colors(#1e2530, 'dark');
-}
