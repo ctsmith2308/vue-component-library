@@ -24,6 +24,7 @@ const githubLink = 'https://github.com/ctsmith2308/vue-component-library';
       </Button>
 
       <Logo />
+
       <Text color="brand">Maven-Industries</Text>
     </div>
 
