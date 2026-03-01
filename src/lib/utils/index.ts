@@ -1,1 +1,0 @@
-export { toHtmlHighlight } from './toHtmlHighlight';

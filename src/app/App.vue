@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-  <RouterView />
+  <div>This is the landing for the app! To view the components, run storybook</div>
 </template>
