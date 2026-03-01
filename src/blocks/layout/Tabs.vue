@@ -1,34 +1,36 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import type { TabsProps } from './types';
-import TabItem from './TabItem.vue';
+import { provide, ref, watch } from 'vue';
+
+interface TabsProps {
+  value?: string;
+}
 
 const props = defineProps<TabsProps>();
 
-const activeTabIndex = ref(props.activeIndex ?? 0);
+const emit = defineEmits<{
+  'update:value': [value: string];
+}>();
 
-const setActiveTab = (index: number) => {
-  if (props.tabs[index] && !props.tabs[index].disabled) {
-    activeTabIndex.value = index;
-  }
-};
+const activeValue = ref<string>(props.value ?? '');
 
-const activeTab = computed(() => props.tabs[activeTabIndex.value]);
+watch(() => props.value, (val) => {
+  if (val !== undefined) activeValue.value = val;
+});
+
+function isActive(value: string): boolean {
+  return activeValue.value === value;
+}
+
+function activate(value: string): void {
+  activeValue.value = value;
+  emit('update:value', value);
+}
+
+provide('tabs', { isActive, activate });
 </script>
 
 <template>
   <div class="flex flex-col gap-4">
-    <div class="flex border-b border-surface-border">
-      <TabItem
-        v-for="(tab, index) in tabs"
-        :key="index"
-        :label="tab.header"
-        :is-active="activeTabIndex === index"
-        :is-disabled="tab.disabled || false"
-        @click="setActiveTab(index)"
-      />
-    </div>
-
-    <component v-if="activeTab" :is="activeTab.component" role="tabpanel" v-bind="activeTab.props || {}" />
+    <slot />
   </div>
 </template>

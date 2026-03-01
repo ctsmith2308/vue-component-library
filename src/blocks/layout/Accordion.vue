@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import type { AccordionTab } from './types';
-import Text from '../typography/Text.vue';
-import Icon from '../icon/Icon.vue';
+import { provide, ref, watch } from 'vue';
 
 interface AccordionProps {
-  tabs: AccordionTab[];
+  value?: string | string[];
   multiple?: boolean;
-  activeIndex?: number | number[];
 }
 
 const props = withDefaults(defineProps<AccordionProps>(), {
@@ -15,94 +11,38 @@ const props = withDefaults(defineProps<AccordionProps>(), {
 });
 
 const emit = defineEmits<{
-  tabOpen: [index: number];
-  tabClose: [index: number];
+  'update:value': [value: string | string[]];
 }>();
 
-const activeIndexes = ref<Set<number>>(
-  new Set(Array.isArray(props.activeIndex) ? props.activeIndex : props.activeIndex !== undefined ? [props.activeIndex] : []),
+const openValues = ref<Set<string>>(
+  new Set(Array.isArray(props.value) ? props.value : props.value ? [props.value] : []),
 );
 
-const isActive = (index: number) => activeIndexes.value.has(index);
+watch(() => props.value, (val) => {
+  openValues.value = new Set(Array.isArray(val) ? val : val ? [val] : []);
+});
 
-const toggle = (index: number) => {
-  if (props.tabs[index]?.disabled) return;
+function isOpen(value: string): boolean {
+  return openValues.value.has(value);
+}
 
-  if (activeIndexes.value.has(index)) {
-    activeIndexes.value.delete(index);
-    emit('tabClose', index);
+function toggle(value: string): void {
+  const next = new Set(openValues.value);
+  if (next.has(value)) {
+    next.delete(value);
   } else {
-    if (!props.multiple) {
-      activeIndexes.value.clear();
-    }
-    activeIndexes.value.add(index);
-    emit('tabOpen', index);
+    if (!props.multiple) next.clear();
+    next.add(value);
   }
-};
+  openValues.value = next;
+  emit('update:value', props.multiple ? [...next] : [...next][0] ?? '');
+}
 
-const onEnter = (el: Element) => {
-  (el as HTMLElement).style.height = 'auto';
-  const height = (el as HTMLElement).offsetHeight;
-  (el as HTMLElement).style.height = '0px';
-  setTimeout(() => {
-    (el as HTMLElement).style.height = height + 'px';
-  });
-};
-
-const onAfterEnter = (el: Element) => {
-  (el as HTMLElement).style.height = 'auto';
-};
-
-const onLeave = (el: Element) => {
-  (el as HTMLElement).style.height = (el as HTMLElement).offsetHeight + 'px';
-  setTimeout(() => {
-    (el as HTMLElement).style.height = '0px';
-  });
-};
+provide('accordion', { isOpen, toggle });
 </script>
 
 <template>
   <div class="w-full space-y-2">
-    <div v-for="(tab, index) in tabs" :key="index" class="panel">
-      <!-- Header -->
-      <button
-        type="button"
-        :class="[
-          'accordion-header',
-          {
-            'accordion-header--disabled': tab.disabled,
-            'accordion-header--active': isActive(index),
-          },
-        ]"
-        @click="toggle(index)"
-        :disabled="tab.disabled"
-        :aria-expanded="isActive(index)"
-      >
-        <Text tag="span">
-          {{ tab.header }}
-        </Text>
-
-        <span :class="['transition-transform duration-200 text-content-text-secondary', { 'rotate-180': isActive(index) }]">
-          <Icon iconType="ChevronDownIcon" />
-        </span>
-      </button>
-
-      <!-- Content -->
-      <Transition name="accordion" @enter="onEnter" @after-enter="onAfterEnter" @leave="onLeave">
-        <div v-if="isActive(index)" class="accordion-content overflow-hidden transition-all duration-200">
-          <div class="accordion-body">
-            <Text tag="span">
-              {{ tab.content }}
-            </Text>
-          </div>
-        </div>
-      </Transition>
-    </div>
+    <slot />
   </div>
 </template>
-
-<style scoped>
-.accordion-content {
-  transition: height 0.2s ease-in-out;
-}
-</style>

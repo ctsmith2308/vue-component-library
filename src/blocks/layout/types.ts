@@ -26,4 +26,11 @@ interface ListItem<T = unknown> {
   children?: ListItem<T>[];
 }
 
+interface ListItem<T = unknown> {
+  label: string;
+  value: T;
+  active?: boolean;
+  children?: ListItem<T>[];
+}
+
 export type { Tab, AccordionTab, TabsProps, ListItem };

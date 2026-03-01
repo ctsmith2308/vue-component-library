@@ -47,7 +47,7 @@ describe('Carousel', () => {
     it('emits page event with correct index on indicator click', async () => {
       const wrapper = mount(Carousel, { props: { value: items } });
       const indicators = wrapper.findAll('button[aria-label^="Go to page"]');
-      await indicators[2].trigger('click');
+      await indicators[2]?.trigger('click');
       expect(wrapper.emitted('page')?.[0]).toEqual([2]);
     });
   });

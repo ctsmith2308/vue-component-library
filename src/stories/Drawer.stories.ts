@@ -32,11 +32,14 @@ const DrawerTemplate = (position: string, size = 'md') => ({
   template: `
     <div>
       <Button label="Open Drawer" @click="open = true" />
+
       <Drawer :isOpen="open" :position="position" :size="size" @close="open = false">
         <template #header>
           <span class="font-semibold text-sm">Drawer Title</span>
         </template>
+
         <p class="text-sm text-gray-600">This is the drawer body content. You can place anything here.</p>
+
         <template #footer>
           <Button label="Close" variant="outlined" @click="open = false" />
         </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref, watch, nextTick } from 'vue';
 import Button from '../button/Button.vue';
 import Icon from '../icon/Icon.vue';
 import PageOverlay from './PageOverlay.vue';
@@ -12,9 +12,63 @@ const props = withDefaults(defineProps<DrawerProps>(), {
 
 const emit = defineEmits(['close']);
 
-const onClose = () => {
-  emit('close');
-};
+const drawerEl = ref<HTMLElement | null>(null);
+let previouslyFocused: HTMLElement | null = null;
+
+const FOCUSABLE = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(', ');
+
+function getFocusable(): HTMLElement[] {
+  return drawerEl.value ? Array.from(drawerEl.value.querySelectorAll<HTMLElement>(FOCUSABLE)) : [];
+}
+
+function onKeydown(e: KeyboardEvent): void {
+  if (e.key === 'Escape') {
+    emit('close');
+    return;
+  }
+  if (e.key !== 'Tab') return;
+
+  const focusable = getFocusable();
+  if (!focusable.length) return;
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
+  if (e.shiftKey) {
+    if (document.activeElement === first) {
+      e.preventDefault();
+      last?.focus();
+    }
+  } else {
+    if (document.activeElement === last) {
+      e.preventDefault();
+      first?.focus();
+    }
+  }
+}
+
+watch(
+  () => props.isOpen,
+  async (open) => {
+    if (open) {
+      previouslyFocused = document.activeElement as HTMLElement;
+      await nextTick();
+      getFocusable()[0]?.focus();
+    } else {
+      previouslyFocused?.focus();
+      previouslyFocused = null;
+    }
+  },
+);
+
+const onClose = () => emit('close');
 
 const sizeMap: Record<string, string> = {
   sm: 'w-64',
@@ -50,7 +104,7 @@ const transitionName = computed(() => `drawer-${props.position}`);
   <PageOverlay :is-open="props.isOpen" @close="onClose" />
 
   <Transition :name="transitionName">
-    <div v-if="props.isOpen" :class="drawerClasses">
+    <div v-if="props.isOpen" ref="drawerEl" :class="drawerClasses" role="dialog" aria-modal="true" @keydown="onKeydown">
       <div class="flex items-center justify-between p-4 border-b border-surface-border shrink-0">
         <slot name="header" />
 

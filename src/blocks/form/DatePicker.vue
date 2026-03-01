@@ -27,13 +27,17 @@ const selectedDate = ref<Date | null>(props.modelValue || null);
 
 const daysInMonth = computed(() => {
   const year = currentMonth.value.getFullYear();
+
   const month = currentMonth.value.getMonth();
+
   return new Date(year, month + 1, 0).getDate();
 });
 
 const firstDayOfMonth = computed(() => {
   const year = currentMonth.value.getFullYear();
+
   const month = currentMonth.value.getMonth();
+
   return new Date(year, month, 1).getDay();
 });
 
@@ -58,6 +62,7 @@ const calendarDays = computed(() => {
 
 const formattedDate = computed(() => {
   if (!selectedDate.value) return '';
+
   return selectedDate.value.toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
@@ -90,6 +95,7 @@ const isToday = (day: number | null) => {
   if (!day) return false;
 
   const today = new Date();
+
   return (
     day === today.getDate() &&
     currentMonth.value.getMonth() === today.getMonth() &&
@@ -119,6 +125,17 @@ const toggleCalendar = () => {
   if (!props.disabled) {
     showCalendar.value = !showCalendar.value;
   }
+};
+
+const makeAriaLabel = (day: number | null) => {
+  return day
+    ? new Date(currentMonth.value.getFullYear(), currentMonth.value.getMonth(), day).toLocaleDateString('en-US', {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      })
+    : undefined;
 };
 
 watch(
@@ -155,6 +172,8 @@ watch(
     <!-- Calendar dropdown -->
     <div
       v-if="showCalendar"
+      role="dialog"
+      :aria-label="'Choose date, ' + monthName"
       class="absolute top-full left-0 mt-2 bg-surface border border-input-border rounded-lg shadow-lg z-50 p-4 w-full sm:w-80"
     >
       <!-- Month navigation -->
@@ -191,6 +210,9 @@ watch(
           v-for="(day, index) in calendarDays"
           :key="index"
           type="button"
+          :aria-label="makeAriaLabel(day)"
+          :aria-pressed="isSelected(day)"
+          :aria-current="isToday(day) ? 'date' : undefined"
           :class="[
             'aspect-square flex items-center justify-center text-sm rounded transition-colors',
             {

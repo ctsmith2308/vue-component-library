@@ -22,8 +22,14 @@ export { default as DataTable } from './data/DataTable.vue';
 export * from './data/types';
 
 /** Layouts */
-export { default as Tabs } from './layout/Tabs.vue';
 export { default as Accordion } from './layout/Accordion.vue';
+export { default as AccordionPanel } from './layout/AccordionPanel.vue';
+export { default as AccordionHeader } from './layout/AccordionHeader.vue';
+export { default as AccordionContent } from './layout/AccordionContent.vue';
+export { default as Tabs } from './layout/Tabs.vue';
+export { default as TabList } from './layout/TabList.vue';
+export { default as Tab } from './layout/Tab.vue';
+export { default as TabPanel } from './layout/TabPanel.vue';
 export { default as Carousel } from './layout/Carousel.vue';
 export * from './layout/types';
 
