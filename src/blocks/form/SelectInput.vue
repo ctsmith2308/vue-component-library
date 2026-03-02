@@ -136,14 +136,16 @@ watch(isOpen, (newVal: boolean) => {
       :aria-expanded="isOpen"
       aria-haspopup="listbox"
       :aria-controls="data.id + '-listbox'"
-      :aria-activedescendant="isOpen ? data.id + '-option-' + data.options.findIndex(o => o.value === selectedValue) : undefined"
+      :aria-activedescendant="
+        isOpen ? data.id + '-option-' + data.options.findIndex((o) => o.value === selectedValue) : undefined
+      "
       :aria-labelledby="data.id + '-label'"
     >
       <span class="flex-1 text-left">{{ selectedLabel }}</span>
 
       <span
         class="flex items-center size-5 text-content-text-secondary transition-[rotate] duration-200 ease-in-out"
-        :class="{ 'rotate-[-180deg]': isOpen }"
+        :class="{ '-rotate-180': isOpen }"
       >
         <Icon iconType="ChevronDownIcon" />
       </span>
@@ -152,14 +154,14 @@ watch(isOpen, (newVal: boolean) => {
     <!-- Dropdown list -->
     <div
       v-if="isOpen"
-      class="absolute top-[calc(100%+1px)] left-0 w-full z-[1000] shadow-[0_0_10px_0_rgba(0,0,0,0.1)] border border-surface-border rounded-lg overflow-hidden bg-surface"
+      class="absolute top-[calc(100%+1px)] left-0 w-full z-1000 shadow-[0_0_10px_0_rgba(0,0,0,0.1)] border border-surface-border rounded-lg overflow-hidden bg-surface"
     >
       <ul class="list-none m-0 p-0" role="listbox" :id="data.id + '-listbox'" :aria-label="data.label">
         <li
           v-for="(option, idx) in data.options"
           :key="idx"
           :id="data.id + '-option-' + idx"
-          class="flex justify-between items-center px-[10px] py-[10px] cursor-pointer transition-all duration-400 bg-surface border-b border-surface-border last:border-b-0 hover:bg-brand-ghost-hover focus:bg-brand-ghost-hover focus:outline-none"
+          class="flex justify-between items-center px-2.5 py-2.5 cursor-pointer transition-all duration-400 bg-surface border-b border-surface-border last:border-b-0 hover:bg-brand-ghost-hover focus:bg-brand-ghost-hover focus:outline-none"
           :class="{ 'bg-brand-ghost-hover': selectedValue === option.value }"
           role="option"
           :aria-selected="selectedValue === option.value"

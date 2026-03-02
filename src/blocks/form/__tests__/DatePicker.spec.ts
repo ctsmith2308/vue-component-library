@@ -52,9 +52,10 @@ describe('DatePicker', () => {
       const dayButtons = wrapper.findAll('.grid.grid-cols-7 button').filter(
         (b) => b.text() !== '',
       );
-      await dayButtons[0].trigger('click');
-      expect(wrapper.emitted('update:modelValue')).toBeTruthy();
-      expect(wrapper.emitted('update:modelValue')?.[0][0]).toBeInstanceOf(Date);
+      await dayButtons[0]!.trigger('click');
+      const emitted = wrapper.emitted('update:modelValue');
+      expect(emitted).toBeTruthy();
+      expect(emitted![0]![0]).toBeInstanceOf(Date);
     });
 
     it('closes calendar after selecting a date', async () => {
@@ -63,7 +64,7 @@ describe('DatePicker', () => {
       const dayButtons = wrapper.findAll('.grid.grid-cols-7 button').filter(
         (b) => b.text() !== '',
       );
-      await dayButtons[0].trigger('click');
+      await dayButtons[0]!.trigger('click');
       expect(wrapper.find('.grid.grid-cols-7').exists()).toBe(false);
     });
   });

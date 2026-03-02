@@ -1,22 +1,10 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
 import { ref, computed } from 'vue';
-import type { Column } from './types';
+import type { DataTableProps } from './types';
 import TableHeaderCell from './TableHeaderCell.vue';
 import TableRow from './TableRow.vue';
 import TableSkeleton from './TableSkeleton.vue';
 import Paginator from './Paginator.vue';
-
-interface DataTableProps<T> {
-  data: T[];
-  columns: Column[];
-  hoverable?: boolean;
-  bordered?: boolean;
-  loading?: boolean;
-  emptyMessage?: string;
-  paginated?: boolean;
-  rows?: number;
-  totalRecords?: number;
-}
 
 const props = withDefaults(defineProps<DataTableProps<T>>(), {
   hoverable: true,

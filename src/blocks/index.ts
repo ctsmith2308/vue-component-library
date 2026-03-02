@@ -1,3 +1,5 @@
+import '../assets/styles/tailwind.css';
+
 /** Button */
 export { default as Button } from './button/Button.vue';
 export { default as ButtonSpinner } from './button/ButtonSpinner.vue';

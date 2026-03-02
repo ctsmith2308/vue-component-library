@@ -77,25 +77,25 @@ describe('DataTable', () => {
     it('sorts data ascending on sortable column click', async () => {
       const wrapper = mount(DataTable, { props: { data, columns } });
       // Click the Name header (index 0, sortable)
-      await wrapper.findAll('th')[0].trigger('click');
+      await wrapper.findAll('th')[0]!.trigger('click');
       const cells = wrapper.findAll('td').filter((td) => ['Alice', 'Bob', 'Carol'].includes(td.text()));
-      expect(cells[0].text()).toBe('Alice');
+      expect(cells[0]!.text()).toBe('Alice');
     });
 
     it('sorts data descending on second click of same column', async () => {
       const wrapper = mount(DataTable, { props: { data, columns } });
-      const nameHeader = wrapper.findAll('th')[0];
+      const nameHeader = wrapper.findAll('th')[0]!;
       await nameHeader.trigger('click');
       await nameHeader.trigger('click');
       const rows = wrapper.findAll('tbody tr');
-      expect(rows[0].text()).toContain('Carol');
+      expect(rows[0]!.text()).toContain('Carol');
     });
   });
 
   describe('row click', () => {
     it('emits rowClick with the row data', async () => {
       const wrapper = mount(DataTable, { props: { data, columns } });
-      await wrapper.findAll('tbody tr')[0].trigger('click');
+      await wrapper.findAll('tbody tr')[0]!.trigger('click');
       expect(wrapper.emitted('rowClick')?.[0]).toEqual([data[0]]);
     });
   });

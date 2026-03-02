@@ -15,7 +15,7 @@ const slots = useSlots();
 const fields = ref<Map<string, FormField>>(new Map());
 
 const parseSlotContent = (): void => {
-  const vnodes = slots.default?.();
+  const vnodes = slots.default?.({});
 
   if (!vnodes) return;
 

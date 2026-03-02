@@ -10,7 +10,6 @@ const mountPopover = (props = {}) =>
   });
 
 describe('Popover', () => {
-
   describe('initial state', () => {
     it('is not visible on mount', () => {
       const wrapper = mountPopover();
@@ -22,7 +21,7 @@ describe('Popover', () => {
   describe('show / hide API', () => {
     it('becomes visible after show() is called', async () => {
       const wrapper = mountPopover();
-      const fakeEvent = { currentTarget: document.body, target: document.body } as MouseEvent;
+      const fakeEvent = { currentTarget: document.body, target: document.body } as unknown as MouseEvent;
       await wrapper.vm.show(fakeEvent);
       await new Promise((r) => setTimeout(r, 50)); // wait for rAF
       expect(document.querySelector('[role="dialog"]')).not.toBeNull();
@@ -31,7 +30,7 @@ describe('Popover', () => {
 
     it('hides after hide() is called', async () => {
       const wrapper = mountPopover();
-      const fakeEvent = { currentTarget: document.body, target: document.body } as MouseEvent;
+      const fakeEvent = { currentTarget: document.body, target: document.body } as unknown as MouseEvent;
       await wrapper.vm.show(fakeEvent);
       await new Promise((r) => setTimeout(r, 50));
       wrapper.vm.hide();
@@ -42,7 +41,7 @@ describe('Popover', () => {
 
     it('emits show and hide events', async () => {
       const wrapper = mountPopover();
-      const fakeEvent = { currentTarget: document.body, target: document.body } as MouseEvent;
+      const fakeEvent = { currentTarget: document.body, target: document.body } as unknown as MouseEvent;
       wrapper.vm.show(fakeEvent);
       expect(wrapper.emitted('show')).toHaveLength(1);
       wrapper.vm.hide();
@@ -54,7 +53,7 @@ describe('Popover', () => {
   describe('toggle API', () => {
     it('shows on first toggle', () => {
       const wrapper = mountPopover();
-      const fakeEvent = { currentTarget: document.body, target: document.body } as MouseEvent;
+      const fakeEvent = { currentTarget: document.body, target: document.body } as unknown as MouseEvent;
       wrapper.vm.toggle(fakeEvent);
       expect(wrapper.emitted('show')).toHaveLength(1);
       wrapper.unmount();
@@ -62,7 +61,7 @@ describe('Popover', () => {
 
     it('hides on second toggle', () => {
       const wrapper = mountPopover();
-      const fakeEvent = { currentTarget: document.body, target: document.body } as MouseEvent;
+      const fakeEvent = { currentTarget: document.body, target: document.body } as unknown as MouseEvent;
       wrapper.vm.toggle(fakeEvent);
       wrapper.vm.toggle(fakeEvent);
       expect(wrapper.emitted('hide')).toHaveLength(1);
@@ -73,7 +72,7 @@ describe('Popover', () => {
   describe('close icon', () => {
     it('does not render close button when showCloseIcon=false (default)', async () => {
       const wrapper = mountPopover();
-      const fakeEvent = { currentTarget: document.body, target: document.body } as MouseEvent;
+      const fakeEvent = { currentTarget: document.body, target: document.body } as unknown as MouseEvent;
       await wrapper.vm.show(fakeEvent);
       await new Promise((r) => setTimeout(r, 50));
       expect(document.querySelector('button[aria-label="Close"]')).toBeNull();
@@ -82,7 +81,7 @@ describe('Popover', () => {
 
     it('renders close button when showCloseIcon=true', async () => {
       const wrapper = mountPopover({ showCloseIcon: true });
-      const fakeEvent = { currentTarget: document.body, target: document.body } as MouseEvent;
+      const fakeEvent = { currentTarget: document.body, target: document.body } as unknown as MouseEvent;
       await wrapper.vm.show(fakeEvent);
       await new Promise((r) => setTimeout(r, 50));
       expect(document.querySelector('button[aria-label="Close"]')).not.toBeNull();
@@ -96,12 +95,11 @@ describe('Popover', () => {
         slots: { default: '<p data-testid="content">Hello</p>' },
         attachTo: document.body,
       });
-      const fakeEvent = { currentTarget: document.body, target: document.body } as MouseEvent;
+      const fakeEvent = { currentTarget: document.body, target: document.body } as unknown as MouseEvent;
       await wrapper.vm.show(fakeEvent);
       await new Promise((r) => setTimeout(r, 50));
       expect(document.querySelector('[data-testid="content"]')).not.toBeNull();
       wrapper.unmount();
     });
   });
-
 });

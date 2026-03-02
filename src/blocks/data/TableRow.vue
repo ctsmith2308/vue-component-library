@@ -1,14 +1,7 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
 import { computed } from 'vue';
 
-import type { Column } from './types';
-
-interface TableRowProps<T> {
-  row: T;
-  columns: Column[];
-  index: number;
-  hoverable: boolean;
-}
+import type { TableRowProps } from './types';
 
 const props = defineProps<TableRowProps<T>>();
 

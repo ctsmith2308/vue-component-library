@@ -75,13 +75,13 @@ describe('Accordion', () => {
   describe('open / close', () => {
     it('opens a panel on header click and shows content', async () => {
       const wrapper = mountAccordion();
-      await wrapper.findAll('button')[0].trigger('click');
+      await wrapper.findAll('button')[0]!.trigger('click');
       expect(wrapper.text()).toContain('Content One');
     });
 
     it('closes an open panel on second click', async () => {
       const wrapper = mountAccordion();
-      const btn = wrapper.findAll('button')[0];
+      const btn = wrapper.findAll('button')[0]!;
       await btn.trigger('click');
       await btn.trigger('click');
       expect(wrapper.text()).not.toContain('Content One');
@@ -89,14 +89,14 @@ describe('Accordion', () => {
 
     it('sets aria-expanded="true" on an open header', async () => {
       const wrapper = mountAccordion();
-      const btn = wrapper.findAll('button')[0];
+      const btn = wrapper.findAll('button')[0]!;
       await btn.trigger('click');
       expect(btn.attributes('aria-expanded')).toBe('true');
     });
 
     it('sets aria-expanded="false" on a closed header', () => {
       const wrapper = mountAccordion();
-      expect(wrapper.findAll('button')[0].attributes('aria-expanded')).toBe('false');
+      expect(wrapper.findAll('button')[0]!.attributes('aria-expanded')).toBe('false');
     });
   });
 
@@ -107,13 +107,13 @@ describe('Accordion', () => {
   describe('update:value emit', () => {
     it('emits update:value with the opened panel value', async () => {
       const wrapper = mountAccordion();
-      await wrapper.findAll('button')[0].trigger('click');
+      await wrapper.findAll('button')[0]!.trigger('click');
       expect(wrapper.emitted('update:value')?.[0]).toEqual(['1']);
     });
 
     it('emits update:value with empty string when the only open panel is closed', async () => {
       const wrapper = mountAccordion();
-      const btn = wrapper.findAll('button')[0];
+      const btn = wrapper.findAll('button')[0]!;
       await btn.trigger('click');
       await btn.trigger('click');
       expect(wrapper.emitted('update:value')?.[1]).toEqual(['']);
@@ -121,8 +121,8 @@ describe('Accordion', () => {
 
     it('emits update:value with an array of values in multiple mode', async () => {
       const wrapper = mountAccordion(defaultPanels, { multiple: true });
-      await wrapper.findAll('button')[0].trigger('click');
-      await wrapper.findAll('button')[1].trigger('click');
+      await wrapper.findAll('button')[0]!.trigger('click');
+      await wrapper.findAll('button')[1]!.trigger('click');
       const emissions = wrapper.emitted('update:value') as string[][];
       expect(emissions[emissions.length - 1]).toEqual([['1', '2']]);
     });
@@ -161,8 +161,8 @@ describe('Accordion', () => {
   describe('single mode (default)', () => {
     it('closes the previously open panel when a new one is opened', async () => {
       const wrapper = mountAccordion();
-      await wrapper.findAll('button')[0].trigger('click');
-      await wrapper.findAll('button')[1].trigger('click');
+      await wrapper.findAll('button')[0]!.trigger('click');
+      await wrapper.findAll('button')[1]!.trigger('click');
       expect(wrapper.text()).not.toContain('Content One');
       expect(wrapper.text()).toContain('Content Two');
     });
@@ -175,17 +175,17 @@ describe('Accordion', () => {
   describe('multiple mode', () => {
     it('keeps multiple panels open simultaneously', async () => {
       const wrapper = mountAccordion(defaultPanels, { multiple: true });
-      await wrapper.findAll('button')[0].trigger('click');
-      await wrapper.findAll('button')[1].trigger('click');
+      await wrapper.findAll('button')[0]!.trigger('click');
+      await wrapper.findAll('button')[1]!.trigger('click');
       expect(wrapper.text()).toContain('Content One');
       expect(wrapper.text()).toContain('Content Two');
     });
 
     it('closes one panel without affecting the others', async () => {
       const wrapper = mountAccordion(defaultPanels, { multiple: true });
-      await wrapper.findAll('button')[0].trigger('click');
-      await wrapper.findAll('button')[1].trigger('click');
-      await wrapper.findAll('button')[0].trigger('click');
+      await wrapper.findAll('button')[0]!.trigger('click');
+      await wrapper.findAll('button')[1]!.trigger('click');
+      await wrapper.findAll('button')[0]!.trigger('click');
       expect(wrapper.text()).not.toContain('Content One');
       expect(wrapper.text()).toContain('Content Two');
     });
@@ -198,18 +198,18 @@ describe('Accordion', () => {
   describe('disabled panel', () => {
     it('does not open a disabled panel on click', async () => {
       const wrapper = mountAccordion();
-      await wrapper.findAll('button')[2].trigger('click');
+      await wrapper.findAll('button')[2]!.trigger('click');
       expect(wrapper.text()).not.toContain('Content Three');
     });
 
     it('applies accordion-header--disabled class to a disabled header', () => {
       const wrapper = mountAccordion();
-      expect(wrapper.findAll('button')[2].classes()).toContain('accordion-header--disabled');
+      expect(wrapper.findAll('button')[2]!.classes()).toContain('accordion-header--disabled');
     });
 
     it('does not emit update:value when a disabled panel is clicked', async () => {
       const wrapper = mountAccordion();
-      await wrapper.findAll('button')[2].trigger('click');
+      await wrapper.findAll('button')[2]!.trigger('click');
       expect(wrapper.emitted('update:value')).toBeFalsy();
     });
   });
@@ -221,14 +221,14 @@ describe('Accordion', () => {
   describe('active header class', () => {
     it('applies accordion-header--active when a panel is open', async () => {
       const wrapper = mountAccordion();
-      const btn = wrapper.findAll('button')[0];
+      const btn = wrapper.findAll('button')[0]!;
       await btn.trigger('click');
       expect(btn.classes()).toContain('accordion-header--active');
     });
 
     it('removes accordion-header--active when a panel is closed', async () => {
       const wrapper = mountAccordion();
-      const btn = wrapper.findAll('button')[0];
+      const btn = wrapper.findAll('button')[0]!;
       await btn.trigger('click');
       await btn.trigger('click');
       expect(btn.classes()).not.toContain('accordion-header--active');

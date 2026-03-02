@@ -47,14 +47,14 @@ describe('SelectInput', () => {
     it('closes dropdown after selecting an option', async () => {
       const wrapper = mount(SelectInput, { props: { data, name: 'colour' } });
       await wrapper.find('button[type="button"]').trigger('click');
-      await wrapper.findAll('[role="option"]')[1].trigger('click');
+      await wrapper.findAll('[role="option"]')[1]!.trigger('click');
       expect(wrapper.find('[role="listbox"]').exists()).toBe(false);
     });
 
     it('updates displayed value after selection', async () => {
       const wrapper = mount(SelectInput, { props: { data, name: 'colour' } });
       await wrapper.find('button[type="button"]').trigger('click');
-      await wrapper.findAll('[role="option"]')[1].trigger('click');
+      await wrapper.findAll('[role="option"]')[1]!.trigger('click');
       expect(wrapper.find('button').text()).toContain('Green');
     });
   });
@@ -74,7 +74,7 @@ describe('SelectInput', () => {
     it('marks selected option with aria-selected=true', async () => {
       const wrapper = mount(SelectInput, { props: { data, name: 'colour' } });
       await wrapper.find('button').trigger('click');
-      const selected = wrapper.findAll('[role="option"]')[0];
+      const selected = wrapper.findAll('[role="option"]')[0]!;
       expect(selected.attributes('aria-selected')).toBe('true');
     });
   });
