@@ -1,15 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import type { PaginatorProps } from './types';
 
 import Button from '../button/Button.vue';
 import Icon from '../icon/Icon.vue';
-
-interface PaginatorProps {
-  totalRecords: number;
-  rows?: number;
-  first?: number;
-  pageLinkSize?: number;
-}
 
 const props = withDefaults(defineProps<PaginatorProps>(), {
   rows: 10,

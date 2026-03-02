@@ -1,57 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-import {
-  ChevronDoubleLeftIcon,
-  ChevronDoubleRightIcon,
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  SunIcon,
-  MoonIcon,
-  Bars3Icon,
-  ArrowLongUpIcon,
-  ArrowLongDownIcon,
-  LinkIcon,
-  CheckIcon,
-  CalendarDaysIcon,
-  EyeIcon,
-  EyeSlashIcon,
-  PaintBrushIcon,
-  SparklesIcon,
-  XMarkIcon,
-} from '@heroicons/vue/24/outline';
-
-import GithubIcon from './GithubIcon.vue';
-
-const iconComponentKeys = {
-  ChevronDoubleLeftIcon,
-  ChevronDoubleRightIcon,
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  SunIcon,
-  MoonIcon,
-  Bars3Icon,
-  ArrowLongUpIcon,
-  ArrowLongDownIcon,
-  GithubIcon,
-  LinkIcon,
-  CheckIcon,
-  CalendarDaysIcon,
-  EyeIcon,
-  EyeSlashIcon,
-  PaintBrushIcon,
-  SparklesIcon,
-  XMarkIcon,
-} as const;
-
-type IconSize = 'sm' | 'md' | 'lg' | 'xl';
-
-interface IconProps {
-  iconType: keyof typeof iconComponentKeys;
-  size?: IconSize;
-}
+import { type IconProps, type IconSize, ICON_COMPONENT_KEYS } from './types';
 
 const props = withDefaults(defineProps<IconProps>(), {
   size: 'md',
@@ -64,7 +14,7 @@ const sizeKeys: Record<IconSize, string> = {
   xl: 'w-8 h-8',
 };
 
-const iconComponent = computed(() => iconComponentKeys[props.iconType]);
+const iconComponent = computed(() => ICON_COMPONENT_KEYS[props.iconType]);
 
 const sizeClass = computed(() => sizeKeys[props.size]);
 </script>

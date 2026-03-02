@@ -1,8 +1,5 @@
 <script setup lang="ts">
-interface TableSkeletonProps {
-  rows?: number;
-  columns: number;
-}
+import type { TableSkeletonProps } from './types';
 
 withDefaults(defineProps<TableSkeletonProps>(), {
   rows: 5,

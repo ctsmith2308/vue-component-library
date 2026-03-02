@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-interface ToggleSwitchProps {
-  modelValue: boolean;
-  label?: string;
-  disabled?: boolean;
-  size?: 'sm' | 'md' | 'lg';
-  labelPosition?: 'left' | 'right';
-}
+import type { ToggleSwitchProps } from './types';
 
 const props = withDefaults(defineProps<ToggleSwitchProps>(), {
   disabled: false,

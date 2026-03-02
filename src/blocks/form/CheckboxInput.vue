@@ -1,27 +1,15 @@
 <script setup lang="ts">
 import { ref, watch, toRef } from 'vue';
-import type { CheckboxData, ValidationRule } from './types';
+import type { CheckboxInputProps, CheckboxEmitter } from './types';
 import { useFormField } from './composables';
 import Icon from '../icon/Icon.vue';
 import Text from '../typography/Text.vue';
 
-interface Props {
-  data: CheckboxData;
-  modelValue?: boolean;
-  name: string;
-  rules?: ValidationRule;
-}
-
-interface Emits {
-  (e: 'update:modelValue', value: boolean): void;
-  (e: 'change', value: boolean): void;
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<CheckboxInputProps>(), {
   modelValue: undefined,
 });
 
-const emit = defineEmits<Emits>();
+const emit = defineEmits<CheckboxEmitter>();
 
 const { error, isRequired, updateValue, markTouched } = useFormField(toRef(props, 'name'));
 

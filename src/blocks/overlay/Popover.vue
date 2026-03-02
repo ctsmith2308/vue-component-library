@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import { ref, nextTick, onUnmounted } from 'vue';
 
-import type { Placement, PlacementResult, PlacementCandidate } from './types';
-
-interface PopoverProps {
-  dismissable?: boolean;
-  showCloseIcon?: boolean;
-}
+import type { Placement, PlacementResult, PlacementCandidate, PopoverProps } from './types';
 
 const props = withDefaults(defineProps<PopoverProps>(), {
   dismissable: true,

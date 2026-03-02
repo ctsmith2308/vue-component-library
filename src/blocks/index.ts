@@ -8,6 +8,7 @@ export * from './button/types';
 /** Typography */
 export { default as Heading } from './typography/Heading.vue';
 export { default as Text } from './typography/Text.vue';
+export * from './typography/types';
 
 /** Form */
 export { default as Form } from './form/FormComponent.vue';
@@ -32,6 +33,8 @@ export { default as Tabs } from './layout/Tabs.vue';
 export { default as TabList } from './layout/TabList.vue';
 export { default as Tab } from './layout/Tab.vue';
 export { default as TabPanel } from './layout/TabPanel.vue';
+export { default as List } from './layout/List.vue';
+export { default as ListItem } from './layout/ListItem.vue';
 export { default as Carousel } from './layout/Carousel.vue';
 export * from './layout/types';
 
@@ -57,9 +60,6 @@ export * from './media/types';
 
 /** Custom Icons */
 export { default as Icon } from './icon/Icon.vue';
-
-/** Logo */
-export { default as Logo } from './logo/Logo.vue';
 
 /** Misc */
 export { default as ToggleSwitch } from './misc/ToggleSwitch.vue';

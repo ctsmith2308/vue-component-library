@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-interface ChipProps {
-  label: string;
-  removable?: boolean;
-  icon?: boolean;
-  image?: string;
-  color?: 'primary' | 'secondary' | 'success' | 'danger';
-}
+import type { ChipProps } from './types';
 
 const props = withDefaults(defineProps<ChipProps>(), {
   removable: false,

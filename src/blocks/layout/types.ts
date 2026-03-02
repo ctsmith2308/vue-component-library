@@ -1,30 +1,25 @@
-import type { Component } from 'vue';
-
 interface AccordionTab {
   header: string;
   content?: string;
   disabled?: boolean;
 }
 
-interface Tab {
-  header: string;
-  component: Component;
+interface AccordionProps {
+  value?: string | string[];
+  multiple?: boolean;
+}
+
+interface AccordionPanelProps {
+  value: string;
   disabled?: boolean;
-  icon?: boolean;
-  props?: Record<string, unknown>;
 }
 
-interface TabsProps {
-  tabs: Tab[];
-  activeIndex: number;
+interface TabProps {
+  value: string;
+  disabled?: boolean;
 }
 
-interface ListItem<T = unknown> {
-  label: string;
-  value: T;
-  active?: boolean;
-  children?: ListItem<T>[];
-}
+type TabPanelProps = Pick<TabProps, 'value'>;
 
 interface ListItem<T = unknown> {
   label: string;
@@ -33,4 +28,32 @@ interface ListItem<T = unknown> {
   children?: ListItem<T>[];
 }
 
-export type { Tab, AccordionTab, TabsProps, ListItem };
+interface ListProps<T> {
+  items: ListItem<T>[];
+}
+
+interface ListItemProps {
+  clickable?: boolean;
+}
+
+interface CarouselProps {
+  value: unknown[];
+  numVisible?: number;
+  numScroll?: number;
+  circular?: boolean;
+  autoplayInterval?: number;
+  showIndicators?: boolean;
+  showNavigators?: boolean;
+}
+
+export type {
+  AccordionProps,
+  AccordionTab,
+  AccordionPanelProps,
+  TabProps,
+  TabPanelProps,
+  ListProps,
+  ListItemProps,
+  ListItem,
+  CarouselProps,
+};

@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-interface ProgressBarProps {
-  value?: number;
-  showValue?: boolean;
-  mode?: 'determinate' | 'indeterminate';
-  color?: 'primary' | 'secondary' | 'success' | 'danger';
-  height?: string;
-}
+import type { ProgressBarProps } from './types';
 
 const props = withDefaults(defineProps<ProgressBarProps>(), {
   value: 0,

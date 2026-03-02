@@ -1,23 +1,9 @@
 <script setup lang="ts">
 import { computed, useSlots } from 'vue';
 
-import type { ButtonColor, ButtonSize, ButtonVariant } from './types';
+import type { ButtonProps } from './types';
 
 import ButtonSpinner from './ButtonSpinner.vue';
-
-interface ButtonProps {
-  label?: string;
-  color?: ButtonColor;
-  size?: ButtonSize;
-  variant?: ButtonVariant;
-  raised?: boolean;
-  rounded?: boolean;
-  loading?: boolean;
-  disabled?: boolean;
-  as?: 'button' | 'a';
-  href?: string;
-  iconPosition?: 'left' | 'right';
-}
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   color: 'primary',

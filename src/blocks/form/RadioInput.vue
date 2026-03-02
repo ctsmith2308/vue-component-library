@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import { toRef } from 'vue';
-import type { RadioInputType, ValidationRule } from './types';
+import type { RadioInputProps } from './types';
 import { useFormField } from './composables';
 import Text from '../typography/Text.vue';
 
-interface Props {
-  input: RadioInputType;
-  name: string;
-  rules?: ValidationRule;
-}
-
-const props = defineProps<Props>();
+const props = defineProps<RadioInputProps>();
 
 const { error, isRequired, updateValue, markTouched } = useFormField(toRef(props, 'name'));
 

@@ -1,18 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-import { ArrowLongUpIcon, ArrowLongDownIcon } from '@heroicons/vue/24/solid';
+import type { TableHeaderCellProps } from './types';
 
-interface TableHeaderCellProps {
-  column: {
-    field: string;
-    header: string;
-    sortable?: boolean;
-    width?: string;
-  };
-  sortField: string | null;
-  sortOrder: 'asc' | 'desc';
-}
+import Icon from '../icon/Icon.vue';
 
 const props = defineProps<TableHeaderCellProps>();
 
@@ -45,12 +36,12 @@ const onHeaderClick = () => {
 
       <span v-if="isSortable" class="sort-icon text-content-text-secondary">
         <slot name="sort-icon" :field="column.field" :active="isActive" :order="sortOrder">
-          <ArrowLongUpIcon v-if="isActive && sortOrder === 'asc'" class="w-4 h-4" />
+          <Icon iconType="ArrowLongUpIcon" v-if="isActive && sortOrder === 'asc'" />
 
-          <ArrowLongDownIcon v-else-if="isActive && sortOrder === 'desc'" class="w-4 h-4" />
+          <Icon iconType="ArrowLongDownIcon" v-else-if="isActive && sortOrder === 'desc'" />
 
           <div v-else class="w-4 h-4 opacity-30">
-            <ArrowLongUpIcon class="w-4 h-4" />
+            <Icon iconType="ArrowLongUpIcon" />
           </div>
         </slot>
       </span>

@@ -1,17 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue';
+import type { CarouselProps } from './types';
 import Button from '../button/Button.vue';
 import Icon from '../icon/Icon.vue';
-
-interface CarouselProps {
-  value: unknown[];
-  numVisible?: number;
-  numScroll?: number;
-  circular?: boolean;
-  autoplayInterval?: number;
-  showIndicators?: boolean;
-  showNavigators?: boolean;
-}
 
 const props = withDefaults(defineProps<CarouselProps>(), {
   numVisible: 1,

@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { inject } from 'vue';
 
-interface TabPanelProps {
-  value: string;
-}
+import type { TabPanelProps } from './types';
 
 defineProps<TabPanelProps>();
 

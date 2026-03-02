@@ -1,7 +1,7 @@
 <script setup lang="ts">
-defineProps<{
-  size: number;
-}>();
+import type { HeadingProps } from './types';
+
+defineProps<HeadingProps>();
 </script>
 
 <template>

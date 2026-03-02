@@ -5,15 +5,9 @@ import Icon from '../icon/Icon.vue';
 import Text from '../typography/Text.vue';
 import { useFormField } from './composables';
 
-import type { SelectData, SelectOption, ValidationRule } from './types';
+import type { SelectOption, SelectInputProps } from './types';
 
-interface Props {
-  data: SelectData;
-  name: string;
-  rules?: ValidationRule;
-}
-
-const props = defineProps<Props>();
+const props = defineProps<SelectInputProps>();
 
 const { error, isRequired, updateValue, markTouched } = useFormField(toRef(props, 'name'));
 

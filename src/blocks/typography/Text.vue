@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-interface TextProps {
-  tag?: 'p' | 'div' | 'span' | 'label' | 'section' | 'article';
-  size?: 'sm' | 'md' | 'lg';
-  color?: 'default' | 'muted' | 'secondary' | 'danger' | 'brand';
-}
+import type { TextProps } from './types';
 
 const props = withDefaults(defineProps<TextProps>(), {
   tag: 'p',

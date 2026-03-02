@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { inject, provide } from 'vue';
 
-interface AccordionPanelProps {
-  value: string;
-  disabled?: boolean;
-}
+import type { AccordionPanelProps } from './types';
 
 const props = withDefaults(defineProps<AccordionPanelProps>(), {
   disabled: false,

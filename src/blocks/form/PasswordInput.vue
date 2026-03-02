@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 
-import { type TextInputProps } from './types';
+import { type PasswordInputProps } from './types';
 import TextInput from './TextInput.vue';
 import Button from '../button/Button.vue';
 import Icon from '../icon/Icon.vue';
-
-interface PasswordInputProps extends TextInputProps {
-  minLength?: number;
-}
 
 const props = withDefaults(defineProps<PasswordInputProps>(), {
   minLength: 12,

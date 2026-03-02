@@ -92,6 +92,42 @@ interface CheckboxData {
   checked?: boolean;
 }
 
+interface SelectInputProps {
+  data: SelectData;
+  name: string;
+  rules?: ValidationRule;
+}
+
+interface RadioInputProps {
+  input: RadioInputType;
+  name: string;
+  rules?: ValidationRule;
+}
+
+interface PasswordInputProps extends TextInputProps {
+  minLength?: number;
+}
+
+interface DatePickerProps {
+  modelValue?: Date | null;
+  placeholder?: string;
+  disabled?: boolean;
+  minDate?: Date;
+  maxDate?: Date;
+}
+
+interface CheckboxInputProps {
+  data: CheckboxData;
+  modelValue?: boolean;
+  name: string;
+  rules?: ValidationRule;
+}
+
+interface CheckboxEmitter {
+  (e: 'update:modelValue', value: boolean): void;
+  (e: 'change', value: boolean): void;
+}
+
 export type {
   TextInputProps,
   MaskType,
@@ -108,4 +144,10 @@ export type {
   SelectOption,
   SelectData,
   CheckboxData,
+  SelectInputProps,
+  RadioInputProps,
+  PasswordInputProps,
+  DatePickerProps,
+  CheckboxInputProps,
+  CheckboxEmitter,
 };

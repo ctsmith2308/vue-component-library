@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import type { ButtonSize } from './types';
-
-interface SpinnerProps {
-  size?: ButtonSize;
-  animationDuration?: string;
-}
+import type { SpinnerProps, ButtonSize } from './types';
 
 withDefaults(defineProps<SpinnerProps>(), {
   size: 'md',

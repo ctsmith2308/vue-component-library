@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { provide, ref, watch } from 'vue';
-
-interface AccordionProps {
-  value?: string | string[];
-  multiple?: boolean;
-}
+import type { AccordionProps } from './types';
 
 const props = withDefaults(defineProps<AccordionProps>(), {
   multiple: false,
@@ -14,13 +10,14 @@ const emit = defineEmits<{
   'update:value': [value: string | string[]];
 }>();
 
-const openValues = ref<Set<string>>(
-  new Set(Array.isArray(props.value) ? props.value : props.value ? [props.value] : []),
-);
+const openValues = ref<Set<string>>(new Set(Array.isArray(props.value) ? props.value : props.value ? [props.value] : []));
 
-watch(() => props.value, (val) => {
-  openValues.value = new Set(Array.isArray(val) ? val : val ? [val] : []);
-});
+watch(
+  () => props.value,
+  (val: Iterable<unknown> | null | undefined) => {
+    openValues.value = new Set(Array.isArray(val) ? val : val ? [val] : []);
+  },
+);
 
 function isOpen(value: string): boolean {
   return openValues.value.has(value);
@@ -35,7 +32,7 @@ function toggle(value: string): void {
     next.add(value);
   }
   openValues.value = next;
-  emit('update:value', props.multiple ? [...next] : [...next][0] ?? '');
+  emit('update:value', props.multiple ? [...next] : ([...next][0] ?? ''));
 }
 
 provide('accordion', { isOpen, toggle });

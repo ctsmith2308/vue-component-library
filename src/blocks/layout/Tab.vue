@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { inject, onMounted, onBeforeUnmount } from 'vue';
-
-interface TabProps {
-  value: string;
-  disabled?: boolean;
-}
+import type { TabProps } from './types';
 
 const props = withDefaults(defineProps<TabProps>(), {
   disabled: false,

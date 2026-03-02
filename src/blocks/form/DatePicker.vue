@@ -1,16 +1,9 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
+import type { DatePickerProps } from './types';
 
 import Button from '../button/Button.vue';
 import Icon from '../icon/Icon.vue';
-
-interface DatePickerProps {
-  modelValue?: Date | null;
-  placeholder?: string;
-  disabled?: boolean;
-  minDate?: Date;
-  maxDate?: Date;
-}
 
 const props = withDefaults(defineProps<DatePickerProps>(), {
   placeholder: 'Select date',

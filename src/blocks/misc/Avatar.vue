@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-interface AvatarProps {
-  image?: string;
-  label?: string;
-  icon?: boolean;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
-  shape?: 'circle' | 'square';
-}
+import type { AvatarProps } from './types';
 
 const props = withDefaults(defineProps<AvatarProps>(), {
   size: 'md',

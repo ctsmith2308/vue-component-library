@@ -1,11 +1,7 @@
 <script setup lang="ts" generic="T">
-import type { ListItem } from './types';
+import type { ListProps, ListItem } from './types';
 
-interface Props {
-  items: ListItem<T>[];
-}
-
-defineProps<Props>();
+defineProps<ListProps<T>>();
 
 const emit = defineEmits<{
   itemClick: [value: T, item: ListItem<T>];

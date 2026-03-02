@@ -24,7 +24,13 @@ interface DrawerProps {
   size?: DrawerSize;
 }
 
+interface PopoverProps {
+  dismissable?: boolean;
+  showCloseIcon?: boolean;
+}
+
 type DrawerPosition = 'left' | 'right' | 'top' | 'bottom';
+
 type DrawerSize = 'sm' | 'md' | 'lg' | 'full';
 
 export type {
@@ -32,8 +38,9 @@ export type {
   Placement,
   PlacementResult,
   PlacementCandidate,
-  OverlayProps,
-  DrawerProps,
   DrawerPosition,
   DrawerSize,
+  OverlayProps,
+  DrawerProps,
+  PopoverProps,
 };

@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-interface TagProps {
-  value: string;
-  severity?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info';
-  rounded?: boolean;
-  icon?: boolean;
-}
+import type { TagProps } from './types';
 
 const props = withDefaults(defineProps<TagProps>(), {
   severity: 'primary',
@@ -15,12 +10,12 @@ const props = withDefaults(defineProps<TagProps>(), {
 });
 
 const severityClasses = {
-  primary:   'bg-brand text-brand-contrast',
+  primary: 'bg-brand text-brand-contrast',
   secondary: 'bg-secondary text-secondary-contrast',
-  success:   'bg-success text-success-contrast',
-  danger:    'bg-danger text-danger-contrast',
-  warning:   'bg-warning text-warning-contrast',
-  info:      'bg-info text-info-contrast',
+  success: 'bg-success text-success-contrast',
+  danger: 'bg-danger text-danger-contrast',
+  warning: 'bg-warning text-warning-contrast',
+  info: 'bg-info text-info-contrast',
 };
 
 const tagClasses = computed(() => [

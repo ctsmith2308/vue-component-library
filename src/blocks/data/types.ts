@@ -33,4 +33,35 @@ interface TableRowProps<T> {
   hoverable: boolean;
 }
 
-export type { DataTableColumn, Column, DataTableProps, TableRowProps };
+interface PaginatorProps {
+  totalRecords: number;
+  rows?: number;
+  first?: number;
+  pageLinkSize?: number;
+}
+
+interface TableHeaderCellProps {
+  column: {
+    field: string;
+    header: string;
+    sortable?: boolean;
+    width?: string;
+  };
+  sortField: string | null;
+  sortOrder: 'asc' | 'desc';
+}
+
+interface TableSkeletonProps {
+  rows?: number;
+  columns: number;
+}
+
+export type {
+  DataTableColumn,
+  Column,
+  DataTableProps,
+  TableRowProps,
+  PaginatorProps,
+  TableHeaderCellProps,
+  TableSkeletonProps,
+};

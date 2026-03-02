@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import type { ListItemProps } from './types';
 
-interface Props {
-  clickable?: boolean;
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<ListItemProps>(), {
   clickable: false,
 });
 

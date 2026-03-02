@@ -1,21 +1,22 @@
 <script setup lang="ts">
 import { provide, ref, watch } from 'vue';
 
-interface TabsProps {
-  value?: string;
-}
+import type { TabProps } from './types';
 
-const props = defineProps<TabsProps>();
+const props = defineProps<TabProps>();
 
 const emit = defineEmits<{
   'update:value': [value: string];
 }>();
 
-const activeValue = ref<string>(props.value ?? '');
+const activeValue = ref<string>(props.value);
 
-watch(() => props.value, (val) => {
-  if (val !== undefined) activeValue.value = val;
-});
+watch(
+  () => props.value,
+  (val) => {
+    if (val !== undefined) activeValue.value = val;
+  },
+);
 
 function isActive(value: string): boolean {
   return activeValue.value === value;
@@ -23,6 +24,7 @@ function isActive(value: string): boolean {
 
 function activate(value: string): void {
   activeValue.value = value;
+
   emit('update:value', value);
 }
 

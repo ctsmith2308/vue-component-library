@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-interface ProgressSpinnerProps {
-  size?: 'sm' | 'md' | 'lg' | 'xl';
-  strokeWidth?: string;
-  color?: 'primary' | 'secondary' | 'success' | 'danger';
-}
+import type { ProgressSpinnerProps } from './types';
 
 const props = withDefaults(defineProps<ProgressSpinnerProps>(), {
   size: 'md',
