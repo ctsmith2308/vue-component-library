@@ -31,5 +31,3 @@ export const XL: Story = { args: { size: 'xl' } };
 export const Secondary: Story = { args: { color: 'secondary' } };
 export const Success: Story = { args: { color: 'success' } };
 export const Danger: Story = { args: { color: 'danger' } };
-
-export const ThickStroke: Story = { args: { strokeWidth: '8' } };

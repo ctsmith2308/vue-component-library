@@ -51,3 +51,22 @@ const animationClass = computed(() => {
     <slot></slot>
   </div>
 </template>
+
+<style scoped>
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-wave::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: wave 1.5s infinite;
+}
+</style>

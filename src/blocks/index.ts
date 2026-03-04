@@ -22,6 +22,7 @@ export * from './form/types';
 
 /** Data */
 export { default as DataTable } from './data/DataTable.vue';
+export { default as Paginator } from './data/Paginator.vue';
 export * from './data/types';
 
 /** Layouts */
