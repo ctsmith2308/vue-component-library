@@ -10,9 +10,9 @@ const props = withDefaults(defineProps<TextProps>(), {
 });
 
 const sizeKeys = {
-  sm: 'text-body-sm',
-  md: 'text-body-md',
-  lg: 'text-body-lg',
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-lg',
 };
 
 const colorKeys = {

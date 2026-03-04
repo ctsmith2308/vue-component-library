@@ -1,4 +1,4 @@
-import '../assets/styles/tailwind.css';
+import '@/assets/styles/main.css';
 
 /** Button */
 export { default as Button } from './button/Button.vue';

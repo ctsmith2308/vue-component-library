@@ -72,7 +72,7 @@ const isIconOnly = computed(() => !!slots.icon && !props.label);
 const iconWrapperClass = computed(() => iconSizeKeys[props.size]);
 
 const classes = computed(() => [
-  'btn',
+  'rounded-md text-content-code py-1 px-1 bg-surface-alt',
   colorClass.value,
   sizeKeys[props.size],
   isIconOnly.value ? 'btn-icon' : '',

@@ -1,22 +1,20 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import type { HeadingProps } from './types';
 
-defineProps<HeadingProps>();
+const props = defineProps<HeadingProps>();
+
+const headingConfig = {
+  1: { tag: 'h1', className: 'text-5xl font-extrabold text-content-text' },
+  2: { tag: 'h2', className: 'text-4xl font-bold text-content-text' },
+  3: { tag: 'h3', className: 'text-3xl font-semibold text-content-text' },
+  4: { tag: 'h4', className: 'text-2xl font-semibold text-content-text' },
+  5: { tag: 'h5', className: 'text-xl font-semibold text-content-text' },
+} as const;
+
+const heading = computed(() => headingConfig[props.size]);
 </script>
 
 <template>
-  <!-- Page title -->
-  <h1 v-if="size === 1" class="text-heading-1 text-content-text"><slot /></h1>
-
-  <!-- Major Section heading -->
-  <h2 v-if="size === 2" class="text-heading-2 text-content-text"><slot /></h2>
-
-  <!-- Subsection heading -->
-  <h3 v-if="size === 3" class="text-heading-3 text-content-text"><slot /></h3>
-
-  <!-- Component Heading  -->
-  <h4 v-if="size === 4" class="text-heading-4 text-content-text"><slot /></h4>
-
-  <!-- Minor Headging -->
-  <h5 v-if="size === 5" class="text-heading-5 text-content-text"><slot /></h5>
+  <component :is="heading.tag" :class="heading.className"><slot /></component>
 </template>

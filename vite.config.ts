@@ -1,10 +1,9 @@
 import { fileURLToPath, URL } from 'node:url';
 import { resolve } from 'path';
-
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
+import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'vite';
 
 const vueVitePluginOptions = {
   template: {
@@ -26,7 +25,8 @@ export default defineConfig({
       rollupTypes: true,
       // Clean up old types before a new build
       insertTypesEntry: true,
-      exclude: ['src/**/*.stories.ts', 'src/**/*.stories.js', 'src/**/*.stories.vue', '.storybook/**'],
+      // Exclude type declarations from tests and stories
+      exclude: ['**/__tests__/**', '**/*.stories.ts', '**/*.stories.vue', '**/.storybook/**'],
     }),
   ],
   resolve: {
@@ -36,20 +36,21 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/blocks/index.ts'),
-      name: 'MavenComponentLibrary',
-      fileName: 'maven-component-lib',
-      cssFileName: 'maven-styles.css',
-      formats: ['es', 'cjs'],
+      entry: {
+        'maven-vue-lib': resolve(__dirname, 'src/blocks/index.ts'),
+      },
+      cssFileName: 'maven-vue-lib-styles',
+      formats: ['es'],
     },
     rollupOptions: {
-      external: ['vue', /\.stories\.(ts|js|vue)$/, /\.storybook\//],
+      external: ['vue', 'tailwindcss', /\.stories\./, /\.storybook\//],
       output: {
         globals: {
           vue: 'Vue',
         },
+        manualChunks: undefined,
       },
     },
-    minify: true,
+    minify: 'esbuild',
   },
 });

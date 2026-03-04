@@ -1,11 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 import Heading from '../Heading.vue';
+import type { HeadingSize } from '../types';
+
+const headingSizes: HeadingSize[] = [1, 2, 3, 4, 5];
 
 describe('Heading', () => {
   describe('tag rendering', () => {
-    /** TODO: Test is rendering size=%d as NaN for test name. Need to figure out why it block description is off. */
-    it.each([1, 2, 3, 4, 5])('renders <h%d> for size=%d', (size) => {
+    it.each(headingSizes)('renders <h%d>', (size) => {
       const wrapper = mount(Heading, { props: { size } });
 
       expect(wrapper.find(`h${size}`).exists()).toBe(true);
@@ -14,11 +16,11 @@ describe('Heading', () => {
 
   describe('size classes', () => {
     it.each([
-      [1, 'text-heading-1'],
-      [2, 'text-heading-2'],
-      [3, 'text-heading-3'],
-      [4, 'text-heading-4'],
-      [5, 'text-heading-5'],
+      [1, 'text-5xl'],
+      [2, 'text-4xl'],
+      [3, 'text-3xl'],
+      [4, 'text-2xl'],
+      [5, 'text-xl'],
     ] as const)('size=%d applies %s', (size, expected) => {
       const wrapper = mount(Heading, { props: { size } });
 
@@ -26,7 +28,7 @@ describe('Heading', () => {
     });
 
     it('always includes text-content-text', () => {
-      [1, 2, 3, 4, 5].forEach((size) => {
+      headingSizes.forEach((size) => {
         const wrapper = mount(Heading, { props: { size } });
         expect(wrapper.find(`h${size}`).classes()).toContain('text-content-text');
       });

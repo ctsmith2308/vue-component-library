@@ -17,7 +17,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (args) => ({
     components: { Accordion, AccordionPanel, AccordionHeader, AccordionContent },
-    setup() { return { args }; },
+    setup() {
+      return { args };
+    },
     template: `
       <Accordion v-bind="args" value="1">
         <AccordionPanel value="1">
@@ -47,7 +49,9 @@ export const MultipleOpen: Story = {
   args: { multiple: true },
   render: (args) => ({
     components: { Accordion, AccordionPanel, AccordionHeader, AccordionContent },
-    setup() { return { args }; },
+    setup() {
+      return { args };
+    },
     template: `
       <Accordion v-bind="args">
         <AccordionPanel value="1">
@@ -70,7 +74,9 @@ export const MultipleOpen: Story = {
 export const WithDisabledPanel: Story = {
   render: (args) => ({
     components: { Accordion, AccordionPanel, AccordionHeader, AccordionContent },
-    setup() { return { args }; },
+    setup() {
+      return { args };
+    },
     template: `
       <Accordion v-bind="args" value="1">
         <AccordionPanel value="1">
@@ -89,7 +95,9 @@ export const WithDisabledPanel: Story = {
 export const RichContent: Story = {
   render: (args) => ({
     components: { Accordion, AccordionPanel, AccordionHeader, AccordionContent },
-    setup() { return { args }; },
+    setup() {
+      return { args };
+    },
     template: `
       <Accordion v-bind="args" value="team">
         <AccordionPanel value="team">

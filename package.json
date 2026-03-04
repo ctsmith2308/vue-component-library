@@ -21,15 +21,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/maven-component-lib.cjs",
-  "module": "./dist/maven-component-lib.js",
+  "module": "./dist/maven-vue-lib.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/maven-component-lib.js",
-      "require": "./dist/maven-component-lib.cjs"
+      "import": "./dist/maven-vue-lib.js"
     },
-    "./style.css": "./dist/maven-styles.css"
+    "./style.css": "./dist/maven-vue-lib-styles.css"
   },
   "peerDependencies": {
     "vue": "^3.0.0"

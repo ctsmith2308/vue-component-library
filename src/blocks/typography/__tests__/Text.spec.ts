@@ -25,17 +25,17 @@ describe('Text', () => {
 
   describe('size classes', () => {
     it.each([
-      ['sm', 'text-body-sm'],
-      ['md', 'text-body-md'],
-      ['lg', 'text-body-lg'],
+      ['sm', 'text-sm'],
+      ['md', 'text-base'],
+      ['lg', 'text-lg'],
     ] as const)('applies %s size class', (size, expected) => {
       const wrapper = mount(Text, { props: { size } });
       expect(wrapper.classes()).toContain(expected);
     });
 
-    it('defaults to text-body-md', () => {
+    it('defaults to text-base', () => {
       const wrapper = mount(Text);
-      expect(wrapper.classes()).toContain('text-body-md');
+      expect(wrapper.classes()).toContain('text-base');
     });
   });
 

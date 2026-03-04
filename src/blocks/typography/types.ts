@@ -1,5 +1,7 @@
+type HeadingSize = 1 | 2 | 3 | 4 | 5;
+
 interface HeadingProps {
-  size: number;
+  size: HeadingSize;
 }
 
 interface TextProps {
@@ -8,4 +10,4 @@ interface TextProps {
   color?: 'default' | 'muted' | 'secondary' | 'danger' | 'brand';
 }
 
-export type { HeadingProps, TextProps };
+export type { HeadingProps, TextProps, HeadingSize };
